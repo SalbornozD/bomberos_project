@@ -1,0 +1,55 @@
+# ───────────────
+# Archivos y carpetas del entorno virtual
+# ───────────────
+venv/
+ENV/
+env/
+.venv/
+
+# ───────────────
+# Archivos del sistema
+# ───────────────
+*.DS_Store
+Thumbs.db
+
+# ───────────────
+# Archivos de compilación de Python
+# ───────────────
+*.pyc
+*.pyo
+__pycache__/
+
+# ───────────────
+# Configuración de entorno
+# ───────────────
+.env
+*.env
+
+# ───────────────
+# Archivos de base de datos
+# ───────────────
+db.sqlite3
+*.sqlite3
+
+# ───────────────
+# Archivos generados por collectstatic (producción)
+# ───────────────
+staticfiles/
+static_root/
+
+# ───────────────
+# Archivos multimedia cargados
+# ───────────────
+media/
+uploads/
+
+# ───────────────
+# Archivos para desarrollo/documentación interna
+# ───────────────
+dev_notes.txt
+
+# ───────────────
+# Configuración de editor (opcional)
+# ───────────────
+.vscode/
+.idea/
