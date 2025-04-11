@@ -1,0 +1,47 @@
+/* Página Home */
+
+#pg-home .btn-panel{
+    display: flex;
+    flex-flow: row  wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 50px 0;
+}
+
+#pg-home .btn-panel a{
+    height: 260px;
+    width: 230px;
+    overflow: hidden;
+    background-color: #DADADA;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    position: relative;
+}
+
+#pg-home .btn-panel a .btn-content{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: end;
+    align-items: center;
+    padding: 20px;
+}
+
+#pg-home .btn-panel a .btn-content h4{
+    color: white;
+    text-align: center;
+    font-size: xx-large;
+}
+
+#pg-home .btn-panel a img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

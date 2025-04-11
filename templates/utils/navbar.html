@@ -1,0 +1,32 @@
+{% load static %}
+
+<nav class="custom-navbar">
+    <a href="/" class="logoContainer">
+        <img src="{% static 'img/logo.png' %}" alt="">
+        <span>Bomberos<br>Quintero</span>
+    </a>
+
+    <button id="btnMenuNavbar">
+        <i class="bi bi-list"></i>
+    </button>
+</nav>
+<div id="bloqWindow"></div>
+<div id="sideMenuNavbar" class="sideMenuNavbarClose">
+    <div class="header">
+        <h5>Bomberos Quintero</h5>
+        <button id="btnCloseMenuNavbar">
+            <i class="bi bi-x"></i>
+        </button>
+    </div>
+    <div class="body">
+        <a href="{% url 'major_equipment:unit_list' %}">
+            <h6>Material mayor</h6>
+        </a>        
+    </div>
+    <div>
+        {% if user.is_superuser %}
+        <a href="/admin/">Administración</a>
+        {% endif %}
+        <a href="/logout/">Cerrar sesión</a>
+    </div>
+</div>

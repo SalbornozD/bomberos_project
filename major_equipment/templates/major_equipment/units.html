@@ -1,0 +1,150 @@
+{% extends "utils/base.html" %}
+{% load humanize static document_status permissions %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/pages/units.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% include 'utils/navbar.html' %}
+
+    <section class="header-container">
+        <h1>Material Mayor</h1>
+    </section>
+
+    <section class="filters-container mb-4">
+        <form method="get">
+            <div class="row g-3">
+
+                <!-- Campo de búsqueda + botón -->
+                <div class="col-12">
+                    <div class="row g-3">
+                        <div class="col-8 col-md">
+                            <input class="form-control" type="text" name="search_filter" id="search_filter"
+                                placeholder="Buscar unidad"
+                                value="{{ search_filter|default:'' }}">
+                        </div>
+                        <div class="col-4 col-md-auto">
+                            <button class="btn btn-dark w-100" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtro por estado -->
+                <div class="col-12 col-md">
+                    <select name="status_filter" class="form-select" disabled>
+                        <option value="">Todos los estados</option>
+                        <option value="1" {% if status_filter == "1" %}selected{% endif %}>Activo</option>
+                        <option value="2" {% if status_filter == "2" %}selected{% endif %}>En mantención</option>
+                        <option value="3" {% if status_filter == "3" %}selected{% endif %}>Fuera de servicio</option>
+                    </select>
+                </div>
+
+                <!-- Filtro por compañía -->
+                {% if user|has_perm:"major_equipment.view_all_vehicles" %}
+                    <div class="col-12 col-md">
+                        <select name="fire_company_filter" class="form-select">
+                            <option value="">Todas las compañías</option>
+                            {% for company in fire_companies %}
+                                <option value="{{ company.id }}"
+                                    {% if fire_company_filter|default:'' == company.id|stringformat:"s" %}selected{% endif %}>
+                                    {{ company.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endif %}
+            </div>
+        </form>
+    </section>
+
+    <main id="units-container">
+        {% for unit, image in unit_data %}
+            <div class="unit">
+
+                <!-- Imagen -->
+                {% if image %}
+                    <img src="{{ image.image.url }}" alt="Imagen unidad {{ unit.unit_number }} {{ image.description }}">
+
+                {% else %}
+                    <div class="unit-noImage">
+                        <i class="bi bi-image"></i>
+                    </div>
+                {% endif %}
+
+                <!-- Contenido -->
+                <div class="unit-body d-flex flex-column justify-content-evenly">
+                    <div class="unit-info">
+                        <a href="{% url 'major_equipment:unit_detail' unit.id %}"><h5>Unidad: {{ unit.unit_number }}</h5></a>
+                        <p>Combustible: {{ unit.get_fuel_type_display|default:"No especificado" }}</p>
+                    </div>
+
+                    <div class="d-flex flex-row flex-wrap justify-content-between gap-2">
+                        {% document_status_badge unit.get_registration_certificate_status "Padrón" unit.registration_certificate_expiration %}
+                        {% document_status_badge unit.get_soap_certificate_status "SOAP" unit.soap_certificate_expiration %}
+                        {% document_status_badge unit.get_technical_inspection_certificate_status "Revisión Técnica" unit.technical_inspection_certificate_expiration %}
+                        {% document_status_badge unit.get_vehicle_permit_status "Permiso de Circulación" unit.vehicle_permit_expiration %}
+                        {% document_status_badge unit.get_next_maintenance_status "Mantención" unit.next_maintenance_date %}
+                    </div>
+
+                    <button class="btn btn-light report-problem-btn mt-2" data-unit-id="{{ unit.id }}">
+                        Notificar problema
+                    </button>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center text-muted">No hay unidades disponibles.</p>
+        {% endfor %}
+    </main>
+
+    <section class="pagination-container mt-4">
+        {% with q_search='&search_filter='|add:search_filter|default:'' %}
+        {% with q_status='&status_filter='|add:status_filter|default:'' %}
+        {% with q_company='&fire_company_filter='|add:fire_company_filter|default:'' %}
+        <ul class="pagination justify-content-center">
+
+            {% if units.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ units.previous_page_number }}{{ q_search }}{{ q_status }}{{ q_company }}">
+                        <i class="bi bi-caret-left-fill"></i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-caret-left-fill"></i></span>
+                </li>
+            {% endif %}
+
+            {% for num in units.paginator.page_range %}
+                <li class="page-item {% if num == units.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}{{ q_search }}{{ q_status }}{{ q_company }}">
+                        {{ num }}
+                    </a>
+                </li>
+            {% endfor %}
+
+            {% if units.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ units.next_page_number }}{{ q_search }}{{ q_status }}{{ q_company }}">
+                        <i class="bi bi-caret-right-fill"></i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-caret-right-fill"></i></span>
+                </li>
+            {% endif %}
+        </ul>
+        {% endwith %}
+        {% endwith %}
+        {% endwith %}
+    </section>
+
+    {% include 'utils/modal.html' %}
+    {% include 'utils/footer.html' %}
+    {% include 'utils/toast-container.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/pages/units.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "utils/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/home.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'utils/navbar.html' %}
+<main id="pg-home">
+    
+    <section class="btn-panel">
+        <a href="{% url 'major_equipment:unit_list' %}">
+            <img src="{% static 'img/img-matMayor.jpeg' %}" alt="">
+            <div class="btn-content">
+                <h4>Material Mayor</h4>
+            </div>
+        </a>
+        <a href="#">
+            <img src="{% static 'img/img-matMenor.jpeg' %}" alt="">
+            <div class="btn-content">
+                <h4>Material Menor</h4>
+            </div>
+        </a>
+        <a href="#">
+            <img src="{% static 'img/img-inventario.jpeg' %}" alt="">
+            <div class="btn-content">
+                <h4>Inventario</h4>
+            </div>
+        </a>
+        <a href="#">
+            <img src="{% static 'img/img-suministros.jpeg' %}" alt="">
+            <div class="btn-content">
+                <h4>Suministros</h4>
+            </div>
+        </a>
+    </section>
+</main>
+{% endblock %}

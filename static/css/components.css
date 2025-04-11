@@ -1,0 +1,127 @@
+/* Navbar */
+
+.custom-navbar{
+    background-color: #243346;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2vw;
+    position: relative;
+    top: 0;
+}
+
+.custom-navbar .logoContainer{
+    height: 80%;
+    color: white;
+    text-decoration: none;
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.custom-navbar .logoContainer:hover{
+    background-color: #BB2633;
+}
+
+.custom-navbar .logoContainer span{
+    text-align: center;
+}
+
+.custom-navbar .logoContainer img{
+    height: 100%;
+}
+
+#btnMenuNavbar{
+    background-color: transparent;
+    color: white;
+    font-size: 40px;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+#btnMenuNavbar:hover{
+    background-color: #BB2633;
+    color: white;
+    border-radius: 10px;
+}
+
+#sideMenuNavbar{
+    background-color: #243346;
+    width: 320px; height: 100%;
+    position: fixed;
+    top: 0;
+    right: -320px;
+    transition: right 0.3s ease-in-out;
+    z-index: 10;
+    right: -320px;
+}
+
+#sideMenuNavbar .header{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5vh 20px 0;
+    color: white;
+    font-size: xx-large;
+}
+
+#sideMenuNavbar .header button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: xx-large;
+    margin: 0;
+    padding: 0;
+}
+
+#sideMenuNavbar .body{
+    margin: 10px 20px 0;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+}
+
+#sideMenuNavbar .body a{
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+}
+
+#sideMenuNavbar .body a:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#sideMenuNavbar .body a h6{
+    font-size: large;
+    margin-bottom: 5px;
+}
+
+#bloqWindow{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    display: none;
+}
+
+/* Footer */
+ 
+footer{
+    background-color: #243346;
+    width: 100%;
+    height: 50px;
+}

@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gidole&display=swap');
+
+h1, h2, h3, h4, h5, h6{
+    font-family: "Oswald", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    padding: 0;
+    margin: 0;
+    font-family: "Gidole", sans-serif;
+}
+
+/*
+.nophone{
+    display: none;
+}
+
+main{
+    min-height: 80vh;
+    width: 100vw;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+main .header{
+    
+}
+
+main .header .title{
+    font-size: x-large;
+}
+
+main .header .subtitle{
+    font-size: small;
+}
+
+main .btns-container{
+    margin: 4vh 3vw 0;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    gap: 10px;
+}
+
+main .filters-container {
+    margin: 4vh 3vw;
+}
+
+main .filters-container form{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+
+main .pagination-container{
+    margin: 20px 0 0 0;
+}
+
+
+
+.no-display{
+    display: none;
+}
+
+.bg-green{
+    background-color: #267F00;
+    color: white;
+}
+
+.bg-red{
+    background-color: #BB2633;
+    color: white;
+    border: black 2px solid;
+}
+
+.bg-yellow{
+    background-color: #FFC107;
+    color: black;
+}
+
+.table-container{
+    overflow-x: scroll;
+    overflow-y: visible;
+}
+
+.table-container table{
+    min-width: max-content;
+}
+ 
+
+
+    */

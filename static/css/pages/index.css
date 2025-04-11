@@ -1,0 +1,59 @@
+/* Página Index */
+
+#pg-index{
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #243346;
+}
+
+#pg-index .login-form{
+    background-color: #ffffff;
+    width: 300px;
+    height: max-content;
+    border: black solid 2px;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+
+#pg-index .login-form img{
+    height: 70px;
+    width: auto;
+}
+
+#pg-index .login-form .title{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    gap: 10px;
+}
+
+#pg-index .login-form .title h1{
+    font-size: x-large;
+}
+
+#pg-index .login-form form{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    gap: 15px;
+
+}
+
+#pg-index .login-form form .btn-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#pg-index .login-form form .btn-container .form-check{
+    margin: auto 10px;
+}
