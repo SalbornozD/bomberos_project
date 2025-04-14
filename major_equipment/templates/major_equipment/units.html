@@ -5,12 +5,15 @@
     <link rel="stylesheet" href="{% static 'css/pages/units.css' %}">
 {% endblock %}
 
-{% block content %}
-    {% include 'utils/navbar.html' %}
+{% block navbar %}
+{% include 'utils/navbar.html' %}
+<section class="header-container">
+    <h1>Material Mayor</h1>
+</section>
+{% endblock %}
 
-    <section class="header-container">
-        <h1>Material Mayor</h1>
-    </section>
+{% block content %}
+    
 
     <section class="filters-container mb-4">
         <form method="get">
@@ -80,7 +83,11 @@
                     </div>
 
                     <div class="d-flex flex-row flex-wrap justify-content-between gap-2">
-                        {% document_status_badge unit.get_registration_certificate_status "Padrón" unit.registration_certificate_expiration %}
+                        {% if unit.registration_certificate %}
+                        <span class="badge text-bg-success" title="{tooltip}">Padrón</span>
+                        {% else %}
+                        <span class="badge text-bg-light" title="No disponible">Padrón</span>
+                        {% endif %}
                         {% document_status_badge unit.get_soap_certificate_status "SOAP" unit.soap_certificate_expiration %}
                         {% document_status_badge unit.get_technical_inspection_certificate_status "Revisión Técnica" unit.technical_inspection_certificate_expiration %}
                         {% document_status_badge unit.get_vehicle_permit_status "Permiso de Circulación" unit.vehicle_permit_expiration %}
@@ -141,10 +148,9 @@
     </section>
 
     {% include 'utils/modal.html' %}
-    {% include 'utils/footer.html' %}
     {% include 'utils/toast-container.html' %}
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/pages/units.js' %}"></script>
+    <script src="{% static 'major_equipment/js/units.js' %}"></script>
 {% endblock %}

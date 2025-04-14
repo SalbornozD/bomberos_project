@@ -156,39 +156,49 @@ function showToast(message, type = 'success', title = 'Notificación') {
     }, 5000);
 }
 
-// Cierra y limpia el modal dinámico
-function closeModal() {
+function openModal(titleContent, bodyContent, buttons = []) {
     const modal = document.getElementById("dynamicModal");
-    const modalInstance = bootstrap.Modal.getInstance(modal);
-    if (modalInstance) {
-        modalInstance.hide();
-    }
-    setTimeout(() => {
-        document.getElementById("modalTitle").innerHTML = "";
-        document.getElementById("modalBody").innerHTML = "";
-        document.getElementById("modalSubmitButton").innerHTML = "";
-    }, 300);
-}
+    const title = document.getElementById("modalTitle");
+    const body = document.getElementById("modalBody");
+    const footer = document.getElementById("modalFooter");
 
-// Abre un modal con contenido dinámico
-function openModal(titleContent, bodyContent, submitButtonContent, submitButtonFunction) {
-    document.getElementById("modalTitle").innerText = titleContent;
-    document.getElementById("modalBody").innerHTML = bodyContent;
+    // Limpiar contenido previo
+    title.innerText = titleContent;
+    body.innerHTML = bodyContent;
+    footer.innerHTML = "";
 
-    const oldButton = document.getElementById("modalSubmitButton");
-    const newButton = oldButton.cloneNode(true);
-    oldButton.replaceWith(newButton);
+    // Crear los botones dinámicos
+    buttons.forEach(btn => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = btn.class || "btn btn-dark";
+        button.innerText = btn.text || "Botón";
 
-    newButton.innerText = submitButtonContent;
+        if (btn.dismiss) button.setAttribute("data-bs-dismiss", "modal");
+        if (btn.onClick) button.addEventListener('click', btn.onClick);
 
-    if (submitButtonFunction) {
-        newButton.addEventListener('click', submitButtonFunction);
-    }
+        footer.appendChild(button);
+    });
 
-    const modal = document.getElementById("dynamicModal");
     const modalInstance = bootstrap.Modal.getOrCreateInstance(modal);
     modalInstance.show();
 }
+
+function closeModal() {
+    const modal = document.getElementById("dynamicModal");
+    const modalInstance = bootstrap.Modal.getInstance(modal);
+
+    if (modalInstance) {
+        modalInstance.hide();
+    }
+
+    setTimeout(() => {
+        document.getElementById("modalTitle").innerHTML = "";
+        document.getElementById("modalBody").innerHTML = "";
+        document.getElementById("modalFooter").innerHTML = "";
+    }, 300);
+}
+  
 
 // ============================
 // INICIALIZACIÓN DEL NAVBAR

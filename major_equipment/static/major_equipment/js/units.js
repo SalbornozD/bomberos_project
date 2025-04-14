@@ -3,7 +3,6 @@ document.querySelectorAll('.report-problem-btn').forEach(button => {
         const unitID = button.dataset.unitId;
 
         const modalBody = `
-            <input type="hidden" value="${unitID}">
             <div class="form-floating mt-3">
                 <textarea class="form-control" placeholder="Descripción" id="problemDescription" name="problemDescription"></textarea>
                 <label for="problemDescription">Descripción del desperfecto</label>
@@ -19,23 +18,26 @@ document.querySelectorAll('.report-problem-btn').forEach(button => {
             }
 
             const data = {
-                unitID: unitID,
+                unit_id: unitID,  // IMPORTANTE: ahora va en el body
                 problemDescription: description
             };
 
-            sendRequest(`/major-equipment/${unitID}/maintenance-report/JSON/`, 'POST', data)
+            sendRequest(`/major-equipment/maintenance-report/JSON/`, 'POST', data)
                 .then(response => {
                     if (response.success) {
                         closeModal();
-                        showToast("Informe enviado con éxito.", "success");
+                        showToast("Reporte creado correctamente.", "success");
                     } else {
                         showToast(response.error || "Ocurrió un error inesperado.", "danger");
                         console.warn("⚠️ Respuesta con error:", response);
                     }
                 })
-                .catch(error => handleError(error, "Envío de reporte de desperfecto"));
+                .catch(error => handleError(error, "Creación de Reporte de Mantención"));
         };
 
-        openModal("Reporte de desperfecto", modalBody, "Notificar", send);
+        openModal("Nuevo reporte de desperfecto", modalBody, [
+            { text: "Cancelar", class: "btn btn-light", dismiss: true },
+            { text: "Notificar", class: "btn btn-success", onClick: send }
+        ]);
     });
 });

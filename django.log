@@ -1,0 +1,1596 @@
+Not Found: /favicon.ico
+Forbidden (CSRF token from POST incorrect.): /
+"POST / HTTP/1.1" 403 2514
+Not Found: /favicon.ico
+Forbidden (CSRF token from POST incorrect.): /
+"POST / HTTP/1.1" 403 2514
+Internal Server Error: /major-equipment/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 69, in get_units
+    return render(request, "major_equipment/units.html", context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\library.py", line 320, in render
+    resolved_args, resolved_kwargs = self.get_resolved_arguments(context)
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\library.py", line 305, in get_resolved_arguments
+    resolved_args = [var.resolve(context) for var in self.args]
+                     ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 722, in resolve
+    obj = self.var.resolve(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 854, in resolve
+    value = self._resolve_lookup(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 925, in _resolve_lookup
+    current = current()
+  File "D:\bomberos_project\major_equipment\models.py", line 188, in get_registration_certificate_status
+    if not self.registration_certificate_expiration:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MajorEquipment' object has no attribute 'registration_certificate_expiration'. Did you mean: 'soap_certificate_expiration'?
+"GET /major-equipment/ HTTP/1.1" 500 231973
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /major-equipment/7/maintenance-report/JSON/
+"POST /major-equipment/7/maintenance-report/JSON/ HTTP/1.1" 404 4055
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /major-equipment/maintenances-reports/
+"GET /major-equipment/maintenances-reports/ HTTP/1.1" 404 4664
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Internal Server Error: /major-equipment/maintenances-reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\library.py", line 453, in parse_bits
+    unhandled_params.pop(0)
+    ~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: pop from empty list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 126, in get_maintenaces_reports
+    return render(request, "major_equipment/maintenances_reports.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\library.py", line 130, in compile_func
+    args, kwargs = parse_bits(
+                   ~~~~~~~~~~^
+        parser,
+        ^^^^^^^
+    ...<8 lines>...
+        function_name,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\library.py", line 456, in parse_bits
+    raise TemplateSyntaxError(
+        "'%s' received too many positional arguments" % name
+    )
+django.template.exceptions.TemplateSyntaxError: 'querystring' received too many positional arguments
+"GET /major-equipment/maintenances-reports/ HTTP/1.1" 500 283381
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Internal Server Error: /major-equipment/maintenances-reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: "user.has_perm('major_equipment.view_maintenancereport')"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 136, in get_maintenaces_reports
+    return render(request, "major_equipment/maintenances_reports.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+    ...<2 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '('major_equipment.view_maintenancereport')' from 'user.has_perm('major_equipment.view_maintenancereport')'
+"GET /major-equipment/maintenances-reports/?range=own&id_search= HTTP/1.1" 500 307038
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Internal Server Error: /major-equipment/maintenances-reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 136, in get_maintenaces_reports
+    return render(request, "major_equipment/maintenances_reports.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 198, in parse
+    raise self.error_class(
+        "Unused '%s' at end of if expression." % self.current_token.display()
+    )
+django.template.exceptions.TemplateSyntaxError: Unused ''major_equipment.view_maintenancereport'' at end of if expression.
+"GET /major-equipment/maintenances-reports/?range=own&id_search= HTTP/1.1" 500 260950
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Internal Server Error: /major-equipment/maintenances-reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 131, in get_maintenaces_reports
+    data['can_select_range'] = data['can_view_body'] or data['can_view_company']
+                               ~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'can_view_body'
+"GET /major-equipment/maintenances-reports/?range=own&id_search= HTTP/1.1" 500 75808
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /major-equipment/maintenance-report/
+"GET /major-equipment/maintenance-report/ HTTP/1.1" 404 4660
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /accounts/login/
+"GET /accounts/login/?next=/major-equipment/maintenances-reports/ HTTP/1.1" 404 3620
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /accounts/login/
+"GET /accounts/login/?next=/major-equipment/maintenances-reports/ HTTP/1.1" 404 3620
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Forbidden: /major-equipment/
+"GET /major-equipment/ HTTP/1.1" 403 37
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Internal Server Error: /major-equipment/maintenances-reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 141, in get_maintenaces_reports
+    reports = MaintenanceReport.objects.select_related('unit', 'unit__entity', 'reported_by')
+              ^^^^^^^^^^^^^^^^^
+NameError: name 'MaintenanceReport' is not defined
+"GET /major-equipment/maintenances-reports/?range=body&unit=&company=1&start_date_search=&end_date_search=&id= HTTP/1.1" 500 73633
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Forbidden: /major-equipment/1/maintenance-report/JSON/
+"POST /major-equipment/1/maintenance-report/JSON/ HTTP/1.1" 403 39
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Internal Server Error: /major-equipment/maintenances-reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 200, in get_maintenaces_reports
+    return render(request, "major_equipment/maintenances_reports.html", context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'maintenance_report_detail' not found. 'maintenance_report_detail' is not a valid view function or pattern name.
+"GET /major-equipment/maintenances-reports/?range=body&unit=&company=1&start_date_search=&end_date_search=&id= HTTP/1.1" 500 204797
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Internal Server Error: /major-equipment/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: 'user|has_perm:"major_equipment.view_all_vehicles"'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 70, in get_units
+    return render(request, "major_equipment/units.html", context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 705, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 615, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'has_perm'
+Internal Server Error: /major-equipment/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 180, in translate_token
+    op = OPERATORS[token]
+         ~~~~~~~~~^^^^^^^
+KeyError: 'user|has_perm:"major_equipment.view_all_vehicles"'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 70, in get_units
+    return render(request, "major_equipment/units.html", context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 961, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 894, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 171, in __init__
+    mapped_tokens.append(self.translate_token(token))
+                         ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\smartif.py", line 182, in translate_token
+    return self.create_var(token)
+           ~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 897, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 705, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 615, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'has_perm'
+"GET /major-equipment/ HTTP/1.1" 500 320241
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+"GET /static/major_equipment/js/maintenances_report.js HTTP/1.1" 404 1937
+Internal Server Error: /major-equipment/1/maintenance-report/JSON/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\views\decorators\http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views_ajax.py", line 46, in maintenance_report_JSON
+    "status": report.get_status_display(),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MaintenanceReport' object has no attribute 'get_status_display'
+"GET /major-equipment/1/maintenance-report/JSON/?id=2 HTTP/1.1" 500 80361
+Internal Server Error: /major-equipment/1/maintenance-report/JSON/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\views\decorators\http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views_ajax.py", line 46, in maintenance_report_JSON
+    "status": report.get_status_display(),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MaintenanceReport' object has no attribute 'get_status_display'
+"GET /major-equipment/1/maintenance-report/JSON/?id=2 HTTP/1.1" 500 80361
+Not Found: /major-equipment/1/maintenance-report/JSON/
+"GET /major-equipment/1/maintenance-report/JSON/?id=2 HTTP/1.1" 404 4666
+Internal Server Error: /major-equipment/maintenance-report/JSON/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\views\decorators\http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+TypeError: maintenance_report_JSON() missing 1 required positional argument: 'unit_id'
+"GET /major-equipment/maintenance-report/JSON/?id=2 HTTP/1.1" 500 75473
+Internal Server Error: /major-equipment/maintenance-report/JSON/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\views\decorators\http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+TypeError: maintenance_report_JSON() missing 1 required positional argument: 'unit_id'
+"GET /major-equipment/maintenance-report/JSON/?id=2 HTTP/1.1" 500 75473
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /major-equipment/1/maintenance-report/JSON/
+"POST /major-equipment/1/maintenance-report/JSON/ HTTP/1.1" 404 4662
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Internal Server Error: /major-equipment/maintenance-reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 201, in get_maintenaces_reports
+    return render(request, "major_equipment/maintenances_reports.html", context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 210, in render
+    return template.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'maintenance_report_list' not found. 'maintenance_report_list' is not a valid view function or pattern name.
+"GET /major-equipment/maintenance-reports/ HTTP/1.1" 500 203847
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Forbidden: /major-equipment/maintenance-report/JSON/
+"PUT /major-equipment/maintenance-report/JSON/ HTTP/1.1" 403 44
+Forbidden: /major-equipment/maintenance-report/JSON/
+"DELETE /major-equipment/maintenance-report/JSON/ HTTP/1.1" 403 46
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Forbidden: /major-equipment/
+"GET /major-equipment/ HTTP/1.1" 403 37
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3564

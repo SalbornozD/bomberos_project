@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import MajorEquipment, UnitImage, MaintenanceReport
+from .models import MajorEquipment, UnitImage, MaintenanceReport, VehicleType
 from firebrigade.models import Membership
 from django.contrib.auth import get_user_model
 from django.http import HttpRequest
+
 
 User = get_user_model()
 
@@ -30,6 +31,16 @@ class UnitImageInline(admin.TabularInline):
             return format_html('<img src="{}" style="max-height: 100px;" />', obj.image.url)
         return "-"
     preview.short_description = "Vista previa"
+
+@admin.register(VehicleType)
+class VehicleTypeAdmin(admin.ModelAdmin):
+    search_fields = ["name"]
+
+    def get_model_perms(self, request):
+        """
+        Oculta el modelo del menú lateral del admin.
+        """
+        return {}
 
 
 @admin.register(MajorEquipment)
@@ -82,7 +93,7 @@ class MajorEquipmentAdmin(admin.ModelAdmin):
                        "pump_model", "pump_brand", "pump_serial_number", "pump_year", "maximum_flow_rate")
         }),
         ("Documentación", {
-            "fields": ("registration_certificate", "registration_certificate_expiration", "get_registration_certificate_status",
+            "fields": ("registration_certificate", "get_registration_certificate_status",
                        "soap_certificate", "soap_certificate_expiration", "get_soap_certificate_status",
                        "technical_inspection_certificate", "technical_inspection_certificate_expiration", "get_technical_inspection_certificate_status",
                        "vehicle_permit", "vehicle_permit_expiration", "get_vehicle_permit_status")
@@ -92,6 +103,7 @@ class MajorEquipmentAdmin(admin.ModelAdmin):
         }),
     )
     inlines = [UnitImageInline]
+    autocomplete_fields = ["vehicle_type"]
 
     def get_queryset(self, request):
         """

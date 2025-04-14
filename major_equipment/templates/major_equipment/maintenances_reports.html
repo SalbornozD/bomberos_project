@@ -1,0 +1,175 @@
+{% extends "utils/base.html" %}
+{% load humanize static document_status permissions %}
+
+{# CSS adicional #}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'major_equipment/css/maintenances_report.css' %}">
+{% endblock %}
+
+{# Navbar #}
+{% block navbar %}
+{% include 'utils/navbar.html' %}
+<section class="header-container">
+    <h1>Reportes de mantención</h1>
+</section>
+{% endblock %}
+
+{# Contenido principal #}
+{% block content %}
+
+<section class="filters-container">
+    <form method="get" class="d-flex flex-column gap-3">
+
+        <div class="d-flex flex-column flex-md-row gap-4">
+            
+            {# Selector rango de reportes #}
+            <div class="input-group">
+                <label class="input-group-text" for="reportRangeSelect">Mostrar:</label>
+                <select class="form-select" id="reportRangeSelect" name="range" {% if not can_select_reports_range %}disabled{% endif %}>
+                    <option value="own" {% if current_range == 'own' %}selected{% endif %}>Mis reportes</option>
+                    {% if can_view_reports_company %}
+                        <option value="company" {% if current_range == 'company' %}selected{% endif %}>Reportes de mi compañía</option>
+                    {% endif %}
+                    {% if can_view_reports_body %}
+                        <option value="body" {% if current_range == 'body' %}selected{% endif %}>Reportes de todo el cuerpo</option>
+                    {% endif %}
+                </select>
+            </div>
+
+            {# Selector unidad #}
+            <div class="input-group">
+                <label class="input-group-text" for="unitSelect">Unidad:</label>
+                <select class="form-select" id="unitSelect" name="unit" {% if not units %}disabled{% endif %}>
+                    <option value="">Todas</option>
+                    {% for unit in units %}
+                        <option value="{{ unit.id }}" {% if request.GET.unit == unit.id|stringformat:"s" %}selected{% endif %}>{{ unit }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            {# Selector compañía #}
+            {% if can_view_reports_body %}
+            <div class="input-group">
+                <label class="input-group-text" for="companySelect">Compañía:</label>
+                <select class="form-select" id="companySelect" name="company">
+                    <option value="">Todas</option>
+                    {% for company in companies %}
+                        <option value="{{ company.id }}" {% if request.GET.company == company.id|stringformat:"s" %}selected{% endif %}>{{ company }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <div class="d-flex flex-column align-items-stretch flex-md-row gap-3 align-items-md-end">
+
+            {# Filtro fechas #}
+            <div class="flex-grow-1">
+                <label for="start_date_search" class="form-label">Después de:</label>
+                <input type="date" class="form-control" name="start_date_search" id="start_date_search" value="{{ request.GET.start_date_search }}">
+            </div>
+
+            <div class="flex-grow-1">
+                <label for="end_date_search" class="form-label">Antes de:</label>
+                <input type="date" class="form-control" name="end_date_search" id="end_date_search" value="{{ request.GET.end_date_search }}">
+            </div>
+
+            {# Filtro por ID + Botón #}
+            <div class="d-flex flex-row gap-2 justify-content-between flex-grow-1 align-items-end">
+                <div class="flex-grow-1">
+                    <label for="id" class="form-label">Buscar por ID:</label>
+                    <input type="text" class="form-control" id="id" name="id" placeholder="Ej: 12345" value="{{ request.GET.id }}">
+                </div>
+
+                <button type="submit" class="btn btn-dark" style="width: 100px;">Filtrar</button>
+            </div>
+
+        </div>
+    </form>
+</section>
+
+<section>
+    {% if reports %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Unidad</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports %}
+                <tr>
+                    <td>{{ report.id }}</td>
+                    <td>{{ report.created_at|date:"d-m-Y H:i" }}</td>
+                    <td>{{ report.unit }}</td>
+                    <td>
+                        <button class="btn btn-view-report" data-unit="{{ report.unit.id }}" data-id="{{ report.id }}">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        
+                        <button class="btn btn-edit-report" data-unit="{{ report.unit.id }}" data-id="{{ report.id }}">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        
+                        <button class="btn btn-delete-report" data-unit="{{ report.unit.id }}" data-id="{{ report.id }}">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <button class="btn"><i class="bi bi-download"></i></button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {# Paginación #}
+    {% if is_paginated %}
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.previous_page_number }}">Anterior</a>
+            </li>
+            {% endif %}
+
+            <li class="page-item disabled">
+                <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+            </li>
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.next_page_number }}">Siguiente</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <div class="alert alert-warning">
+        No se encontraron reportes con los filtros aplicados.
+    </div>
+    {% endif %}
+</section>
+
+{% include 'utils/modal.html' %}
+{% include 'utils/toast-container.html' %}
+
+{% endblock %}
+
+{# Footer #}
+{% block footer %}
+<footer class="mt-auto">
+    
+</footer>
+{% endblock %}
+
+{# JS adicional #}
+{% block extra_js %}
+<script src="{% static 'major_equipment/js/maintenances_reports.js' %}"></script>
+{% endblock %}

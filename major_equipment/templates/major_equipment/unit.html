@@ -403,7 +403,6 @@
                     <div class="body-container">
                         {% if unit.registration_certificate %}
                         <a href="{{ unit.registration_certificate.url }}" target="_blank"><h6>Padron</h6></a>
-                        <p>Vigente hasta: {{unit.registration_certificate_expiration|date:'l, d-m-y'}}</p>
                         {% else %}
                         <p>No se ha subido el padrón del vehículo.</p>
                         {% endif %}
@@ -462,6 +461,5 @@
 
 </main>
 {% include 'utils/modal.html' %}
-{% include 'utils/footer.html' %}
 {% include 'utils/toast-container.html'%}
 {% endblock %}

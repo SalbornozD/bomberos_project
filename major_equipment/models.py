@@ -45,30 +45,9 @@ class FuelType(models.IntegerChoices):
     DIESEL = 4, "Diésel"
     ELECTRIC = 5, "Eléctrico"
 
-class Workshop(models.Model):
-    """
-    Representa un taller autorizado para la mantención de vehículos.
-
-    Atributos:
-        name (str): Nombre del taller.
-        address (str): Dirección física del taller.
-        phone (str): Número de teléfono de contacto.
-        email (str): Correo electrónico del taller.
-
-    Métodos:
-        __str__() -> str: Devuelve el nombre del taller como representación legible.
-    """
-    name = models.CharField(max_length=100, verbose_name="Nombre")
-    address = models.CharField(max_length=100, verbose_name="Dirección")
-    phone = models.CharField(max_length=12, verbose_name="Teléfono")
-    email = models.EmailField(verbose_name="Correo electrónico")
-
-    class Meta:
-        verbose_name = "Taller"
-        verbose_name_plural = "Talleres"
-
-    def __str__(self):
-        return self.name
+# -----------------------
+# Material Mayor
+# -----------------------
 
 class MajorEquipment(models.Model):
     """
@@ -161,7 +140,6 @@ class MajorEquipment(models.Model):
 
     # Documentos y vencimientos
     registration_certificate = models.FileField(upload_to="major_equipment/registration_certificates", verbose_name="Padrón del vehículo", blank=True, null=True)
-    registration_certificate_expiration = models.DateField(verbose_name="Vencimiento del padrón", blank=True, null=True)
     soap_certificate = models.FileField(upload_to="major_equipment/soap_certificates", verbose_name="Certificado SOAP", blank=True, null=True)
     soap_certificate_expiration = models.DateField(verbose_name="Vencimiento del SOAP", blank=True, null=True)
     technical_inspection_certificate = models.FileField(upload_to="major_equipment/technical_inspection_certificates", verbose_name="Certificado de revisión técnica", blank=True, null=True)
@@ -270,12 +248,6 @@ class UnitImage(models.Model):
     class Meta:
         verbose_name = "Imagen de unidad"
         verbose_name_plural = "Imágenes de unidades"
-        permissions = [
-            ("view_company_unitimage", "Puede ver imágenes de unidades de su compañía"),
-            ("add_company_unitimage", "Puede agregar imágenes a unidades de su compañía"),
-            ("change_company_unitimage", "Puede modificar imágenes de unidades de su compañía"),
-            ("delete_company_unitimage", "Puede eliminar imágenes de unidades de su compañía"),
-        ]
 
     def __str__(self) -> str:
         return f"Imagen de {self.unit}"
@@ -315,17 +287,21 @@ class MaintenanceReport(models.Model):
 
         # Permisos adicionales personalizados
         permissions = (
-            # Permisos para reportes de la compañía
-            ("create_company_maintenancereports", "Puede crear reportes de su compañía"),
-            ("view_company_maintenancereports", "Puede ver reportes de su compañía"),
-            ("change_company_maintenancereports", "Puede editar reportes de su compañía"),
-            ("delete_company_maintenancereports", "Puede eliminar reportes de su compañía"),
+            # Permiso de creación propio
+            ("create_own_maintenancereport", "Puede crear reportes en su propio nombre"),
 
-            # Permisos para reportes propios
-            ("create_own_maintenancereports", "Puede crear sus propios reportes"),
+            # Permisos de lectura
             ("view_own_maintenancereports", "Puede ver sus propios reportes"),
-            ("change_own_maintenancereports", "Puede editar sus propios reportes"),
-            ("delete_own_maintenancereports", "Puede eliminar sus propios reportes"),
+            ("view_company_maintenancereport", "Puede ver reportes de su compañía"),
+
+            # Permisos de edición
+            ("change_own_maintenancereport", "Puede editar sus propios reportes"),
+            ("change_company_maintenancereport", "Puede editar reportes de su compañía"),
+            ("change_body_maintenancereport", "Puede editar reportes de todo el cuerpo"),
+
+            # Permisos de eliminación
+            ("delete_own_maintenancereport", "Puede eliminar sus propios reportes"),
+            ("delete_company_maintenancereport", "Puede eliminar reportes de su compañía"),
         )
 
     def __str__(self) -> str:
