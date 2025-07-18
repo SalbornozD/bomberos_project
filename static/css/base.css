@@ -13,6 +13,16 @@ p{
     font-family: "Gidole", sans-serif;
 }
 
+.font-bold{
+    font-weight: bold;
+}
+
+.center-content-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*
 .nophone{
     display: none;

@@ -1,0 +1,71 @@
+{% extends "utils/base.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'major_equipment/css/unit_maintenance.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'utils/navbar.html' %}
+<section class="header-container">
+    <h2>Material Mayor</h2>
+</section>
+{% endblock %}
+
+{% block content %}
+<div id="unit-page">
+    <div class="buttons-container">
+        <a href="{% url 'major_equipment:unit_detail' unit.id %}">
+            <i class="bi bi-truck-front"></i>
+            <p>Unidad</p>
+        </a>
+        <a href="{% url 'major_equipment:unit_reports' unit.id %}">
+            <i class="bi bi-journal"></i>
+            <p>Reportes</p>
+        </a>
+        <a href="{% url 'major_equipment:unit_fuel' unit.id %}" >
+            <i class="bi bi-fuel-pump-fill"></i>
+            <p>Combustible</p>
+        </a>
+        <a href="#" class="active">
+            <i class="bi bi-wrench-adjustable-circle-fill"></i>
+            <p>Mantención</p>
+        </a>
+    </div>
+    <div>
+        <div class="m-3">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscador" name="search-filter" value="{{ search_filter }}">
+                    <button class="input-group-text btn btn-dark"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-custom">
+                <thead>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Autor</td>
+                        <td></td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+    </div>
+</div>
+{% include 'utils/modal.html' %}
+{% include 'utils/toast-container.html'%}
+{% endblock %}
+
+{% block footer %}
+<footer>
+
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'major_equipment/js/unit.js' %}"></script>
+{% endblock %}

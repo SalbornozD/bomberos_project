@@ -1,3 +1,64 @@
+/**
+ * Cliente HTTP genérico para peticiones AJAX con CSRF y FormData.
+ */
+class ApiClient {
+    /**
+     * @param {string} baseUrl - URL base para los endpoints.
+     */
+    constructor(baseUrl) {
+        this.baseUrl = baseUrl;
+        this.csrfToken = this._getCsrfTokenFromMeta();
+    }
+
+    /**
+     * Extrae el token CSRF de la meta tag.
+     * @private
+     * @returns {string}
+     */
+    _getCsrfTokenFromMeta() {
+        const meta = document.querySelector('meta[name="csrf-token"]');
+        return meta ? meta.content : '';
+    }
+
+    /**
+     * Construye y envía una petición HTTP.
+     * @param {{url?: string, method?: string, data?: object|FormData}} options
+     * @returns {Promise<any>}
+     */
+    async request({ url = '', method = 'GET', data = null }) {
+        const fullUrl = this.baseUrl + url;
+        const headers = { 'X-CSRFToken': this.csrfToken };
+        let body;
+
+        if (data instanceof FormData) {
+            body = data; // El navegador añade Content-Type multipart/form-data
+        } else if (data) {
+            headers['Content-Type'] = 'application/json';
+            body = JSON.stringify(data);
+        }
+
+        const response = await fetch(fullUrl, { method, headers, body });
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(`HTTP ${response.status}: ${text}`);
+        }
+        return await response.json();
+    }
+
+    get(url = '') {
+        return this.request({ url, method: 'GET' });
+    }
+    post(url = '', data) {
+        return this.request({ url, method: 'POST', data });
+    }
+    put(url = '', data) {
+        return this.request({ url, method: 'PUT', data });
+    }
+    delete(url = '') {
+        return this.request({ url, method: 'DELETE' });
+    }
+}
+
 // ============================
 // FUNCIONES GENERALES
 // ============================
@@ -16,56 +77,6 @@ function closeMenuNavbar() {
     const bloqWindow = document.getElementById("bloqWindow");
     sideMenuNavbar.style.right = "-320px";
     bloqWindow.style.display = "none";
-}
-
-// Obtiene el token CSRF desde una etiqueta <meta>
-function getCSRFTokenFromMeta() {
-    const meta = document.querySelector('meta[name="csrf-token"]');
-    return meta ? meta.content : "";
-}
-
-// Enviar solicitud AJAX con manejo de CSRF y validación de respuesta
-function sendRequest(url, method = 'GET', data = {}) {
-    return new Promise((resolve, reject) => {
-        const options = {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        };
-
-        if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(method.toUpperCase())) {
-            options.headers['X-CSRFToken'] = getCSRFTokenFromMeta();
-            options.body = JSON.stringify(data);
-        }
-
-        fetch(url, options)
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(text => {
-                        reject({
-                            status: response.status,
-                            text: text
-                        });
-                    });
-                }
-                return response.text();
-            })
-            .then(text => {
-                try {
-                    const jsonData = JSON.parse(text);
-                    resolve(jsonData);
-                } catch (error) {
-                    console.error("Respuesta no válida como JSON:", text);
-                    resolve({
-                        success: false,
-                        error: "Respuesta del servidor no válida."
-                    });
-                }
-            })
-            .catch(error => reject(error));
-    });
 }
 
 // Manejo global de errores para mostrar toast y log completo en consola
@@ -156,48 +167,75 @@ function showToast(message, type = 'success', title = 'Notificación') {
     }, 5000);
 }
 
+
 function openModal(titleContent, bodyContent, buttons = []) {
     const modal = document.getElementById("dynamicModal");
     const title = document.getElementById("modalTitle");
     const body = document.getElementById("modalBody");
     const footer = document.getElementById("modalFooter");
 
-    // Limpiar contenido previo
-    title.innerText = titleContent;
-    body.innerHTML = bodyContent;
+    if (!modal || !title || !body || !footer) {
+        console.error("Faltan elementos del modal.");
+        return;
+    };
+
+    // Limpiar y asignar contenido.
+    title.textContent = titleContent || "";
+    body.innerHTML = bodyContent || "";
     footer.innerHTML = "";
 
     // Crear los botones dinámicos
-    buttons.forEach(btn => {
+    buttons.forEach(({ text = "Botón", class: btnClass = "btn btn-dark", onClick, dismiss, id, icon, attrs = {} }) => {
         const button = document.createElement("button");
         button.type = "button";
-        button.className = btn.class || "btn btn-dark";
-        button.innerText = btn.text || "Botón";
+        button.className = btnClass;
+        button.textContent = "";
 
-        if (btn.dismiss) button.setAttribute("data-bs-dismiss", "modal");
-        if (btn.onClick) button.addEventListener('click', btn.onClick);
+        if (icon) {
+            const iconElem = document.createElement("i");
+            iconElem.className = icon;
+            button.appendChild(iconElem);
+            button.appendChild(document.createTextNode(" " + text));
+        } else {
+            button.textContent = text;
+        }
+
+        if (id) button.id = id;
+        if (dismiss) button.setAttribute("data-bs-dismiss", "modal");
+        if (typeof onClick === "function") button.addEventListener("click", onClick);
+
+        // Atributos personalizados (ej: data-*)
+        for (const [key, value] of Object.entries(attrs)) {
+            button.setAttribute(key, value);
+        }
 
         footer.appendChild(button);
     });
 
+    // Mostral el modal
     const modalInstance = bootstrap.Modal.getOrCreateInstance(modal);
     modalInstance.show();
-}
+};
 
 function closeModal() {
     const modal = document.getElementById("dynamicModal");
-    const modalInstance = bootstrap.Modal.getInstance(modal);
 
+    if (!modal) return;
+
+    const modalInstance = bootstrap.Modal.getInstance(modal);
     if (modalInstance) {
         modalInstance.hide();
     }
 
-    setTimeout(() => {
+    // Espera a que la animación termine antes de limpiar
+    modal.addEventListener('hidden.bs.modal', function handleClose() {
         document.getElementById("modalTitle").innerHTML = "";
         document.getElementById("modalBody").innerHTML = "";
         document.getElementById("modalFooter").innerHTML = "";
-    }, 300);
+        modal.removeEventListener('hidden.bs.modal', handleClose); // Evitar duplicaciones
+    });
 }
+
   
 
 // ============================

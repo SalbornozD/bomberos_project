@@ -3,463 +3,257 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/pages/unit.css' %}">
+<link rel="stylesheet" href="{% static 'major_equipment/css/unit.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'utils/navbar.html' %}
+<section class="header-container">
+    <a href="{% url 'major_equipment:unit_list' %}">
+        <h2>Material Mayor</h2>
+    </a>
+</section>
 {% endblock %}
 
 {% block content %}
-{% include 'utils/navbar.html' %}
-<section class="header-container">
-    <h5>{{unit.short_description}}</h5>
-    <p>{{unit.entity}}</p>
-</section>
-<main>
-    <section id="unit-container">
-        <div class="summary">
-            <div class="img-container">
-                <div id="unitCarousel" class="carousel slide">
-                    <div class="carousel-inner">
-                        {% for image in unit.images.all %}
-                        <div class="carousel-item {%if forloop.first %}active{% endif %}">
-                            <img src="{{image.image.url}}" alt="Imagen de la unidad" class="img">
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#unitCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#unitCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+<div id="unit-page">
+    <div class="buttons-container">
+        <a href="#" class="active">
+            <i class="bi bi-truck-front"></i>
+            <p>Unidad</p>
+        </a>
+        <a href="{% url 'major_equipment:unit_reports' unit.id %}">
+            <i class="bi bi-journal"></i>
+            <p>Reportes</p>
+        </a>
+        <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
+            <i class="bi bi-fuel-pump-fill"></i>
+            <p>Combustible</p>
+        </a>
+        <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
+            <i class="bi bi-wrench-adjustable-circle-fill"></i>
+            <p>Mantención</p>
+        </a>
+    </div>
+    <div class="image-container">
+        <div id="carousel" class="carousel slide">
+            <div class="carousel-inner">
+                {% for image in images %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ image.alt }}">
                 </div>
-                
+                {% endfor %}
             </div>
-            <div class="info-container">
-
-                <div class="target">
-                    <div>
-                        <h4>{{unit.short_description}} (U{{unit.unit_number}})</h4>
-                        <p>{{unit.vehicle_type}} - {{unit.plate_number}}</p>
-                    </div>
-                </div>
-
-                <div class="target">
-                    <div class="icon-container">
-                        {% if unit.state == 1 %}
-                        <i class="bi bi-check-circle"></i>
-                        {% elif unit.state == 2 %}
-                        <i class="bi bi-dash-circle"></i>
-                        {% else %}
-                        <i class="bi bi-circle"></i>
-                        {% endif %}
-                    </div>
-                    <div>
-                        <p>Estado</p>
-                        <h4>{{unit.get_state}}</h4>
-                    </div>
-                </div>
-
-                <div class="target">
-                    <div class="icon-container">
-                        <i class="bi bi-geo-alt"></i>
-                    </div>
-                    <div>
-                        <p>Asignación</p>
-                        <h4>{{unit.entity}}</h4>
-                    </div>
-                </div>
-
-                <div class="target">
-                    <div class="icon-container">
-                        <i class="bi bi-fuel-pump-fill"></i>
-                    </div>
-                    <div>
-                        <p>Combustible</p>
-                        <h4>{{unit.get_fuel_type_display}}</h4>
-                    </div>
-                </div>
-                
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="image-container-title">
+            <h1>Unidad {{unit.description}}</h1>
+            <p>{{unit.entity}}</p>
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="info-container-element">
+            <div><i class="bi bi-truck-front"></i></div>
+            <div>
+                <p>{{unit.unit_number}} | {{unit.description}}</p>
+                <h5>{{unit.plate_number}}</h5>
             </div>
         </div>
-
-        <div class="accordion accordion-flush" id="info-acordion">
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed table-accordion" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#itemOne" aria-expanded="false" aria-controls="itemOne">
-                        <div class="d-flex flex-row gap-5">
-                            <i class="bi bi-car-front-fill"></i><p>Especificaciones del vehículo</p>
-                        </div>
-                        
-                    </button>
-                </h2>
-                <div id="itemOne" class="accordion-collapse collapse" data-bs-parent="#info-acordion">
-                    <div class="accordion-body">
-                        <div class="table-container">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Marca</th>
-                                        <td>{{ unit.brand|default:"No registrado" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Modelo</th>
-                                        <td>{{ unit.model|default:"No registrado" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Año</th>
-                                        <td>{{ unit.year|default:"No registrado" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Cilindros</th>
-                                        <td>{{ unit.cylinders|default:"No registrado" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Cilindrada</th>
-                                        <td>
-                                            {% if unit.displacement %}
-                                                {{ unit.displacement }} cc
-                                            {% else %}
-                                                No registrado
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Transmisión</th>
-                                        <td>{{ unit.transmission|default:"No registrado" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Sistema de Tracción</th>
-                                        <td>{{ unit.drive_system|default:"No registrado" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Capacidad de Estanque de Combustible</th>
-                                        <td>
-                                            {% if unit.fuel_tank_capacity %}
-                                                {{ unit.fuel_tank_capacity }} litros
-                                            {% else %}
-                                                No registrado
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+        <div class="info-container-element">
+            <div><i class="bi bi-fuel-pump-fill"></i></div>
+            <div>
+                <p>Combustible</p>
+                <h5>{{unit.fuel_type}}</h5>
             </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed table-accordion" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#itemTwo" aria-expanded="false" aria-controls="itemTwo">
-                        <div class="d-flex flex-row gap-5 align-items-center">
-                            <i class="bi bi-wrench-adjustable"></i></i><p>Identificación Mecánica y Lubricantes</p>
-                        </div>
-                    </button>
-                </h2>
-                <div id="itemTwo" class="accordion-collapse collapse" data-bs-parent="#info-acordion">
-                    <div class="accordion-body">
-                        <div class="table-container">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Número de motor</th>
-                                        <td>{{ unit.engine_number|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Número de chasis</th>
-                                        <td>{{ unit.chassis_number|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tipo de aceite de motor</th>
-                                        <td>{{ unit.motor_oil_type|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Capacidad de aceite de motor</th>
-                                        <td>
-                                            {% if unit.motor_oil_capacity %}
-                                                {{ unit.motor_oil_capacity }} litros
-                                            {% else %}
-                                                Sin registro
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tipo de aceite de caja de cambios</th>
-                                        <td>{{ unit.gearbox_oil_type|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tipo de aceite de diferencial</th>
-                                        <td>{{ unit.differential_oil_type|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Capacidad de aceite de diferencial</th>
-                                        <td>
-                                            {% if unit.differential_oil_capacity %}
-                                                {{ unit.differential_oil_capacity }} litros
-                                            {% else %}
-                                                Sin registro
-                                            {% endif %}
-                                        </td>
-                                    </tr>                                        
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed table-accordion" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#itemThree" aria-expanded="false" aria-controls="itemThree">
-                        <div class="d-flex flex-row gap-5 align-items-center">
-                            <i class="bi bi-funnel"></i><p>Filtros</p>
-                        </div>
-                    </button>
-                </h2>
-                <div id="itemThree" class="accordion-collapse collapse" data-bs-parent="#info-acordion">
-                    <div class="accordion-body">
-                        <div class="table-container">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Cantidad de filtros de combustible</th>
-                                        <td>{{ unit.fuel_filter_quantity|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nomenclatura de filtro de combustible</th>
-                                        <td>{{ unit.fuel_part_number|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Cantidad de filtros de aceite</th>
-                                        <td>{{ unit.oil_filter_quantity|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nomenclatura de filtro de aceite</th>
-                                        <td>{{ unit.oil_part_number|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nomenclatura de filtro de aire</th>
-                                        <td>{{ unit.air_filter_part_number|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nomenclatura de purificador de aire</th>
-                                        <td>{{ unit.air_purifier_part_number|default:"Sin registro" }}</td>
-                                    </tr>                                                                     
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed table-accordion" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#itemFour" aria-expanded="false" aria-controls="itemFour">
-                        <div class="d-flex flex-row gap-5 align-items-center">
-                            <i class="bi bi-vinyl-fill"></i><p>Neumáticos y Frenos</p>
-                        </div>
-                    </button>
-                </h2>
-                <div id="itemFour" class="accordion-collapse collapse" data-bs-parent="#info-acordion">
-                    <div class="accordion-body">
-                        <div class="table-container">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Tamaño de neumático</th>
-                                        <td>{{ unit.tire_size|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Marca de neumático</th>
-                                        <td>{{ unit.tire_brand|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Presión de neumático</th>
-                                        <td>{{ unit.tire_pressure|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tipo de sistema de freno</th>
-                                        <td>{{ unit.brake_system_type|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tipo de freno de estacionamiento</th>
-                                        <td>{{ unit.parking_brake_type|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tipo de pastilla</th>
-                                        <td>{{ unit.get_pad_type_display|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tipo de disco</th>
-                                        <td>{{ unit.get_disc_type_display|default:"Sin registro" }}</td>
-                                    </tr>                                                                                              
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed table-accordion" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#itemFive" aria-expanded="false" aria-controls="itemFive">
-                        <div class="d-flex flex-row gap-5 align-items-center">
-                            <i class="bi bi-droplet-fill"></i><p>Sistema de Bomba y Estanque</p>
-                        </div>
-                    </button>
-                </h2>
-                <div id="itemFive" class="accordion-collapse collapse" data-bs-parent="#info-acordion">
-                    <div class="accordion-body">
-                        <div class="table-container">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Capacidad de estanque de agua</th>
-                                        <td>
-                                            {% if unit.water_tank_capacity %}
-                                                {{ unit.water_tank_capacity }} litros
-                                            {% else %}
-                                                Sin registro
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tipo de bomba</th>
-                                        <td>{{ unit.pump_type|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Capacidad de bomba</th>
-                                        <td>
-                                            {% if unit.pump_capacity %}
-                                                {{ unit.pump_capacity }} GPM
-                                            {% else %}
-                                                Sin registro
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Presión de bomba</th>
-                                        <td>
-                                            {% if unit.pump_pressure %}
-                                                {{ unit.pump_pressure }} bar
-                                            {% else %}
-                                                Sin registro
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Modelo de bomba</th>
-                                        <td>{{ unit.pump_model|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Marca de bomba</th>
-                                        <td>{{ unit.pump_brand|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Número de serie de bomba</th>
-                                        <td>{{ unit.pump_serial_number|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Año de bomba</th>
-                                        <td>{{ unit.pump_year|default:"Sin registro" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Caudal máximo</th>
-                                        <td>
-                                            {% if unit.maximum_flow_rate %}
-                                                {{ unit.maximum_flow_rate }} L/min
-                                            {% else %}
-                                                Sin registro
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                                                                                                      
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
+        <div class="info-container-element">
+            <div><i class="bi bi-check-circle"></i></div>
+            <div>
+                <p>Estado</p>
+                <h5>Activo</h5>
+            </div>
+        </div>
+        <div class="info-container-element">
+            <div><i class="bi bi-calendar"></i></div>
+            <div>
+                <p>Prox. Mantención</p>
+                <h5>Sin fecha</h5>
+            </div>
+        </div>
+    </div>
 
-        <div class="section-container">
-            <div class="documents-container">
-                <div class="d-flex flex-row align-items-center fs-2 gap-4">
-                    <i class="bi bi-file-earmark-text-fill"></i><h2>Documentación</h2>
-                </div>
-    
-                <div class="document-container">
-                    <div class="icon-container">
-                        <i class="bi bi-filetype-pdf"></i>
-                    </div>
-                    <div class="body-container">
-                        {% if unit.registration_certificate %}
-                        <a href="{{ unit.registration_certificate.url }}" target="_blank"><h6>Padron</h6></a>
-                        {% else %}
-                        <p>No se ha subido el padrón del vehículo.</p>
-                        {% endif %}
-                    </div>
-                </div>
-    
-                <div class="document-container">
-                    <div class="icon-container">
-                        <i class="bi bi-filetype-pdf"></i>
-                    </div>
-                    <div class="body-container">
-                        {% if unit.soap_certificate %}
-                        <a href="{{ unit.soap_certificate.url }}" target="_blank"><h6>Certificado SOAP</h6></a>
-                        <p>Vigente hasta: {{unit.soap_certificate_expiration|date:'l, d-m-y'}}</p>
-                        {% else %}
-                        <p>No se ha subido el certificado SOAP del vehículo.</p>
-                        {% endif %}
-                    </div>
-                </div>
-    
-                <div class="document-container">
-                    <div class="icon-container">
-                        <i class="bi bi-filetype-pdf"></i>
-                    </div>
-                    <div class="body-container">
-                        {% if unit.technical_inspection_certificate %}
-                        <a href="{{ unit.technical_inspection_certificate.url }}" target="_blank"><h6>Revisión técnica</h6></a>
-                        <p>Vigente hasta: {{unit.technical_inspection_certificate_expiration|date:'l, d-m-y'}}</p>
-                        {% else %}
-                        <p>No se ha subido el certificado de revisión técnica del vehículo.</p>
-                        {% endif %}
-                    </div>
-                </div>
-    
-                <div class="document-container">
-                    <div class="icon-container">
-                        <i class="bi bi-filetype-pdf"></i>
-                    </div>
-                    <div class="body-container">
-                        {% if unit.vehicle_permit %}
-                        <a href="{{ unit.vehicle_permit.url }}" target="_blank"><h6>Permiso de circulación</h6></a>
-                        <p>Vigente hasta: {{unit.vehicle_permit_expiration|date:'l, d-m-y'}}</p>
-                        {% else %}
-                        <p>No se ha subido el permiso de circulación del vehículo.</p>
-                        {% endif %}
+
+    <div class="accordion" id="accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"  aria-controls="collapseOne">
+                    Especificaciones técnicas
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                <div class="accordion-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-custom">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Marca</th>
+                                    <td>{{unit.brand|default:"--"}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Modelo</th>
+                                    <td>{{unit.model|default:"--"}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Año</th>
+                                    <td>{{unit.year|default:"--"}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tipo de vehiculo</th>
+                                    <td>{{unit.vehicle_type|default:"--"}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tipo de combustible</th>
+                                    <td>{{unit.fuel_type|default:"--"}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Capacidad del estanque (L)</th>
+                                    <td>{{unit.fuel_tank_capacity|default:"--"}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">N° de motor</th>
+                                    <td>{{unit.engine_number|default:"--"}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">N° de chasis</th>
+                                    <td>{{unit.chassis_number|default:"--"}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Neumáticos
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                <div class="accordion-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-custom">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Tamaño neumático</th>
+                                    <td>{{unit.tire_size|default:"--"}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Presión neumático</th>
+                                    <td>{{unit.tire_pressure|default:"--"}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="documents-section">
+        <h5>Documentos</h5>
+        <div>
+            <div class="document-element">
+                <div class="document-element-icon">
+                    <i class="bi bi-filetype-pdf"></i>
+                </div>
+                <div class="document-element-info">
+                    <h6>Padrón</h6>
+                    {% if unit.padron %}
+                    <a href="{{unit.padron.file.url}}" target="_blank">Descargar</a>
+                    {% else %}
+                    <p>No disponible</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="document-element">
+                <div class="document-element-icon">
+                    <i class="bi bi-filetype-pdf"></i>
+                </div>
+                <div class="document-element-info">
+                    <h6>Permiso de circulación</h6>
+                    {% if unit.vehicle_permit %}
+                        <a href="{{unit.vehicle_permit.file.url}}" target="_blank">Descargar</a>
+                        {% if unit.vehicle_permit.is_expired %}
+                            <p><span class="badge bg-danger">Vencido</span> en {{unit.vehicle_permit.expiration_date|date:"d/m/Y"}}</p>
+                        {% else %}
+                            <p><span class="badge bg-success">Vigente</span> hasta {{unit.vehicle_permit.expiration_date|date:"d/m/Y"}}</p>
+                        {% endif %}
+                    {% else %}
+                    <p>No disponible</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="document-element">
+                <div class="document-element-icon">
+                    <i class="bi bi-filetype-pdf"></i>
+                </div>
+                <div class="document-element-info">
+                    <h6>Revisión técnica</h6>
+                    {% if unit.technical_inspection %}
+                        <a href="{{unit.technical_inspection.file.url}}" target="_blank">Descargar</a>
+                        {% if unit.technical_inspection.is_expired %}
+                            <p><span class="badge bg-danger">Vencido</span> en {{unit.technical_inspection.expiration_date|date:"d/m/Y"}}</p>
+                        {% else %}
+                            <p><span class="badge bg-success">Vigente</span> hasta {{unit.technical_inspection.expiration_date|date:"d/m/Y"}}</p>
+                        {% endif %}
+                    {% else %}
+                    <p>No disponible</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="document-element">
+                <div class="document-element-icon">
+                    <i class="bi bi-filetype-pdf"></i>
+                </div>
+                <div class="document-element-info">
+                    <h6>SOAP</h6>
+                    {% if unit.soap %}
+                        <a href="{{unit.soap.file.url}}" target="_blank">Descargar</a>
+                        {% if unit.soap.is_expired %}
+                            <p><span class="badge bg-danger">Vencido</span> en {{unit.soap.expiration_date|date:"d/m/Y"}}</p>
+                        {% else %}
+                            <p><span class="badge bg-success">Vigente</span> hasta {{unit.soap.expiration_date|date:"d/m/Y"}}</p>
+                        {% endif %}
+                    {% else %}
+                    <p>No disponible</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
         
         
-    </section>
+    </div>
 
-
-
-</main>
+</div>
 {% include 'utils/modal.html' %}
 {% include 'utils/toast-container.html'%}
+{% endblock %}
+
+{% block footer %}
+<footer>
+
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'major_equipment/js/unit.js' %}"></script>
 {% endblock %}

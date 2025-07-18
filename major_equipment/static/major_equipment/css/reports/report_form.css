@@ -1,0 +1,35 @@
+/* =========================
+   Página: Material Mayor
+   ========================= */
+
+/* ----- Encabezado ----- */
+.header-container {
+    background-color: #BB2633;
+    color: white;
+    padding: 10px 20px;
+}
+
+.header-container a{
+    color: white;
+    text-decoration: none;
+}
+
+section.title{
+    margin: 10px 10px 5px;
+}
+
+section.body{
+    margin: 0 10px 5px;
+}
+
+.item-container{
+    margin: 10px 0 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: start;
+    gap: 10px;
+}
+
+.item-container .btn-group{
+    align-self: stretch;
+}

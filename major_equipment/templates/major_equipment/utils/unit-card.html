@@ -1,0 +1,26 @@
+{% load humanize static %}
+
+<div class="unit-card">
+    <div class="unit-card-image">
+        <img src="{{ element.image.image.url }}" alt="Imagen de la unidad {{ element.unit.unit_number }}">
+    </div>
+    <div class="unit-card-body">
+        <div class="unit-card-body-title">
+            <a href="{% url 'major_equipment:unit_detail' element.unit.id %}">
+                <h5>{{element.unit.description}}</h5>
+            </a>
+            <p>{{element.unit.entity}}</p>
+        </div>
+        <div class="unit-card-body-info">
+            <span class="{{element.vehicle_permit_class}}">Permiso</span>
+            <span class="{{element.soap_class}}">SOAP</span>
+            <span class="badge text-bg-light">Estado</span>
+            <span class="{{element.technical_inspection_class}}">Revisión</span>
+        </div>
+
+    </div>
+    <div class="unit-card-btns">
+        <a href="{% url 'major_equipment:create_report' element.unit.id %}"><i class="bi bi-journal"></i></a>
+        <a href="{% url 'major_equipment:create_fuel' element.unit.id %}"><i class="bi bi-fuel-pump-fill"></i></a>
+    </div>
+</div>

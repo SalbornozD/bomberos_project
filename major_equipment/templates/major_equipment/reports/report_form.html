@@ -1,0 +1,93 @@
+{% extends "utils/base.html" %}
+{% load humanize static permissions %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'major_equipment/css/reports/report_form.css' %}">
+{% endblock %}
+
+{% block navbar %}
+  {% include 'utils/navbar.html' %}
+  <section class="header-container">
+    <a href="{% url 'major_equipment:unit_list' %}">
+      <h2>Material Mayor</h2>
+    </a>
+  </section>
+{% endblock %}
+
+{% block content %}
+<section class="title">
+  <h1>Nuevo reporte</h1>
+  <p>Unidad {{ unit.unit_number }} | {{ unit.entity }}</p>
+</section>
+
+<section class="body">
+  <form method="post" action="">
+    {% csrf_token %}
+
+    {% for category, items in report_template_items.items %}
+      <div class="category-block mb-4">
+        <h3 class="mb-2">{{ category }}</h3>
+
+        <div class="row">
+          {% for item in items %}
+            <div class="col-md-6 item-container mb-3">
+              <label class="form-label"><strong>{{ item.label }}</strong></label>
+
+              {# Sí/No #}
+              {% if item.question_type == 1 %}
+                <div class="btn-group" role="group">
+                  <input type="radio" class="btn-check" name="q_{{ item.id }}" id="q_{{ item.id }}_bueno" value="Bueno" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="q_{{ item.id }}_bueno">Bueno</label>
+
+                  <input type="radio" class="btn-check" name="q_{{ item.id }}" id="q_{{ item.id }}_malo" value="Malo" autocomplete="off">
+                  <label class="btn btn-outline-danger" for="q_{{ item.id }}_malo">Malo</label>
+
+                  <input type="radio" class="btn-check" name="q_{{ item.id }}" id="q_{{ item.id }}_na" value="N/A" autocomplete="off" checked>
+                  <label class="btn btn-outline-danger" for="q_{{ item.id }}_na">N/A</label>
+                </div>
+
+              {# Opción múltiple #}
+              {% elif item.question_type == 2 %}
+                <select class="form-select" name="q_{{ item.id }}" id="q_{{ item.id }}_select" aria-label="Selección múltiple">
+                  <option value="" selected>Seleccione...</option>
+                  {% for option in item.options.all %}
+                    <option value="{{ option.value }}">{{ option.value }}</option>
+                  {% endfor %}
+                </select>
+
+              {# Descriptivo #}
+              {% elif item.question_type == 3 %}
+                <input type="text" class="form-control" name="q_{{ item.id }}" id="q_{{ item.id }}_text" placeholder="Escriba su respuesta">
+              {% endif %}
+
+              {# Comentario adicional por ítem #}
+              <div class="input-group">
+                <input type="text" class="form-control" name="q_{{ item.id }}_comment" id="obs-{{ item.id }}"
+                  placeholder="Observaciones" aria-labelledby="obs-label-{{ item.id }}" >
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+
+    {# Observaciones generales #}
+    <div class="mb-3">
+      <label for="general_comment" class="form-label">Observaciones generales</label>
+      <textarea class="form-control" id="general_comment" name="general_comment" rows="3" 
+      placeholder="Comentarios generales..."></textarea>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-outline-success">Enviar</button>
+    </div>
+  </form>
+</section>
+
+{% include 'utils/modal.html' %}
+{% include 'utils/toast-container.html' %}
+{% endblock %}
+
+{% block footer %}
+<footer></footer>
+{% endblock %}

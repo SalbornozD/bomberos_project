@@ -1,0 +1,6 @@
+.no-access{
+    padding: 6vh 5vw;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2vh;
+}

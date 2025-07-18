@@ -1,0 +1,144 @@
+/* ----- Encabezado ----- */
+.header-container {
+    background-color: #BB2633;
+    padding: 10px 20px;
+}
+
+.header-container a{
+    color: white;
+    text-decoration: none;
+}
+
+#unit-page{
+    background-color: #BB2633;
+    width: 90vw;
+    margin: 20px auto 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.buttons-container{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.buttons-container a {
+    background-color: #BB2633;
+    flex: 1;
+    border: #C0C0C0 solid 1px;
+    width: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: stretch;
+    text-decoration: none;
+}
+
+.buttons-container a.active{
+    background-color: #F5DFE1;
+    color: white;
+}
+
+.buttons-container a i{
+    color: white;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.buttons-container a.active i{
+    color: #BB2633;
+}
+
+.buttons-container a p{
+    color: white;
+    font-size: clamp(0.7rem, 3vw, 1.2rem);
+    text-align: center;
+    font-weight: bolder;
+}
+
+.buttons-container a.active p{
+    color: #BB2633;
+    text-decoration: none;
+}
+
+.calendar-section{
+  margin: 10px 0;
+}
+
+.calendar-section div div{
+  width: 65%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.calendar-section div div p{
+  font-size: x-large;
+}
+
+.calendar-section div a{
+  background-color: white;
+  aspect-ratio: 1/1;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: black;
+}
+
+.calendar-section div a i{
+  font-size: x-large;
+}
+
+.calendar-container{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.calendar-container .day-label{
+  aspect-ratio: 1/1;
+  width: 30px;
+  font-weight: bold;
+  font-size: large;
+  margin: 0 0 10px 0;
+}
+
+.calendar-container .empty-day{
+  background-color: #BB2633;
+  border: none;
+}
+
+.calendar-container .day{
+  aspect-ratio: 1/1;
+  width: 30px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  color: black;
+}
+
+.calendar-container .day-link{
+  width: 30px;
+  height: 30px;
+  color: transparent;
+}
+
+.calendar-container .day.today{
+  border: black solid 2px;
+}
+
+.calendar-container .day.missing{
+  background-color: #910000;
+  color: white;
+}
+
+.calendar-container .day.done{
+  background-color: #128807;
+  color: white;
+}

@@ -40,6 +40,10 @@ class Entity(models.Model):
         verbose_name = 'Entidad'
         verbose_name_plural = 'Entidades'
 
+        permissions = [
+            ('view_own_entity', 'Puede ver solo su entidad'),
+        ]
+
     def __str__(self) -> str:
         return self.name
 
