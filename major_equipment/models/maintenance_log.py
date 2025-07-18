@@ -100,7 +100,7 @@ class MeetingWorkshop(models.Model):
 class UnitShipment(models.Model):
     """Envío de una unidad al taller."""
     meeting_workshop = models.ForeignKey(MeetingWorkshop, on_delete=models.PROTECT, verbose_name="Cita con el taller")
-    fuel_level = models.IntegerField(choices=FuelLevel, default=FuelLevel.EMPTY, verbose_name="Nivel de combustible")
+    fuel_level = models.IntegerField(choices=FuelLevel.choices, default=FuelLevel.EMPTY, verbose_name="Nivel de combustible")
     creation_date = models.DateTimeField(default=timezone.now, verbose_name="Fecha de creación")
     author = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Autor")
     editable = models.BooleanField(default=True, verbose_name="Editable")
