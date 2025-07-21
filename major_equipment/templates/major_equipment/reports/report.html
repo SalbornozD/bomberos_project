@@ -3,70 +3,64 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'major_equipment/css/report.css' %}">
+<link rel="stylesheet" href="{% static 'major_equipment/css/reports/report.css' %}">
 {% endblock %}
 
 {% block navbar %}
 {% include 'utils/navbar.html' %}
 <section class="header-container">
-    <h2>Material Mayor</h2>
+    <a href="{% url 'major_equipment:unit_list' %}">
+        <h2>Material Mayor</h2>
+    </a>
+    
+    <div class="buttons-container">
+        <a href="{% url 'major_equipment:unit_detail' unit.id %}">
+            <i class="bi bi-truck-front"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
+            <i class="bi bi-journal"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
+            <i class="bi bi-fuel-pump-fill"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
+            <i class="bi bi-wrench-adjustable-circle-fill"></i>
+        </a>
+    </div>
 </section>
 {% endblock %}
 
 {% block content %}
-<div id="unit-page">
-    <div class="buttons-container">
-        <a href="{% url 'major_equipment:unit_detail' unit.id %}">
-            <i class="bi bi-truck-front"></i>
-            <p>Unidad</p>
-        </a>
-        <a href="#" class="active">
-            <i class="bi bi-journal"></i>
-            <p>Reportes</p>
-        </a>
-        <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
-            <i class="bi bi-fuel-pump-fill"></i>
-            <p>Combustible</p>
-        </a>
-        <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
-            <i class="bi bi-wrench-adjustable-circle-fill"></i>
-            <p>Mantención</p>
-        </a>
-    </div>
-    <div class="calendar-section">
-        <div class="d-flex flex-row justify-content-around align-items-center p-2">
-            <a href="#"><i class="bi bi-caret-left-fill"></i></a>
-            <div><p>{{month_year}}</p></div>
-            <a href="#"><i class="bi bi-caret-right-fill"></i></a>
-        </div>
-        <div class="calendar-container">
-            <div class="day-label">L</div>
-            <div class="day-label">M</div>
-            <div class="day-label">M</div>
-            <div class="day-label">J</div>
-            <div class="day-label">V</div>
-            <div class="day-label">S</div>
-            <div class="day-label">D</div>
-
-            {% for cell in cells %}
-                {% if not cell.disabled %}
-                    <a 
-                    href="#" 
-                    class="day-link"
-                    >
-                        <button class="day-btn {{ cell.css_class }}">
-                            {{ cell.day }}
-                        </button>
-                    </a>
-                {% else %}
-                    <button class="day-btn {{ cell.css_class }}" disabled>
-                        {{ cell.day }}
-                    </button>
-                {% endif %}
+<section class="mx-2 mt-2">
+    <h1>Reporte N° {{ report.id }}</h1>
+    <p><strong>Unidad: {{report.unit}}</strong></p>
+    <p class="d-flex flex-row justify-content-between">
+        <span><strong>Autor:</strong> {{ report.author }}</span>
+        <span>{{ report.date }}</span>
+    </p>
+</section>
+<section class="mx-2 mb-2">
+    <h2 class="mb-2">Detalle del reporte</h2>
+    <table class="table table-borderless">
+        <tbody>
+            {% for entry in report.entries.all %}
+                <tr>
+                    <td><strong>{{entry.question}}:</strong></td>
+                    <td> {{entry.answer|default:"Sin respuesta"}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">{{entry.comment|default:"Sin comentario"}}</td>
+                </tr>
             {% endfor %}
-        </div>
-    </div>
-</div>
+        </tbody>
+    </table>
+    <p class="mt-2 {% if not report.comment %}text-muted text-center{% endif %}">
+        {{ report.comment|default:"Sin comentarios adionales"}}
+    </p>
+</section>
+<section class="mx-3 mb-2 d-flex flex-row justify-content-end">
+    <a href="{% url 'major_equipment:get_report_pdf' unit.id report.id %}" class="btn btn-outline-dark" target="_blank">Generar PDF</a>
+</section>
 {% include 'utils/modal.html' %}
 {% include 'utils/toast-container.html'%}
 {% endblock %}

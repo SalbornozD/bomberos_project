@@ -1,53 +1,55 @@
 import calendar
+from datetime import date
 from django.utils import timezone
 from major_equipment.models.report import Report
 
 def get_calendar_data(unit, year, month):
-    hoy = timezone.localdate()
-    # Obtener todos los reportes del mes actual para esa unidad
+    today = timezone.localdate()
+
+    # Traer todos los Report de una sola vez
     reports = Report.objects.filter(
         unit=unit,
         date__year=year,
         date__month=month,
         deleted=False
-    ).values_list("date", flat=True)
-
-    # Convertir fechas a un set de días para acceso rápido
-    dias_con_reporte = set(dt.day for dt in reports)
+    )
+    # Mapa de día → instancia de Report
+    report_map = {r.date.day: r for r in reports}
 
     first_weekday, num_days = calendar.monthrange(year, month)
-
     cells = []
 
     # Espacios vacíos antes del día 1
     for _ in range(first_weekday):
         cells.append({"day": "", "css_class": "empty-day", "disabled": True})
 
+    # Generar cada día del mes
     for day in range(1, num_days + 1):
-        fecha_actual = timezone.datetime(year, month, day).date()
-
-        # Base del botón
+        current_date = date(year, month, day)
         cell = {
             "day": day,
             "css_class": "day",
             "disabled": False,
         }
 
-        # Marcar día actual
-        if fecha_actual == hoy:
+        # Día de hoy
+        if current_date == today:
             cell["css_class"] += " today"
 
-        # Verificar si tiene reporte
-        if day in dias_con_reporte:
+        # Si hay reporte
+        if day in report_map:
             cell["css_class"] += " done"
-        elif fecha_actual <= hoy:
+            cell["report"] = report_map[day]
+        # Pasados sin reporte
+        elif current_date < today:
             cell["css_class"] += " missing"
+        # Futuros
         else:
-            cell["disabled"] = True  # No permitir clics en días futuros
+            cell["disabled"] = True
 
         cells.append(cell)
 
-    # Espacios vacíos al final para cuadrar grilla
+    # Espacios vacíos al final para cuadrar en múltiplo de 7
     while len(cells) % 7 != 0:
         cells.append({"day": "", "css_class": "empty-day", "disabled": True})
 

@@ -35,6 +35,9 @@
             <p>Mantención</p>
         </a>
     </div>
+    <div class="d-flex flex-row align-items-center justify-content-end px-2 pt-3">
+        <a href="{% url 'major_equipment:create_report' unit.id %}" class="btn btn-light">Nuevo Reporte</a>
+    </div>
     <div class="calendar-section">
         <div class="d-flex flex-row justify-content-around align-items-center p-2">
             <a href="{{prev_url}}"><i class="bi bi-caret-left-fill"></i></a>
@@ -51,17 +54,14 @@
             <div class="day-label">D</div>
 
             {% for cell in cells %}
-                {% if not cell.disabled %}
-                    <a 
-                    href="#" 
-                    class="day-link"
-                    >
+                {% if cell.report %}
+                    <a href="{% url 'major_equipment:get_report' unit.id cell.report.id %}" class="day-link">
                         <button class="day-btn {{ cell.css_class }}">
                             {{ cell.day }}
                         </button>
                     </a>
                 {% else %}
-                    <button class="day-btn {{ cell.css_class }}" disabled>
+                    <button class="day-btn {{ cell.css_class }}" {% if cell.disabled %}disabled{% endif %}>
                         {{ cell.day }}
                     </button>
                 {% endif %}

@@ -16,6 +16,10 @@ from decimal import Decimal, InvalidOperation
 from datetime import datetime
 from django.contrib.auth.models import Group
 from django.urls import reverse
+from django.template.loader import render_to_string
+from django.http         import HttpResponse
+from weasyprint          import HTML
+
 
 import logging
 logger = logging.getLogger('myapp')
@@ -89,7 +93,7 @@ def view_get_units(request: HttpRequest) -> HttpResponse:
         "search_filter": search_filter,
     }
 
-    return render(request, "major_equipment/units.html", context)
+    return render(request, "major_equipment/unit/units.html", context)
 
 @login_required # Detalle de unidad (Ficha resumen y docyumentos asociados).
 def view_get_unit(request: HttpRequest, unit_id: int) -> HttpResponse:
@@ -109,7 +113,7 @@ def view_get_unit(request: HttpRequest, unit_id: int) -> HttpResponse:
         "images": images,
         "title": "Material Mayor | Bomberos Quintero",
     }
-    return render(request, "major_equipment/unit.html", context)
+    return render(request, "major_equipment/unit/unit.html", context)
 
 # REPORTES
 
@@ -272,6 +276,36 @@ def view_unit_reports(request, unit_id):
 
     return render(request, "major_equipment/reports/unit_reports.html", data)
 
+@login_required # Ver reporte
+def view_get_report(request, unit_id, report_id):
+    data = {}
+    data["unit"] = get_object_or_404(Unit, pk=unit_id)
+    data["report"] = get_object_or_404(Report, pk=report_id, unit=data["unit"])
+    return render(request, "major_equipment/reports/report.html", data)
+
+@login_required # Generar PDF de reporte
+def view_generate_report_pdf(request, unit_id, report_id):
+    data = {}
+    data['report'] = get_object_or_404(Report, pk=report_id, unit__pk=unit_id)
+    data["unit"] = get_object_or_404(Unit, pk=unit_id)
+    
+    # 1. Carga el HTML
+    html_string = render_to_string(
+        'major_equipment/reports/reportPDF.html',  # ruta relativa a tu carpeta templates/
+        data,                                       # pasamos el contexto
+        request=request                             # para que {% static %} funcione si lo necesitaras
+    )
+
+    # 2. Genera el PDF
+    pdf_file = HTML(
+        string=html_string,
+        base_url=request.build_absolute_uri('/')   # para resolver rutas a estáticos
+    ).write_pdf()
+
+    # 3. Devuelve la respuesta PDF
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; filename="hola_mundo.pdf"'
+    return response
 
 
 # COMBUSTIBLE

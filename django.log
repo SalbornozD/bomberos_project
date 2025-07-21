@@ -1335,3 +1335,872 @@ KeyError: '12'
 2025-07-18 09:01:11,776 [WARNING] django.request - Not Found: /favicon.ico
 2025-07-18 09:01:11,776 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3723
 2025-07-18 09:07:19,949 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-18 11:29:51,530 [WARNING] django.request - Not Found: /accounts/login/
+2025-07-18 11:29:51,531 [WARNING] django.server - "GET /accounts/login/?next=/major-equipment/2/reports/ HTTP/1.1" 404 3768
+2025-07-18 11:29:51,701 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-18 11:29:51,702 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3723
+2025-07-18 11:32:53,557 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-18 11:36:00,970 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-18 11:51:34,337 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-18 11:51:39,137 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-18 11:51:42,764 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-18 11:51:48,840 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-18 11:52:16,713 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-18 11:52:24,858 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 13:39:30,239 [ERROR] django.request - Internal Server Error: /major-equipment/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 92, in view_get_units
+    return render(request, "major_equipment/units.html", context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: major_equipment/units.html
+2025-07-20 13:39:30,260 [ERROR] django.server - "GET /major-equipment/ HTTP/1.1" 500 97069
+2025-07-20 13:39:30,389 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 13:39:30,390 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 13:40:00,238 [ERROR] django.request - Internal Server Error: /major-equipment/2/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 112, in view_get_unit
+    return render(request, "major_equipment/unit.html", context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: major_equipment/unit.html
+2025-07-20 13:40:00,241 [ERROR] django.server - "GET /major-equipment/2/ HTTP/1.1" 500 93889
+2025-07-20 13:40:00,353 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 13:40:00,353 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 14:16:18,456 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 14:16:18,457 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 14:46:44,041 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 273, in view_unit_reports
+    return render(request, "major_equipment/reports/unit_reports.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_report' with arguments '(2, '')' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/reports/(?P<report_id>[0-9]+)/\\Z']
+2025-07-20 14:46:44,048 [ERROR] django.server - "GET /major-equipment/2/reports/?year=2025&month=7 HTTP/1.1" 500 285582
+2025-07-20 14:47:41,744 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 273, in view_unit_reports
+    return render(request, "major_equipment/reports/unit_reports.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_report' with arguments '(2, '')' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/reports/(?P<report_id>[0-9]+)/\\Z']
+2025-07-20 14:47:41,748 [ERROR] django.server - "GET /major-equipment/2/reports/?year=2025&month=7 HTTP/1.1" 500 285582
+2025-07-20 14:51:29,809 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 273, in view_unit_reports
+    return render(request, "major_equipment/reports/unit_reports.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_report' with arguments '(2, '')' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/reports/(?P<report_id>[0-9]+)/\\Z']
+2025-07-20 14:51:29,817 [ERROR] django.server - "GET /major-equipment/2/reports/?year=2025&month=7 HTTP/1.1" 500 285582
+2025-07-20 14:51:29,904 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 19:55:08,601 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 273, in view_unit_reports
+    return render(request, "major_equipment/reports/unit_reports.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_report' with arguments '(2, '')' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/reports/(?P<report_id>[0-9]+)/\\Z']
+2025-07-20 19:55:08,605 [ERROR] django.server - "GET /major-equipment/2/reports/ HTTP/1.1" 500 285159
+2025-07-20 19:55:08,773 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 19:55:08,773 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 19:55:11,040 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 19:55:11,041 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 19:56:52,879 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 273, in view_unit_reports
+    return render(request, "major_equipment/reports/unit_reports.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_report' with arguments '(2, '')' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/reports/(?P<report_id>[0-9]+)/\\Z']
+2025-07-20 19:56:52,889 [ERROR] django.server - "GET /major-equipment/2/reports/ HTTP/1.1" 500 285164
+2025-07-20 19:56:52,957 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 19:56:52,958 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 19:59:04,403 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 257, in view_unit_reports
+    data['cells'] = get_calendar_data(unit, year, month)
+                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\major_equipment\utils\calendar.py", line 27, in get_calendar_data
+    fecha_actual = timezone.localdate(year, month, day)
+TypeError: localdate() takes from 0 to 2 positional arguments but 3 were given
+2025-07-20 19:59:04,407 [ERROR] django.server - "GET /major-equipment/2/reports/ HTTP/1.1" 500 83568
+2025-07-20 19:59:04,511 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 19:59:04,512 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 20:00:32,188 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 273, in view_unit_reports
+    return render(request, "major_equipment/reports/unit_reports.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_report' with arguments '(2, '')' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/reports/(?P<report_id>[0-9]+)/\\Z']
+2025-07-20 20:00:32,196 [ERROR] django.server - "GET /major-equipment/2/reports/ HTTP/1.1" 500 284966
+2025-07-20 20:00:32,275 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 20:00:32,276 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 20:02:00,041 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/13/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 278, in view_get_report
+    return render(request, "major_equipment/reports/report.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'unit_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/\\Z']
+2025-07-20 20:02:00,045 [ERROR] django.server - "GET /major-equipment/2/reports/13/ HTTP/1.1" 500 168750
+2025-07-20 20:02:00,136 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 20:02:00,137 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 20:02:02,024 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 20:02:02,025 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 20:02:29,059 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/11/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 278, in view_get_report
+    return render(request, "major_equipment/reports/report.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'unit_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/\\Z']
+2025-07-20 20:02:29,064 [ERROR] django.server - "GET /major-equipment/2/reports/11/ HTTP/1.1" 500 168485
+2025-07-20 20:02:29,141 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 20:02:29,142 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-20 20:03:58,097 [WARNING] django.server - "GET /static/major_equipment/css/report.css HTTP/1.1" 404 1904
+2025-07-20 20:47:26,682 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/11/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 280, in view_get_report
+    return render(request, "major_equipment/reports/report.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'unit_report' not found. 'unit_report' is not a valid view function or pattern name.
+2025-07-20 20:47:26,693 [ERROR] django.server - "GET /major-equipment/2/reports/11/ HTTP/1.1" 500 166892
+2025-07-20 20:47:26,838 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-20 20:47:26,839 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3721
+2025-07-21 00:00:45,084 [ERROR] django.request - Internal Server Error: /major-equipment/2/reports/13/
+Traceback (most recent call last):
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 280, in view_get_report
+    return render(request, "major_equipment/reports/report.html", data)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\bomberos_project\venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\bomberos_project\venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'unit_list' with arguments '(2,)' not found. 1 pattern(s) tried: ['major\\-equipment/\\Z']
+2025-07-21 00:00:45,112 [ERROR] django.server - "GET /major-equipment/2/reports/13/ HTTP/1.1" 500 171188
+2025-07-21 00:00:45,252 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 00:00:45,253 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 00:50:41,420 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 00:50:41,436 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 00:50:50,901 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 00:50:50,902 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 01:05:28,470 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 01:05:28,498 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:23:15,742 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:23:15,778 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:23:17,709 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:23:17,710 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:24:18,191 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:24:18,191 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:31:11,657 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:31:11,658 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:37:05,356 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:37:05,359 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:37:14,129 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:37:14,130 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:38:27,693 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:38:27,694 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:40:00,591 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:40:00,591 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:40:10,354 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:40:10,355 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:40:18,263 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:40:18,264 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:40:30,575 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:40:30,576 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:41:12,165 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:41:12,166 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:41:31,195 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:41:31,196 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:41:41,467 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:41:41,468 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:41:49,995 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:41:49,997 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:42:09,868 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:42:09,868 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:42:20,756 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:42:20,757 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:42:31,063 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:42:31,064 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:42:42,104 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:42:42,105 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:42:53,445 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:42:53,446 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:43:20,733 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:43:20,734 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:43:40,783 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:43:40,784 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:44:00,821 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:44:00,822 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:44:39,096 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:44:39,098 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:44:46,281 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:44:46,282 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:45:05,694 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:45:05,695 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:45:15,732 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:45:15,733 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:45:26,744 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:45:26,745 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:45:44,972 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:45:44,974 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:45:54,966 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:45:54,967 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:46:16,635 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:46:16,635 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:46:23,437 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:46:23,439 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:46:34,952 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:46:34,953 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:46:42,149 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:46:42,150 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:46:48,121 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:46:48,123 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:50:38,351 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:50:38,352 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:51:03,391 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:51:03,392 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:51:12,519 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:51:12,520 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:52:30,765 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:52:30,766 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:52:42,820 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:52:42,821 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:53:14,827 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:53:14,828 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:53:57,212 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:53:57,213 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:54:14,551 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:54:14,552 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:54:30,935 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:54:30,935 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:54:53,222 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:54:53,223 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:55:12,813 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:55:12,814 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:55:40,531 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:55:40,532 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:55:51,566 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:55:51,567 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:56:10,819 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:56:10,821 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 09:56:35,380 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 09:56:35,381 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-21 10:44:14,980 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-21 10:44:15,011 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3723

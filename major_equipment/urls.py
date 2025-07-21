@@ -8,12 +8,15 @@ urlpatterns = [
     # Retornan Template
     path("", view_get_units, name="unit_list"),
     path("<int:unit_id>/", view_get_unit, name="unit_detail"),
-    path("<int:unit_id>/reports/", view_unit_reports, name="unit_reports"),
     path("<int:unit_id>/fuel/", view_unit_fuel, name="unit_fuel"),
     path("<int:unit_id>/maintenance/", view_unit_maintenance, name="unit_maintenance"),
 
     # REPORTES
     path("<int:unit_id>/reports/create/", view_create_report, name="create_report"),
+    path("<int:unit_id>/reports/", view_unit_reports, name="unit_reports"),
+    path("<int:unit_id>/reports/<int:report_id>/", view_get_report, name="get_report"),
+
+    path("<int:unit_id>/reports/<int:report_id>/PDF/", view_generate_report_pdf, name="get_report_pdf"),
 
     # COMBUSTIBLE
     path("<int:unit_id>/fuel/create/", view_create_fuel, name="create_fuel"),

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte PDF</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'major_equipment/css/reports/report_pdf.css' %}">
+  
+
+</head>
+
+<body>
+  <div class="header">
+
+    <div class="logo">
+      <img src="{% static 'img/logo.png' %}" alt="">
+    </div>
+
+    <div class="title">
+      <p>Cuerpo de Bomberos de Quintero</p>
+      <p>Unidad {{ unit }}</p>
+      <p>Fecha: {{ report.date }}</p>
+    </div>
+
+  </div>
+  <section class="mx-2 mt-4">
+    <h1 class="text-center">Reporte N° {{ report.id }}</h1>
+    <p><strong>Autor:</strong> {{ report.author }}</p>
+  </section>
+
+  <section class="mx-2 mb-2">
+    <h3 class="mb-2">Detalle del reporte</h3>
+    <table class="table ">
+      <tbody>
+        {% for entry in report.entries.all %}
+          <tr>
+            <td><strong>{{ entry.question }}:</strong></td>
+            <td>{{ entry.answer|default:"Sin respuesta" }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">{{ entry.comment|default:"Sin comentario" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="mt-2 {% if not report.comment %}text-muted text-center{% endif %}">
+      {{ report.comment|default:"Sin comentarios adicionales" }}
+    </p>
+  </section>
+
+</body>
+
+</html>
