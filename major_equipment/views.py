@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from major_equipment.models import Unit
 from major_equipment.models.report import *
 from major_equipment.models.fuel_log import *
-from django.db import transaction
+from django.db import transaction, IntegrityError
 from django.db.models import Q
 from django.utils import timezone
 from .utils.calendar import get_calendar_data
@@ -95,7 +95,7 @@ def view_get_units(request: HttpRequest) -> HttpResponse:
 
     return render(request, "major_equipment/unit/units.html", context)
 
-@login_required # Detalle de unidad (Ficha resumen y docyumentos asociados).
+@login_required # Detalle de unidad (Ficha resumen y documentos asociados).
 def view_get_unit(request: HttpRequest, unit_id: int) -> HttpResponse:
     user = request.user
 
@@ -310,56 +310,99 @@ def view_generate_report_pdf(request, unit_id, report_id):
 
 # COMBUSTIBLE
 
-@login_required # Crear carga de combustible de una unidad.
+@login_required
 def view_create_fuel(request, unit_id):
-    unit = get_object_or_404(Unit, pk=unit_id)
+    unit     = get_object_or_404(Unit, pk=unit_id)
+    stations = Station.objects.all()
+    now      = timezone.localtime()
 
     if request.method == 'POST':
-        # 1. Fecha: parseamos el input datetime-local (YYYY-MM-DDTHH:MM)
+        errors = False
+
+        # 1. Fecha
         date_str = request.POST.get('date', '')
         if date_str:
-            naive = datetime.strptime(date_str, '%Y-%m-%dT%H:%M')
-            date = timezone.make_aware(naive)
+            try:
+                naive = datetime.strptime(date_str, '%Y-%m-%dT%H:%M')
+                date  = timezone.make_aware(naive)
+            except ValueError:
+                messages.error(request, 'Formato de fecha inválido.')
+                errors = True
         else:
             date = timezone.now()
 
-        # 2. Cantidad y costo
+        # 2. Número de guía
         try:
-            quantity = Decimal(request.POST.get('quantity', '0'))
-            cost = int(request.POST.get('cost', '0'))
-            if quantity <= 0 or cost < 0:
+            guide_number = int(request.POST.get('guide_number', ''))
+            if guide_number <= 0:
                 raise ValueError
-        except (InvalidOperation, ValueError):
-            messages.error(request, 'La cantidad o el costo no son válidos.')
-            return render(request, 'major_equipment/fuel/fuel_form.html', {
-                'unit': unit,
-                'now': timezone.localtime(),
-            })
+        except (ValueError, TypeError):
+            messages.error(request, 'El número de guía es obligatorio y debe ser un entero positivo.')
+            errors = True
 
-        # 3. Campos opcionales
-        station = request.POST.get('station') or None
-        notes   = request.POST.get('notes')   or None
-        ticket  = request.FILES.get('ticket')  # requiere enctype multipart/form-data
+        # 3. Cantidad, costo y kilometraje
+        try:
+            quantity      = Decimal(request.POST.get('quantity', '0'))
+            cost          = Decimal(request.POST.get('cost', '0'))
+            cargo_mileage = Decimal(request.POST.get('cargo_mileage', '0'))
+            if quantity <= 0 or cost < 0 or cargo_mileage < 0:
+                raise ValueError
+        except (InvalidOperation, ValueError, TypeError):
+            messages.error(request, 'Cantidad, costo y kilometraje deben ser números válidos y no negativos.')
+            errors = True
 
-        # 4. Guardar FuelLog
-        fuel_log = FuelLog(
-            unit=unit,
-            date=date,
-            quantity=quantity,
-            cost=cost,
-            station=station,
-            notes=notes,
-            ticket=ticket
-        )
-        fuel_log.save()
+        # 4. Estación de servicio
+        station_id = request.POST.get('station')
+        try:
+            station = Station.objects.get(pk=station_id)
+        except (Station.DoesNotExist, ValueError, TypeError):
+            messages.error(request, 'Debes seleccionar una estación de servicio válida.')
+            errors = True
 
-        messages.success(request, 'Registro de combustible creado exitosamente.')
-        return redirect('major_equipment:unit_fuel', unit_id=unit_id)
+        # 5. Opcionales
+        notes  = request.POST.get('notes') or None
+        ticket = request.FILES.get('ticket')
 
-    # GET: renderizamos el formulario
+        # 6. Guardar si no hay errores
+        if not errors:
+            # 1) chequeo de duplicado
+            if FuelLog.objects.filter(guide_number=guide_number, station=station).exists():
+                messages.error(request, 'Ya existe un registro con ese número de guía de esa estación.')
+                errors = True
+            else:
+                try:
+                    FuelLog.objects.create(
+                        unit=unit,
+                        guide_number=guide_number,
+                        station=station,
+                        date=date,
+                        quantity=quantity,
+                        cost=cost,
+                        cargo_mileage=cargo_mileage,
+                        notes=notes,
+                        ticket=ticket,
+                        author=request.user,      
+                    )
+                except IntegrityError as e:
+                    logger.exception("Error inesperado guardando FuelLog: %r", e)
+                    messages.error(request, 'Ocurrió un error inesperado al guardar. Revisa los logs.')
+                    errors = True
+                else:
+                    messages.success(request, 'Registro de combustible creado exitosamente.')
+                    return redirect('major_equipment:unit_fuel', unit_id=unit_id)
+
+        # Si hubo errores, vuelvo a mostrar el formulario con los mensajes
+        return render(request, 'major_equipment/fuel/fuel_form.html', {
+            'unit': unit,
+            'stations': stations,
+            'now': now,
+        })
+
+    # GET: renderizar formulario vacío
     return render(request, 'major_equipment/fuel/fuel_form.html', {
         'unit': unit,
-        'now': timezone.localtime(),
+        'stations': stations,
+        'now': now,
     })
 
 @login_required # Ver cargas de combustible de una unidad.
@@ -380,7 +423,7 @@ def view_unit_fuel(request, unit_id):
     data["fuel_logs"] = FuelLog.objects.filter(unit=unit, date__year=fecha_actual.year, date__month=fecha_actual.month).order_by("-date")
     
 
-    return render(request, "major_equipment/unit_fuel.html", data)
+    return render(request, "major_equipment/fuel/unit_fuel.html", data)
 
 
 # MANTENCIONES

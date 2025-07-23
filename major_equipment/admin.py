@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Unit, UnitImage
 from .models.report import ReportTemplateItem, ItemCategory, ReportItemOption, Report, ReportEntry
-from .models.fuel_log import FuelLog
+from .models.fuel_log import *
 from django.utils.html import format_html
 from .utils.permission import get_units, can_view_unit, can_edit_unit
 from firebrigade.utils import get_user_entity
@@ -128,3 +128,4 @@ admin.site.register(ReportItemOption)
 admin.site.register(Report)
 admin.site.register(ReportEntry)
 admin.site.register(FuelLog)
+admin.site.register(Station)

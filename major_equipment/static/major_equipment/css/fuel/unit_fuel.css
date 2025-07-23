@@ -89,32 +89,41 @@
   font-size: x-large;
 }
 
-/* 1. Fondo de toda la tabla */
-.table-custom {
-  background-color: #BB2633 !important;
-  color: white;
+.main-section .fuel-logs-container{
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  padding: 10px 0;
 }
 
-/* 2. Color de encabezado */
-.table-custom thead th {
+.main-section .fuel-logs-container .fuel-log{
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: white;
+  width: 100%;
+  border-radius: 0;
+  gap: 5px;
+}
+
+.main-section .fuel-logs-container .fuel-log .title{
   background-color: #BB2633;
-  color: #fff;
-  border-color: #aaa;
+  width: 100%;
+  color: white;
+  border-radius: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 5px 10px 5px;
+  border-top: black solid 2px;
+  align-items: center;
+
 }
 
-/* 3. Filas alternas (si mantienes table-striped) */
-.table-custom tbody tr:nth-child(odd) {
-  background-color: #BB2633;
-  color: white;
-}
-.table-custom tbody tr:nth-child(even) {
-  background-color: #A2232B; /* un 10–15% más oscuro opcional */
-  color: white;
-}
 
-/* 4. Celdas: para asegurarte de que el fondo se aplique */
-.table-custom th,
-.table-custom td {
-  background-color: transparent;
-  color: white;;
+.main-section .fuel-logs-container .fuel-log .body{
+  border-radius: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  padding: 0 10px 5px;
 }

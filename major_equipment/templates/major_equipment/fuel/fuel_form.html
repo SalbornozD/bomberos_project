@@ -20,50 +20,142 @@
   <p>Unidad {{ unit.unit_number }} | {{ unit.entity }}</p>
 </section>
 
+{% if messages %}
+  {% for msg in messages %}
+    <div
+      class="alert alert-{% if msg.tags == 'error' %}danger{% else %}{{ msg.tags }}{% endif %} m-3"
+      role="alert"
+    >
+      {{ msg }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+
+
 <section class="body">
-  <form method="post" action="" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <!-- Fecha de carga (opcional: por defecto ahora) -->
+    <!-- Número de guía -->
     <div class="mb-3">
-      <label for="id_date" class="form-label">Fecha de carga</label>
-      <input type="datetime-local" name="date" id="id_date" class="form-control" value="{{ now|date:'Y-m-d\\TH:i' }}">
-    </div>
-
-    <!-- Cantidad (L) -->
-    <div class="mb-3">
-      <label for="id_quantity" class="form-label">Cantidad (L)</label>
-      <input type="number" name="quantity" id="id_quantity" class="form-control" step="0.01" min="0" required>
-    </div>
-
-    <!-- Costo (CLP) -->
-    <div class="mb-3">
-      <label for="id_cost" class="form-label">Costo (CLP)</label>
-      <input type="number" name="cost" id="id_cost" class="form-control" step="1" min="0" required>
+      <label for="id_guide_number" class="form-label">Número de guía</label>
+      <input
+        type="number"
+        name="guide_number"
+        id="id_guide_number"
+        class="form-control"
+        min="1"
+        required
+        value="{{ request.POST.guide_number }}"
+      >
     </div>
 
     <!-- Estación de servicio -->
     <div class="mb-3">
       <label for="id_station" class="form-label">Estación de servicio</label>
-      <input type="text" name="station" id="id_station" class="form-control">
+      <select
+        name="station"
+        id="id_station"
+        class="form-select"
+        required
+      >
+        <option value="" disabled {% if not request.POST.station %}selected{% endif %}>
+          -- Selecciona estación --
+        </option>
+        {% for s in stations %}
+          <option
+            value="{{ s.pk }}"
+            {% if request.POST.station == s.pk|stringformat:"s" %}selected{% endif %}
+          >
+            {{ s.label }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Fecha de carga -->
+    <div class="mb-3">
+      <label for="id_date" class="form-label">Fecha de carga</label>
+      <input
+        type="datetime-local"
+        name="date"
+        id="id_date"
+        class="form-control"
+        value="{{ request.POST.date|default:now|date:'Y-m-d\\TH:i' }}"
+      >
+    </div>
+
+    <!-- Cantidad (L) -->
+    <div class="mb-3">
+      <label for="id_quantity" class="form-label">Cantidad (L)</label>
+      <input
+        type="number"
+        name="quantity"
+        id="id_quantity"
+        class="form-control"
+        step="0.01"
+        min="0"
+        required
+        value="{{ request.POST.quantity }}"
+      >
+    </div>
+
+    <!-- Costo (CLP) -->
+    <div class="mb-3">
+      <label for="id_cost" class="form-label">Costo (CLP)</label>
+      <input
+        type="number"
+        name="cost"
+        id="id_cost"
+        class="form-control"
+        step="1"
+        min="0"
+        required
+        value="{{ request.POST.cost }}"
+      >
+    </div>
+
+    <!-- Kilometraje al cargar -->
+    <div class="mb-3">
+      <label for="id_cargo_mileage" class="form-label">Kilometraje al cargar combustible</label>
+      <input
+        type="number"
+        name="cargo_mileage"
+        id="id_cargo_mileage"
+        class="form-control"
+        step="0.01"
+        min="0"
+        required
+        value="{{ request.POST.cargo_mileage }}"
+      >
     </div>
 
     <!-- Observaciones -->
     <div class="mb-3">
       <label for="id_notes" class="form-label">Observaciones</label>
-      <textarea name="notes" id="id_notes" class="form-control" rows="4"></textarea>
+      <textarea
+        name="notes"
+        id="id_notes"
+        class="form-control"
+        rows="4"
+      >{{ request.POST.notes }}</textarea>
     </div>
 
     <!-- Boleta de combustible -->
     <div class="mb-3">
       <label for="id_ticket" class="form-label">Boleta de combustible</label>
-      <input type="file" name="ticket" id="id_ticket" class="form-control" accept="image/*,application/pdf">
+      <input
+        type="file"
+        name="ticket"
+        id="id_ticket"
+        class="form-control"
+        accept="image/*,application/pdf"
+      >
     </div>
 
-    
-
-    
-    <div class="d-flex justify-content-end">
+    <!-- Botón de envío -->
+    <div class="d-flex justify-content-end mb-3">
       <button type="submit" class="btn btn-outline-success">Enviar</button>
     </div>
   </form>
