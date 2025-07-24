@@ -18,25 +18,83 @@ class FuelLevel(models.IntegerChoices):
 
 class MaintenanceLog(models.Model):
     """Solicitud de mantención de una unidad."""
-    unit = models.ForeignKey(Unit, on_delete=models.PROTECT, verbose_name="Unidad", related_name="maintenance_logs")
+    unit = models.ForeignKey(
+        Unit,
+        on_delete=models.PROTECT,
+        verbose_name="Unidad",
+        related_name="maintenance_logs_unit"
+    )
     description = models.TextField(verbose_name="Descripción")
-    responsible_for_payment = models.ForeignKey(Entity, on_delete=models.PROTECT, verbose_name="Responsable de pago", related_name="maintenance_logs")
-    author = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Autor", related_name="maintenance_logs")
-    creation_date = models.DateTimeField(default=timezone.now, verbose_name="Fecha de creación")
+    responsible_for_payment = models.ForeignKey(
+        Entity,
+        on_delete=models.PROTECT,
+        verbose_name="Responsable de pago",
+        related_name="maintenance_logs_responsible"
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        verbose_name="Autor",
+        related_name="maintenance_logs_author"
+    )
+    creation_date = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Fecha de creación"
+    )
 
     # Aprobaciones Comandancia.
-    approved_by_command = models.BooleanField(default=False, verbose_name="Aprobado por Comandancia")
-    command_observations = models.TextField(blank=True, null=True, verbose_name="Observaciones de Comandancia")
-    reviewed_by_command = models.ForeignKey(User, null=True, blank=True, on_delete=models.PROTECT, verbose_name="Revisado por Comandancia", related_name="maintenance_logs_command")
-    command_reviewed_date = models.DateTimeField(null=True, blank=True, verbose_name="Fecha de aprobación por comandancia")
-    
-    # Aprobaciones Administración.
-    approved_by_admin = models.BooleanField(default=False, verbose_name="Aprobado por Administración")
-    admin_observations = models.TextField(blank=True, null=True, verbose_name="Observaciones de Administración")
-    reviewed_by_admin = models.ForeignKey(User, null=True, blank=True, on_delete=models.PROTECT, verbose_name="Revisado por Administración", related_name="maintenance_logs_admin")
-    admin_reviewed_date = models.DateTimeField(null=True, blank=True, verbose_name="Fecha de aprobación por administración")
+    approved_by_command = models.BooleanField(
+        null=True,
+        blank=True,
+        default=None,
+        verbose_name="Aprobado por Comandancia"
+    )
+    command_observations = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Observaciones de Comandancia"
+    )
+    reviewed_by_command = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        verbose_name="Revisado por (Comandancia)",
+        related_name="maintenance_logs_reviewed_command"
+    )
+    command_reviewed_date = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name="Fecha de aprobación por Comandancia"
+    )
 
-    # Auditoria
+    # Aprobaciones Administración.
+    approved_by_admin = models.BooleanField(
+        null=True,
+        blank=True,
+        default=None,
+        verbose_name="Aprobado por Administración"
+    )
+    admin_observations = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Observaciones de Administración"
+    )
+    reviewed_by_admin = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        verbose_name="Revisado por (Administración)",
+        related_name="maintenance_logs_reviewed_admin"
+    )
+    admin_reviewed_date = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name="Fecha de aprobación por Administración"
+    )
+
+    # Auditoría
     editable = models.BooleanField(default=True, verbose_name="Editable")
     deleted = models.BooleanField(default=False, verbose_name="Eliminado")
 
@@ -44,18 +102,32 @@ class MaintenanceLog(models.Model):
         verbose_name = "Solicitud de mantención"
         verbose_name_plural = "Solicitudes de mantenciones"
         permissions = [
-            ("view_own_maintenancerequests",    "Puede ver sus propias solicitudes"),
-            ("view_company_maintenancerequests","Puede ver solicitudes de su compañía"),
-            ("change_own_maintenancerequests",  "Puede editar sus propias solicitudes"),
+            ("view_own_maintenancerequests",     "Puede ver sus propias solicitudes"),
+            ("view_company_maintenancerequests", "Puede ver solicitudes de su compañía"),
+            ("change_own_maintenancerequests",   "Puede editar sus propias solicitudes"),
             ("change_company_maintenancerequests","Puede editar solicitudes de su compañía"),
-            ("delete_own_maintenancerequests",  "Puede eliminar sus propias solicitudes"),
+            ("delete_own_maintenancerequests",   "Puede eliminar sus propias solicitudes"),
             ("delete_company_maintenancerequests","Puede eliminar solicitudes de su compañía"),
-            ("approve_maintenance_as_command",   "Puede aprobar solicitudes como Comandancia"),
-            ("approve_maintenance_as_admin",     "Puede aprobar solicitudes como Administración"),
+            ("approve_maintenance_as_command",    "Puede aprobar solicitudes como Comandancia"),
+            ("approve_maintenance_as_admin",      "Puede aprobar solicitudes como Administración"),
         ]
 
     def __str__(self):
-        return f"{self.unit} • {self.requested_at:%d/%m/%Y}"
+        return f"{self.unit} • {self.creation_date:%d/%m/%Y}"
+
+    @property
+    def state(self):
+        # Etapa de Comandancia
+        if self.approved_by_command is None:
+            return "Pendiente por comandancia"
+        if self.approved_by_command is False:
+            return "Rechazada por comandancia"
+        # Aprobado por Comandancia → pasa a Administración
+        if self.approved_by_admin is None:
+            return "Pendiente por administración"
+        if self.approved_by_admin is False:
+            return "Rechazada por administración"
+        return "Aprobada por administración"
 
 class Quotation(models.Model):
     """Registro de cotizaciones."""

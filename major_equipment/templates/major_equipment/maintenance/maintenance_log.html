@@ -1,0 +1,91 @@
+{% extends "utils/base.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'major_equipment/css/maintenance/maintenance_log.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'utils/navbar.html' %}
+<section class="header-container">
+    <a href="{% url 'major_equipment:unit_list' %}">
+        <h2>Material Mayor</h2>
+    </a>
+    
+    <div class="buttons-container">
+        <a href="{% url 'major_equipment:unit_detail' unit.id %}">
+            <i class="bi bi-truck-front"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
+            <i class="bi bi-journal"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
+            <i class="bi bi-fuel-pump-fill"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
+            <i class="bi bi-wrench-adjustable-circle-fill"></i>
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="mx-2 mt-2">
+    <div class="d-flex flex-row justify-content-between">   
+        <h1>Solicitud #{{ maintenance_log.id }}</h1>
+        <p>{{ maintenance_log.creation_date|date:"d/m/Y H:m" }}</p>
+    </div>
+    
+    <p><strong>Unidad: {{unit}}</strong></p>
+    <p><strong>Autor:</strong> {{ maintenance_log.author.get_full_name }}</p>
+    <p><strong>Descripción:</strong></p>
+    <p>{{maintenance_log.description}}</p>
+    <hr>
+    {% if maintenance_log.state == 'Pendiente por comandancia'%}
+        <div class="d-flex flex-row justify-content-evenly mb-2">
+            <div class="d-flex flex-column align-items-center">
+                <i class="bi bi-circle fs-1"></i>
+                <a href="#" class="text-black text-decoration-none"><strong>Pendiente</strong></a>
+                <p>Comandancia</p>
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                <i class="bi bi-circle fs-1"></i>
+                <strong>Pendiente</strong>
+                <p>Dirección</p>
+            </div>
+        </div>
+    {% elif maintenance_log.state == 'Rechazada por comandancia' %}
+        <div class="d-flex flex-row justify-content-evenly mb-2">
+            <div class="d-flex flex-column align-items-center">
+                <i class="bi bi-circle fs-1"></i>
+                <strong>Pendiente</strong>
+                <p>Comandancia</p>
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                <i class="bi bi-circle fs-1"></i>
+                <strong>Pendiente</strong>
+                <p>Dirección</p>
+            </div>
+        </div>
+    {% endif %}
+</section>
+
+<section class="mx-3 mb-2 d-flex flex-row justify-content-evenly">
+    <a href="{% url 'major_equipment:add_quotation' unit.id maintenance_log.id %}"
+        class="btn btn-outline-dark">Añadir Cotización</a>
+    <a href="#" class="btn btn-outline-dark" target="_blank">Generar PDF</a>
+</section>
+{% include 'utils/modal.html' %}
+{% include 'utils/toast-container.html'%}
+{% endblock %}
+
+{% block footer %}
+<footer>
+
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'major_equipment/js/unit.js' %}"></script>
+{% endblock %}

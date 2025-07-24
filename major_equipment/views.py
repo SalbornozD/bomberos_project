@@ -1,28 +1,41 @@
-from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
-from major_equipment.utils.permission import get_units
-from django.shortcuts import render, get_object_or_404, redirect
-from major_equipment.models import Unit
-from major_equipment.models.report import *
-from major_equipment.models.fuel_log import *
-from django.db import transaction, IntegrityError
-from django.db.models import Q
-from django.utils import timezone
-from .utils.calendar import get_calendar_data
-from django.contrib import messages
-from django.core.mail import send_mail
-from django.conf import settings
-from decimal import Decimal, InvalidOperation
-from datetime import datetime
-from django.contrib.auth.models import Group
-from django.urls import reverse
-from django.template.loader import render_to_string
-from django.http         import HttpResponse
-from weasyprint          import HTML
+from django.db                              import transaction, IntegrityError
+from django.http                            import HttpResponse
+from django.conf                            import settings
+from django.http                            import HttpRequest, HttpResponse, HttpResponseForbidden
+from django.urls                            import reverse
+from django.utils                           import timezone
+from django.db.models                       import Q
+from django.shortcuts                       import render, get_object_or_404, redirect
+from django.template.loader                 import render_to_string
+from django.contrib.auth.models             import Group
+from django.contrib.auth.decorators         import login_required
 
+# MODELOS
+from major_equipment.models.unit            import *
+from major_equipment.models.report          import *
+from major_equipment.models.fuel_log        import *
+from major_equipment.models.maintenance_log import *
 
+# Utilidades
+from .utils.permission                      import *
+from .utils.calendar                        import *
+
+# Librerias
+from django.contrib                         import messages
+from django.core.mail                       import send_mail
+from decimal                                import Decimal, InvalidOperation
+from datetime                               import datetime
+from weasyprint                             import HTML
+
+# Configuración de logging
 import logging
 logger = logging.getLogger('myapp')
+
+MESES_ES = {
+        1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril",
+        5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto",
+        9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
+    }
 
 
 # UNIDADES
@@ -235,12 +248,6 @@ def view_unit_reports(request, unit_id):
     unit = get_object_or_404(Unit, pk=unit_id)
     data["unit"] = unit
 
-    MESES_ES = {
-        1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril",
-        5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto",
-        9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
-    }
-
     try:
         year = int(request.GET.get('year', timezone.localdate().year))
     except ValueError:
@@ -310,7 +317,7 @@ def view_generate_report_pdf(request, unit_id, report_id):
 
 # COMBUSTIBLE
 
-@login_required
+@login_required # Crear carga de combustible
 def view_create_fuel(request, unit_id):
     unit     = get_object_or_404(Unit, pk=unit_id)
     stations = Station.objects.all()
@@ -408,40 +415,133 @@ def view_create_fuel(request, unit_id):
 @login_required # Ver cargas de combustible de una unidad.
 def view_unit_fuel(request, unit_id):
     data = {}
-    unit = get_object_or_404(Unit, pk=unit_id)
-    data["unit"] = unit
+    data["unit"] = get_object_or_404(Unit, pk=unit_id)
 
-    MESES_ES = {
-        1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril",
-        5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto",
-        9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
-    }
-
-    fecha_actual = timezone.now()
-    data["month_year"] = f"{MESES_ES[fecha_actual.month]} {fecha_actual.year}"
-
-    data["fuel_logs"] = FuelLog.objects.filter(unit=unit, date__year=fecha_actual.year, date__month=fecha_actual.month).order_by("-date")
+    try:
+        year = int(request.GET.get('year', timezone.localdate().year))
+    except ValueError:
+        year = timezone.localdate().year
     
+    if year < 2000 or year > timezone.localdate().year:
+        year = timezone.localdate().year
+
+    try:
+        month = int(request.GET.get('month', timezone.localdate().month))
+    except ValueError:
+        month = timezone.localdate().month
+    
+    if month not in MESES_ES.keys():
+        month = timezone.localdate().month
+
+    data["month_year"] = f"{MESES_ES[month]} {year}"
+
+    if month == 1:
+        prev_month, prev_year = 12, year - 1
+    else:
+        prev_month, prev_year = month - 1, year
+
+    if month == 12:
+        next_month, next_year = 1, year + 1
+    else:
+        next_month, next_year = month + 1, year
+    
+    base = reverse('major_equipment:unit_fuel', args=[unit_id])
+    data['prev_url'] = f"{base}?year={prev_year}&month={prev_month}"
+    data['next_url'] = f"{base}?year={next_year}&month={next_month}"
+
+    data["fuel_logs"] = FuelLog.objects.filter(unit=data["unit"], date__year=year, date__month=month).order_by("-date")
+    data['fuel_quantity_total'] = sum(log.quantity for log in data["fuel_logs"])
+    data['fuel_cost_total'] = sum(log.cost for log in data["fuel_logs"])
 
     return render(request, "major_equipment/fuel/unit_fuel.html", data)
 
+@login_required # Ver Detalle de carga de combustible
+def view_get_fuel_log(request, unit_id, fuel_log_id):
+    data = {}
+    data["unit"] = get_object_or_404(Unit, pk=unit_id)
+    data["fuel_log"] = get_object_or_404(FuelLog, pk=fuel_log_id, unit=data["unit"])
+
+    return render(request, "major_equipment/fuel/fuel_log.html", data)
 
 # MANTENCIONES
 
-@login_required
+@login_required # Crear solicitud de mantención
+def view_create_maintenance_request(request, unit_id):
+    unit = get_object_or_404(Unit, pk=unit_id)
+
+    # Inicializamos contexto para GET o POST fallido
+    form_data = {
+        'description': '',
+        'responsible_for_payment': ''
+    }
+    errors = {}
+
+    if request.method == "POST":
+        # 1. Recogemos datos
+        description = request.POST.get('description', '').strip()
+        resp_choice = request.POST.get('responsible_for_payment', '')
+
+        form_data['description'] = description
+        form_data['responsible_for_payment'] = resp_choice
+
+        # 2. Validaciones
+        if not description:
+            errors['description'] = "La descripción es obligatoria."
+        if resp_choice not in ("bomberos", "company"):
+            errors['responsible_for_payment'] = "Debes seleccionar quién paga."
+
+        # 3. Si pasa validación, creamos el MaintenanceLog
+        if not errors:
+            # Obtener la entidad “Cuerpo de Bomberos”
+            # Ajusta este filtro a tu modelo: 
+            # por ejemplo un flag is_institutional o un slug concreto.
+
+            if resp_choice == "bomberos":
+                entidad_pago = Entity.objects.get(type='ADMIN')
+                print(entidad_pago)
+            else:
+                user = request.user
+                print(user)
+                entidad_pago = get_user_entity(user)
+                print(entidad_pago)
+
+            log = MaintenanceLog.objects.create(
+                unit=unit,
+                description=description,
+                responsible_for_payment=entidad_pago,
+                author=request.user
+            )
+            # Redirige, por ejemplo, al detalle de la solicitud o a la lista
+            return redirect('major_equipment:unit_maintenance', unit_id=unit_id)
+
+    # Renderizamos (GET o POST con errores)
+    return render(request, 
+                  "major_equipment/maintenance/forms/maintenance_form.html", 
+                  {
+                      'unit': unit,
+                      'form_data': form_data,
+                      'errors': errors,
+                  })
+
+@login_required # Agregar cotización
+def view_add_quotation(request, unit_id, log_id):
+    data = {}
+    data["unit"] = get_object_or_404(Unit, pk=unit_id)
+    data["maintenance_log"] = get_object_or_404(MaintenanceLog, pk=log_id)
+    return render(request, "major_equipment/maintenance/forms/quote_form.html", data)
+
+@login_required # Listado de mantenciones.
 def view_unit_maintenance(request, unit_id):
     data = {}
     unit = get_object_or_404(Unit, pk=unit_id)
     data["unit"] = unit
+    data["maintenance_logs"] = MaintenanceLog.objects.filter(unit=unit).order_by("-creation_date")
+    return render(request, "major_equipment/maintenance/unit_maintenance.html", data)
 
-    MESES_ES = {
-        1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril",
-        5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto",
-        9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
-    }
+@login_required # Detalle de mantención
+def view_get_maintenance_log(request, unit_id, maintenance_log_id):
+    data = {}
+    data["unit"] = get_object_or_404(Unit, pk=unit_id)
+    data["maintenance_log"] = get_object_or_404(MaintenanceLog, pk=maintenance_log_id)
+    return render(request, "major_equipment/maintenance/maintenance_log.html", data)
 
-    fecha_actual = timezone.now()
-
-    data["month_year"] = f"{MESES_ES[fecha_actual.month]} {fecha_actual.year}"
-
-    return render(request, "major_equipment/unit_maintenance.html", data)

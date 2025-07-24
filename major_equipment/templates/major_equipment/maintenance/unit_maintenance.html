@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'major_equipment/css/unit_maintenance.css' %}">
+<link rel="stylesheet" href="{% static 'major_equipment/css/maintenance/unit_maintenance.css' %}">
 {% endblock %}
 
 {% block navbar %}
@@ -42,16 +42,28 @@
                 </div>
             </form>
         </div>
-        <div class="table-responsive">
-            <table class="table table-custom">
-                <thead>
-                    <tr>
-                        <td>Fecha</td>
-                        <td>Autor</td>
-                        <td></td>
-                    </tr>
-                </thead>
-            </table>
+        <div class="m-3 d-flex flex-row justify-content-end">
+            <a href="{% url 'major_equipment:create_maintenance_request' unit.id %}" class="btn btn-dark">Nueva solicitud</a>
+        </div>
+        <div>
+            {% for log in maintenance_logs %}
+            <div>
+                <div class="bg-light p-2 d-flex flex-row justify-content-between align-items-center">
+                    <h5>Solicitud #{{log.id}}</h5>
+                    <p>{{log.creation_date|date:"d/m/Y"}}</p>
+                </div>
+                <div class="p-1 px-2">
+                    <div class="d-flex flex-row align-items-center px-1 justify-content-between">
+                        <p class="fs-5 text-white">{{log.state}}</p>
+                        <a href="{% url 'major_equipment:get_maintenance_log' unit.id log.id %}" class="btn btn-outline-light"><i class="bi bi-eye-fill"></i></a>
+                    </div>
+
+                </div>
+                
+                
+                
+            </div>
+            {% endfor %}
         </div>
         
     </div>

@@ -6,12 +6,27 @@
 {% endblock %}
 
 {% block navbar %}
-  {% include 'utils/navbar.html' %}
-  <section class="header-container">
-    <a href="{% url 'major_equipment:unit_list' %}">
-      <h2>Material Mayor</h2>
+{% include 'utils/navbar.html' %}
+<section class="header-container">
+  <a href="{% url 'major_equipment:unit_list' %}">
+    <h2>Material Mayor</h2>
+  </a>
+
+  <div class="buttons-container">
+    <a href="{% url 'major_equipment:unit_detail' unit.id %}">
+      <i class="bi bi-truck-front"></i>
     </a>
-  </section>
+    <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
+      <i class="bi bi-journal"></i>
+    </a>
+    <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
+      <i class="bi bi-fuel-pump-fill"></i>
+    </a>
+    <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
+      <i class="bi bi-wrench-adjustable-circle-fill"></i>
+    </a>
+  </div>
+</section>
 {% endblock %}
 
 {% block content %}

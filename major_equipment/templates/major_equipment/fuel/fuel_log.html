@@ -1,0 +1,87 @@
+{% extends "utils/base.html" %}
+{% load humanize %}
+{% load static %}
+ 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'major_equipment/css/fuel/fuel_log.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'utils/navbar.html' %}
+<section class="header-container">
+    <a href="{% url 'major_equipment:unit_list' %}">
+        <h2>Material Mayor</h2>
+    </a>
+    
+    <div class="buttons-container">
+        <a href="{% url 'major_equipment:unit_detail' unit.id %}">
+            <i class="bi bi-truck-front"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
+            <i class="bi bi-journal"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
+            <i class="bi bi-fuel-pump-fill"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
+            <i class="bi bi-wrench-adjustable-circle-fill"></i>
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="mx-3 mt-2">
+    <div class="d-flex flex-row justify-content-between">   
+        <h1>GUÍA #{{ fuel_log.guide_number }}</h1>
+        <p>{{ fuel_log.date|date:"d/m/Y H:m" }}</p>
+    </div>
+    <p><strong>Estación:</strong> {{ fuel_log.station }}</p>
+    <p class="fs-2"><strong>Unidad: {{unit}}</strong></p>
+    <p><strong>Autor:</strong> {{ fuel_log.author.get_full_name }}</p>
+    <p><strong>Kilometraje de carga: </strong>{{fuel_log.cargo_mileage}}</p>
+    <p><strong>Cantidad: </strong>{{fuel_log.quantity}}L</p>
+    <p class="text-end"><strong>Costo: </strong><span class="fs-1">${{fuel_log.cost}}</span></p>
+</section>
+{% if fuel_log.ticket %}
+<section class="mx-3 mt-2">
+    {% with url=fuel_log.ticket.url %}
+        {% if ".pdf" in url|lower %}
+            {# Es PDF: mostramos botón de descarga #}
+            <div class="w-100 d-flex flex-row justify-content-end align-items-center">
+                <a href="{{ url }}" target="_blank" class="btn btn-outline-dark">
+                    Ver Boleta
+                </a>
+            </div>
+            
+        {% else %}
+            {# Suponemos que es imagen: la mostramos #}
+            <img
+                src="{{ url }}"
+                alt="Boleta #{{ fuel_log.guide_number }}"
+                class="img-fluid mb-3"
+                style="max-width: 100%; height: auto;"
+            />
+        {% endif %}
+    {% endwith %}
+</section>
+  
+{% else %}
+<section class="mx-3 mt-2">   
+    <p class="text-muted text-center">No hay boleta adjunta.</p>
+</section>
+  
+{% endif %}
+{% include 'utils/modal.html' %}
+{% include 'utils/toast-container.html'%}
+{% endblock %}
+
+{% block footer %}
+<footer>
+
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'major_equipment/js/unit.js' %}"></script>
+{% endblock %}

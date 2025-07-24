@@ -8,8 +8,6 @@ urlpatterns = [
     # Retornan Template
     path("", view_get_units, name="unit_list"),
     path("<int:unit_id>/", view_get_unit, name="unit_detail"),
-    path("<int:unit_id>/fuel/", view_unit_fuel, name="unit_fuel"),
-    path("<int:unit_id>/maintenance/", view_unit_maintenance, name="unit_maintenance"),
 
     # REPORTES
     path("<int:unit_id>/reports/create/", view_create_report, name="create_report"),
@@ -20,6 +18,14 @@ urlpatterns = [
 
     # COMBUSTIBLE
     path("<int:unit_id>/fuel/create/", view_create_fuel, name="create_fuel"),
+    path("<int:unit_id>/fuel/", view_unit_fuel, name="unit_fuel"),
+    path("<int:unit_id>/fuel/<int:fuel_log_id>/", view_get_fuel_log, name="get_fuel_log"),
+
+    # Mantenciones
+    path("<int:unit_id>/maintenance/create/", view_create_maintenance_request, name="create_maintenance_request"),
+    path("<int:unit_id>/maintenance/<int:log_id>/quote/create/", view_add_quotation, name="add_quotation"),
+    path("<int:unit_id>/maintenance/", view_unit_maintenance, name="unit_maintenance"),
+    path("<int:unit_id>/maintenance/<int:maintenance_log_id>/", view_get_maintenance_log, name="get_maintenance_log")
 ]
     
 #     # Reportes de mantención

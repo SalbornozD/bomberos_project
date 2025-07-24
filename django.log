@@ -167,3 +167,591 @@ DETAIL:  Ya existe la llave (station_id, guide_number)=(1, 10).
 
 2025-07-23 11:05:14,321 [WARNING] django.request - Not Found: /favicon.ico
 2025-07-23 11:05:14,322 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-23 13:36:15,922 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-23 13:36:15,963 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3723
+2025-07-24 02:07:38,431 [ERROR] django.request - Internal Server Error: /major-equipment/1/fuel/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 435, in view_unit_fuel
+    if month not in MESES_ES.keys():
+UnboundLocalError: local variable 'MESES_ES' referenced before assignment
+2025-07-24 02:07:38,477 [ERROR] django.server - "GET /major-equipment/1/fuel/ HTTP/1.1" 500 75485
+2025-07-24 02:07:38,547 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 02:07:38,548 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 02:07:40,068 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 02:07:40,068 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:00:47,371 [ERROR] django.request - Internal Server Error: /major-equipment/1/fuel/12/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 464, in view_get_fuel_log
+    return render(request, "major_equipment/fuel/fuel_log.html", data)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_report_pdf' with arguments '(1, '')' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/reports/(?P<report_id>[0-9]+)/PDF/\\Z']
+2025-07-24 03:00:47,407 [ERROR] django.server - "GET /major-equipment/1/fuel/12/ HTTP/1.1" 500 184125
+2025-07-24 03:00:47,463 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:00:47,464 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:09:35,436 [ERROR] django.request - Internal Server Error: /major-equipment/1/fuel/12/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 464, in view_get_fuel_log
+    return render(request, "major_equipment/fuel/fuel_log.html", data)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '()' from 'fuel_log.author.full_name()'
+2025-07-24 03:09:35,439 [ERROR] django.server - "GET /major-equipment/1/fuel/12/ HTTP/1.1" 500 202977
+2025-07-24 03:09:35,504 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:09:35,505 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:20:12,863 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:20:12,864 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:20:16,583 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:20:16,585 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:20:19,691 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:20:19,692 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:20:23,840 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:20:23,840 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:22:54,349 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:22:54,351 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:24:40,566 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:24:40,566 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:26:47,350 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:26:47,351 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:29:31,930 [ERROR] django.request - Internal Server Error: /major-equipment/1/fuel/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 890, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 456, in view_unit_fuel
+    return render(request, "major_equipment/fuel/unit_fuel.html", data)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1075, in render
+    output = self.filter_expression.resolve(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 722, in resolve
+    obj = self.var.resolve(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 854, in resolve
+    value = self._resolve_lookup(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 901, in _resolve_lookup
+    current = getattr(current, bit)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\fields\files.py", line 69, in url
+    self._require_file()
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\fields\files.py", line 44, in _require_file
+    raise ValueError(
+ValueError: The 'ticket' attribute has no file associated with it.
+2025-07-24 03:29:31,936 [ERROR] django.server - "GET /major-equipment/1/fuel/ HTTP/1.1" 500 219654
+2025-07-24 03:29:32,020 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:29:32,021 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:03,863 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:03,864 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:06,775 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:06,776 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:08,135 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:08,136 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:09,814 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:09,815 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:10,639 [WARNING] django.request - Not Found: /major-equipment/1/fuel/None
+2025-07-24 03:30:10,641 [WARNING] django.server - "GET /major-equipment/1/fuel/None HTTP/1.1" 404 6630
+2025-07-24 03:30:10,693 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:10,693 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:11,934 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:11,935 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:13,312 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:13,313 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:15,036 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:15,037 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:57,249 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:57,250 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:58,544 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:58,545 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:30:59,683 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:30:59,683 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:31:15,493 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:31:15,494 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:39:47,694 [WARNING] django.server - "GET /static/major_equipment/css/unit.css HTTP/1.1" 404 1898
+2025-07-24 03:39:48,935 [WARNING] django.server - "GET /static/major_equipment/css/units.css HTTP/1.1" 404 1901
+2025-07-24 03:40:29,673 [WARNING] django.server - "GET /static/major_equipment/css/unit.css HTTP/1.1" 404 1898
+2025-07-24 03:40:47,038 [WARNING] django.server - "GET /static/major_equipment/css/unit_reports.css HTTP/1.1" 404 1922
+2025-07-24 03:41:24,775 [ERROR] django.request - Internal Server Error: /major-equipment/1/maintenance/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 484, in view_unit_maintenance
+    return render(request, "major_equipment/unit_maintenance.html", data)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: major_equipment/unit_maintenance.html
+2025-07-24 03:41:24,776 [ERROR] django.server - "GET /major-equipment/1/maintenance/ HTTP/1.1" 500 91504
+2025-07-24 03:41:24,853 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 03:41:24,854 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 03:41:49,955 [WARNING] django.server - "GET /static/major_equipment/css/unit_maintenance.css HTTP/1.1" 404 1934
+2025-07-24 04:02:18,183 [ERROR] django.request - Internal Server Error: /major-equipment/1/maintenance/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 483, in view_unit_maintenance
+    return render(request, "major_equipment/maintenance/unit_maintenance.html", data)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'create_maintenance' not found. 'create_maintenance' is not a valid view function or pattern name.
+2025-07-24 04:02:18,189 [ERROR] django.server - "GET /major-equipment/1/maintenance/ HTTP/1.1" 500 177494
+2025-07-24 04:02:18,262 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 04:02:18,263 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 04:03:47,491 [ERROR] django.request - Internal Server Error: /major-equipment/1/maintenance/create/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 472, in view_create_maintenance_request
+    return render(request, "major_equipment/maintenance/form/maintenance_form.html", data)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: major_equipment/maintenance/form/maintenance_form.html
+2025-07-24 04:03:47,493 [ERROR] django.server - "GET /major-equipment/1/maintenance/create/ HTTP/1.1" 500 91634
+2025-07-24 04:03:47,569 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 04:03:47,570 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3719
+2025-07-24 04:04:38,814 [WARNING] django.server - "GET /static/major_equipment/css/maintenance/form/maintence_form.css HTTP/1.1" 404 1979
+2025-07-24 04:04:52,118 [WARNING] django.server - "GET /static/major_equipment/css/maintenance/forms/maintence_form.css HTTP/1.1" 404 1982
+2025-07-24 11:33:47,909 [ERROR] django.request - Internal Server Error: /major-equipment/1/maintenance/create/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 499, in view_create_maintenance_request
+    bomberos_entity = Entity.objects.get(name__icontains="Bomberos")
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\query.py", line 636, in get
+    raise self.model.MultipleObjectsReturned(
+firebrigade.models.Entity.MultipleObjectsReturned: get() returned more than one Entity -- it returned 4!
+2025-07-24 11:33:47,945 [ERROR] django.server - "POST /major-equipment/1/maintenance/create/ HTTP/1.1" 500 86442
+2025-07-24 11:33:48,037 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:33:48,037 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 11:37:11,440 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:37:35,421 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:39:59,282 [ERROR] django.request - Internal Server Error: /major-equipment/1/maintenance/create/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 514, in view_create_maintenance_request
+    return redirect(reverse('major_equipment:maintenance_detail', args=[log.id]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'maintenance_detail' not found. 'maintenance_detail' is not a valid view function or pattern name.
+2025-07-24 11:39:59,285 [ERROR] django.server - "POST /major-equipment/1/maintenance/create/ HTTP/1.1" 500 89535
+2025-07-24 11:39:59,350 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:39:59,351 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 11:40:06,442 [ERROR] django.request - Internal Server Error: /major-equipment/1/maintenance/create/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 514, in view_create_maintenance_request
+    return redirect(reverse('major_equipment:maintenance_detail', args=[log.id]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'maintenance_detail' not found. 'maintenance_detail' is not a valid view function or pattern name.
+2025-07-24 11:40:06,445 [ERROR] django.server - "POST /major-equipment/1/maintenance/create/ HTTP/1.1" 500 89535
+2025-07-24 11:40:06,507 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:40:06,508 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 11:41:35,022 [WARNING] django.request - Not Found: /major-equipment/3/maintenance/
+2025-07-24 11:41:35,023 [WARNING] django.server - "GET /major-equipment/3/maintenance/ HTTP/1.1" 404 6501
+2025-07-24 11:41:35,099 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:41:35,100 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 11:42:27,385 [WARNING] django.request - Not Found: /major-equipment/3/maintenance/
+2025-07-24 11:42:27,386 [WARNING] django.server - "GET /major-equipment/3/maintenance/ HTTP/1.1" 404 6501
+2025-07-24 11:42:27,452 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:42:27,453 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 11:42:29,384 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:42:29,385 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 11:42:46,807 [ERROR] django.request - Internal Server Error: /major-equipment/1/maintenance/create/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.NotNullViolation: el valor nulo en la columna «responsible_for_payment_id» de la relación «major_equipment_maintenancelog» viola la restricción de no nulo
+DETAIL:  La fila que falla contiene (5, Hello world, 2025-07-24 15:42:46.68432+00, f, null, null, f, null, null, t, f, 1, null, null, null, 1).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 507, in view_create_maintenance_request
+    log = MaintenanceLog.objects.create(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: el valor nulo en la columna «responsible_for_payment_id» de la relación «major_equipment_maintenancelog» viola la restricción de no nulo
+DETAIL:  La fila que falla contiene (5, Hello world, 2025-07-24 15:42:46.68432+00, f, null, null, f, null, null, t, f, 1, null, null, null, 1).
+
+2025-07-24 11:42:46,812 [ERROR] django.server - "POST /major-equipment/1/maintenance/create/ HTTP/1.1" 500 168059
+2025-07-24 11:42:46,883 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:42:46,885 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 11:43:13,253 [ERROR] django.request - Internal Server Error: /major-equipment/1/maintenance/create/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.NotNullViolation: el valor nulo en la columna «responsible_for_payment_id» de la relación «major_equipment_maintenancelog» viola la restricción de no nulo
+DETAIL:  La fila que falla contiene (6, Hello world, 2025-07-24 15:43:13.196343+00, f, null, null, f, null, null, t, f, 1, null, null, null, 1).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 508, in view_create_maintenance_request
+    log = MaintenanceLog.objects.create(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: el valor nulo en la columna «responsible_for_payment_id» de la relación «major_equipment_maintenancelog» viola la restricción de no nulo
+DETAIL:  La fila que falla contiene (6, Hello world, 2025-07-24 15:43:13.196343+00, f, null, null, f, null, null, t, f, 1, null, null, null, 1).
+
+2025-07-24 11:43:13,256 [ERROR] django.server - "POST /major-equipment/1/maintenance/create/ HTTP/1.1" 500 168021
+2025-07-24 11:43:13,312 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 11:43:13,313 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 12:23:51,551 [ERROR] django.server - You're accessing the development server over HTTPS, but it only supports HTTP.
+2025-07-24 12:23:51,587 [ERROR] django.server - You're accessing the development server over HTTPS, but it only supports HTTP.
+2025-07-24 12:23:51,589 [ERROR] django.server - You're accessing the development server over HTTPS, but it only supports HTTP.
+2025-07-24 12:26:24,270 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 12:26:24,271 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 12:26:30,416 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 12:26:30,417 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 12:26:32,793 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 12:26:32,793 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 12:28:15,516 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 12:28:15,517 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 12:28:21,788 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 12:28:21,789 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 12:28:25,665 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 12:28:25,665 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 12:28:27,465 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 12:28:27,465 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 15:24:17,181 [ERROR] django.request - Internal Server Error: /major-equipment/1/maintenance/8/
+Traceback (most recent call last):
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\bomberos_project\major_equipment\views.py", line 539, in view_get_maintenance_log
+    return render(request, "major_equipment/maintenance/maintenance_log.html", data)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Sebastian\.conda\envs\bomberos\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'get_report_pdf' with arguments '(1, '')' not found. 1 pattern(s) tried: ['major\\-equipment/(?P<unit_id>[0-9]+)/reports/(?P<report_id>[0-9]+)/PDF/\\Z']
+2025-07-24 15:24:17,185 [ERROR] django.server - "GET /major-equipment/1/maintenance/8/ HTTP/1.1" 500 183550
+2025-07-24 15:24:17,246 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 15:24:17,248 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-07-24 16:54:31,946 [ERROR] myapp - TEC - Tecnica • 24/07/2025
+2025-07-24 16:55:35,764 [WARNING] django.request - Not Found: /favicon.ico
+2025-07-24 16:55:35,764 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714

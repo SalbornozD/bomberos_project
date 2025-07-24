@@ -30,22 +30,11 @@
   font-size: x-large;
 }
 
+
 section.title{
     margin: 10px 10px 5px;
 }
 
 section.body{
-    margin: 0 10px 5px;
-}
-
-.item-container{
-    margin: 10px 0 20px;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: start;
-    gap: 10px;
-}
-
-.item-container .btn-group{
-    align-self: stretch;
+    margin: 0 10px 5px
 }

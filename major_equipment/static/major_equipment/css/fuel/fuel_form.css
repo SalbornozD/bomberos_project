@@ -7,12 +7,29 @@
     background-color: #BB2633;
     color: white;
     padding: 10px 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.header-container a{
+.header-container a {
     color: white;
     text-decoration: none;
 }
+
+.header-container .buttons-container {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 10px;
+}
+
+.header-container .buttons-container a{
+  color: white;
+  text-decoration: none;
+  font-size: x-large;
+}
+
 
 section.title{
     margin: 10px 10px 5px;

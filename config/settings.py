@@ -1,19 +1,26 @@
 from pathlib import Path
 from decouple import config, Csv
 
+# Rutas base
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ========================
-# Seguridad
+# Formatos locales
+# ========================
+FORMAT_MODULE_PATH = ['config.formats']
+
+# ========================
+# Seguridad básica
 # ========================
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*', cast=Csv())
 
 # ========================
 # Aplicaciones instaladas
 # ========================
 INSTALLED_APPS = [
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -22,8 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    # Apps del proyecto
-    'docs', # Archivos.
+    # Tus apps
+    'docs',
     'main',
     'major_equipment',
     'firebrigade',
@@ -35,6 +42,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -44,6 +52,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+# ========================
+# Templates
+# ========================
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -53,8 +64,10 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.site_info',
             ],
         },
     },
@@ -63,11 +76,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # ========================
-# Base de Datos
+# Base de datos
 # ========================
-
 USE_SQLITE = config('USE_SQLITE', default=True, cast=bool)
-
 if USE_SQLITE:
     DATABASES = {
         'default': {
@@ -79,18 +90,17 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DB_NAME'),
-            'USER': config('DB_USER'),
+            'NAME':     config('DB_NAME'),
+            'USER':     config('DB_USER'),
             'PASSWORD': config('DB_PASSWORD'),
-            'HOST': config('DB_HOST'),
-            'PORT': config('DB_PORT', cast=int),
+            'HOST':     config('DB_HOST'),
+            'PORT':     config('DB_PORT', cast=int),
         }
     }
 
 # ========================
-# Archivos Estáticos y Media
+# Archivos estáticos y media
 # ========================
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -99,37 +109,43 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # ========================
-# Email
+# Correo
 # ========================
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'cbq.informatica@gmail.com'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='cbq.informatica@gmail.com')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = 'cbq.informatica@gmail.com'
-
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # ========================
-# Seguridad en Producción
+# Seguridad en producción
 # ========================
-
 if not DEBUG:
-    SECURE_HSTS_SECONDS = 31536000
+    # HSTS (1 año)
+    SECURE_HSTS_SECONDS = 31_536_000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+
+    # HTTPS forzado
     SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    # Cookies seguras
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+
+    # Mitigaciones XSS / sniffing
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    # Clickjacking
     X_FRAME_OPTIONS = 'DENY'
 
 # ========================
-# Logs
+# Logging
 # ========================
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -158,7 +174,7 @@ LOGGING = {
             'level': 'WARNING',
             'propagate': True,
         },
-        'myapp': {
+        'major_equipment': {
             'handlers': ['file', 'console'],
             'level': 'DEBUG',
             'propagate': False,
@@ -167,19 +183,23 @@ LOGGING = {
 }
 
 # ========================
-# Otros
+# Internacionalización y formatos
 # ========================
-
+USE_I18N = True
+# Django 4+ ignora USE_L10N; los formatos los controla FORMAT_MODULE_PATH y los separadores:
+USE_THOUSAND_SEPARATOR = True
+THOUSAND_SEPARATOR = '.'
+DECIMAL_SEPARATOR = ','
 LANGUAGE_CODE = 'es'
 TIME_ZONE = 'America/Santiago'
-USE_I18N = True
-USE_L10N = True
 USE_TZ = True
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+# ========================
+# Autenticación
+# ========================
 AUTHENTICATION_BACKENDS = [
     'firebrigade.backends.RolePermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
