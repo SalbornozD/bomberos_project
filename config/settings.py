@@ -143,6 +143,14 @@ if not DEBUG:
     # Clickjacking
     X_FRAME_OPTIONS = 'DENY'
 
+    CSRF_TRUSTED_ORIGINS = [
+    "https://bomberosquintero.cl",
+    "https://www.bomberosquintero.cl",
+    ]
+
+    FILE_UPLOAD_PERMISSIONS = 0o664
+    FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o775
+
 # ========================
 # Logging
 # ========================
