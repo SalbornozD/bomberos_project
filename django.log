@@ -2928,3 +2928,9 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'unit_detail' not found. 'uni
 2025-08-01 12:41:17,085 [ERROR] django.server - "GET /major-equipment/3/maintenance/ HTTP/1.1" 500 177895
 2025-08-01 12:41:17,135 [WARNING] django.request - Not Found: /favicon.ico
 2025-08-01 12:41:17,135 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-08-01 13:06:50,940 [WARNING] django.request - Not Found: /favicon.ico
+2025-08-01 13:06:50,941 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3714
+2025-08-01 17:02:46,416 [WARNING] django.request - Not Found: /accounts/login/
+2025-08-01 17:02:46,514 [WARNING] django.server - "GET /accounts/login/?next=/docs/archivo/4/ HTTP/1.1" 404 3282
+2025-08-01 17:02:46,558 [WARNING] django.request - Not Found: /favicon.ico
+2025-08-01 17:02:46,559 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 3248

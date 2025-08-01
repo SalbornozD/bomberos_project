@@ -78,7 +78,8 @@
             </div>
         </div>
 
-        <div class="d-flex flex-column gap-3 w-md-40 p-md-3 justify-content-md-between justify-content-lg-evenly border border-light">
+        <div
+            class="d-flex flex-column gap-3 w-md-40 p-md-3 justify-content-md-between justify-content-lg-evenly border border-light">
             <div class="w-90 mx-auto rounded bg-tertiary d-flex flex-row p-2 gap-2 w-sm-50 w-md-100">
                 <div><i class="bi bi-truck-front fs-1"></i></div>
                 <div>
@@ -211,87 +212,110 @@
             <h5 class="fs-2 text-light">Documentos</h5>
         </div>
         <div class="row">
+
+            {# PADRÓN #}
             <div class="d-flex flex-row align-items-center p-2 my-2 gap-3 col-12 col-sm-6">
-                <div class="d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px; background-color: black;">
+                <div class="d-flex align-items-center justify-content-center rounded"
+                    style="width: 60px; height: 60px; background-color: black;">
                     <i class="bi bi-filetype-pdf text-light fs-1"></i>
                 </div>
                 <div class="flex-fill d-flex flex-column">
                     <h6 class="m-0 fs-4 text-light">Padrón</h6>
                     {% if unit.padron %}
-                        <a href="{{unit.padron.file.url}}" target="_blank"
-                            class="text-light text-decoration-none m-0">Descargar</a>
-                    {% else %}
-                        <p class="text-light">No disponible</p>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="d-flex flex-row align-items-center p-2 my-2 gap-3 col-12 col-sm-6">
-                <div class="d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px; background-color: black;">
-                    <i class="bi bi-filetype-pdf text-light fs-1"></i>
-                </div>
-                <div class="flex-fill d-flex flex-column">
-                    <h6 class="m-0 fs-4 text-light">Permiso Circulación</h6>
-                    {% if unit.vehicle_permit %}
-                        <a href="{{unit.vehicle_permit.file.url}}" target="_blank"
-                            class="text-light text-decoration-none m-0">Descargar</a>
-                        {% if unit.vehicle_permit.is_expired %}
-                            <p class="text-light"><span class="badge bg-danger">Vencido</span>en
-                                {{unit.vehicle_permit.expiration_date|date:"d/m/Y"}}</p>
-                        {% else %}
-                            <p class="text-light"><span class="badge bg-success">Vigente</span> hasta
-                                {{unit.vehicle_permit.expiration_date|date:"d/m/Y"}}</p>
-                        {% endif %}
-                    {% else %}
-                        <p class="text-light">No disponible</p>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="d-flex flex-row align-items-center p-2 my-2 gap-3 col-12 col-sm-6">
-                <div class="d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px; background-color: black;">
-                    <i class="bi bi-filetype-pdf text-light fs-1"></i>
-                </div>
-                <div class="flex-fill d-flex flex-column">
-                    <h6 class="m-0 fs-4 text-light">Revisión técnica</h6>
-                    {% if unit.technical_inspection %}
-                    <a href="{{unit.technical_inspection.file.url}}" target="_blank"
+                    <a href="{% url 'docs:protected_file' unit.padron.id %}" target="_blank"
                         class="text-light text-decoration-none m-0">Descargar</a>
-                    {% if unit.technical_inspection.is_expired %}
-                    <p class="text-light"><span class="badge bg-danger">Vencido</span> en
-                        {{unit.technical_inspection.expiration_date|date:"d/m/Y"}}</p>
-                    {% else %}
-                    <p class="text-light"><span class="badge bg-success">Vigente</span> hasta
-                        {{unit.technical_inspection.expiration_date|date:"d/m/Y"}}</p>
-                    {% endif %}
                     {% else %}
                     <p class="text-light">No disponible</p>
                     {% endif %}
                 </div>
             </div>
+
+            {# PERMISO DE CIRCULACIÓN #}
             <div class="d-flex flex-row align-items-center p-2 my-2 gap-3 col-12 col-sm-6">
-                <div class="d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px; background-color: black;">
+                <div class="d-flex align-items-center justify-content-center rounded"
+                    style="width: 60px; height: 60px; background-color: black;">
+                    <i class="bi bi-filetype-pdf text-light fs-1"></i>
+                </div>
+                <div class="flex-fill d-flex flex-column">
+                    <h6 class="m-0 fs-4 text-light">Permiso Circulación</h6>
+                    {% if unit.vehicle_permit %}
+                    <a href="{% url 'docs:protected_file' unit.vehicle_permit.id %}" target="_blank"
+                        class="text-light text-decoration-none m-0">Descargar</a>
+                    {% if unit.vehicle_permit.is_expired %}
+                    <p class="text-light"><span class="badge bg-danger">Vencido</span> en
+                        {{unit.vehicle_permit.expiration_date|date:"d/m/Y"}}</p>
+                    {% elif unit.vehicle_permit.days_until_expiration <= 30 %} <p class="text-light"><span
+                            class="badge bg-warning text-dark">Por vencer!</span>
+                        Vence {{unit.vehicle_permit.expiration_date|date:"d/m/Y"}}
+                        ({{unit.vehicle_permit.days_until_expiration}} días)</p>
+                        {% else %}
+                        <p class="text-light"><span class="badge bg-success">Vigente</span> hasta
+                            {{unit.vehicle_permit.expiration_date|date:"d/m/Y"}}</p>
+                        {% endif %}
+                        {% else %}
+                        <p class="text-light">No disponible</p>
+                        {% endif %}
+                </div>
+            </div>
+
+            {# REVISION TECNICA #}
+            <div class="d-flex flex-row align-items-center p-2 my-2 gap-3 col-12 col-sm-6">
+                <div class="d-flex align-items-center justify-content-center rounded"
+                    style="width: 60px; height: 60px; background-color: black;">
+                    <i class="bi bi-filetype-pdf text-light fs-1"></i>
+                </div>
+                <div class="flex-fill d-flex flex-column">
+                    <h6 class="m-0 fs-4 text-light">Revisión técnica</h6>
+                    {% if unit.technical_inspection %}
+                    <a href="{% url 'docs:protected_file' unit.technical_inspection.id %}" target="_blank"
+                        class="text-light text-decoration-none m-0">Descargar</a>
+                    {% if unit.technical_inspection.is_expired %}
+                    <p class="text-light"><span class="badge bg-danger">Vencido</span> en
+                        {{unit.technical_inspection.expiration_date|date:"d/m/Y"}}</p>
+                    {% elif unit.technical_inspection.days_until_expiration <= 30 %} <p class="text-light"><span
+                            class="badge bg-warning text-dark">Por vencer!</span>
+                        Vence {{unit.technical_inspection.expiration_date|date:"d/m/Y"}}
+                        ({{unit.technical_inspection.days_until_expiration}} días)</p>
+                        {% else %}
+                        <p class="text-light"><span class="badge bg-success">Vigente</span> hasta
+                            {{unit.technical_inspection.expiration_date|date:"d/m/Y"}}</p>
+                        {% endif %}
+                        {% else %}
+                        <p class="text-light">No disponible</p>
+                        {% endif %}
+                </div>
+            </div>
+
+            {# SOAP #}
+            <div class="d-flex flex-row align-items-center p-2 my-2 gap-3 col-12 col-sm-6">
+                <div class="d-flex align-items-center justify-content-center rounded"
+                    style="width: 60px; height: 60px; background-color: black;">
                     <i class="bi bi-filetype-pdf text-light fs-1"></i>
                 </div>
                 <div class="flex-fill d-flex flex-column">
                     <h6 class="m-0 fs-4 text-light">SOAP</h6>
                     {% if unit.soap %}
-                        <a href="{{unit.soap.file.url}}" target="_blank"
+                    <a href="{% url 'docs:protected_file' unit.soap.id %}" target="_blank"
                         class="text-light text-decoration-none m-0">Descargar</a>
-                        {% if unit.soap.is_expired %}
-                            <p class="text-light">
-                                <span class="badge bg-danger">Vencido</span> en {{unit.soap.expiration_date|date:"d/m/Y"}}
-                            </p>
+                    {% if unit.soap.is_expired %}
+                    <p class="text-light"><span class="badge bg-danger">Vencido</span> en
+                        {{unit.soap.expiration_date|date:"d/m/Y"}}</p>
+                    {% elif unit.soap.days_until_expiration <= 30 %} <p class="text-light"><span
+                            class="badge bg-warning text-dark">Por vencer!</span>
+                        Vence {{unit.soap.expiration_date|date:"d/m/Y"}} ({{unit.soap.days_until_expiration}} días )
+                        </p>
                         {% else %}
-                            <p class="text-light">
-                                <span class="badge bg-success">Vigente</span> hasta {{unit.soap.expiration_date|date:"d/m/Y"}}
-                            </p>
+                        <p class="text-light"><span class="badge bg-success">Vigente</span> hasta
+                            {{unit.soap.expiration_date|date:"d/m/Y"}}</p>
                         {% endif %}
-                    {% else %}
+                        {% else %}
                         <p class="text-light">No disponible</p>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 {% endblock %}
 
