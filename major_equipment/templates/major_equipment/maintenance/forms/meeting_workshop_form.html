@@ -1,0 +1,99 @@
+{% extends "utils/base.html" %}
+{% load static permissions humanize %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'major_equipment/css/maintenance/form/meeting_workshop_form.css' %}">
+{% endblock %}
+
+{% block navbar %}
+  {% include 'utils/navbar.html' %}
+  <section class="header-container">
+    <a href="{% url 'major_equipment:units' %}">
+      <h2>Material Mayor</h2>
+    </a>
+    <div class="buttons-container">
+      <a href="{% url 'major_equipment:unit' unit.id %}">
+        <i class="bi bi-truck-front"></i>
+      </a>
+      <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
+        <i class="bi bi-journal"></i>
+      </a>
+      <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
+        <i class="bi bi-fuel-pump-fill"></i>
+      </a>
+      <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
+        <i class="bi bi-wrench-adjustable-circle-fill"></i>
+      </a>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+  <section class="title mb-3">
+  <h1>Agregar cita con taller #{{ maintenance_log.id }}</h1>
+  <p>Unidad {{ unit.unit_number }} | {{ unit.entity }}</p>
+</section>
+
+<section class="body">
+  <form method="post" enctype="multipart/form-data" novalidate class="p-3 bg-white">
+    {% csrf_token %}
+    <!-- Fecha de despacho -->
+    <div class="mb-3">
+      <label for="dispatch_date" class="form-label"><strong>Fecha de despacho</strong></label>
+      <input
+        type="date"
+        id="dispatch_date"
+        name="dispatch_date"
+        class="form-control {% if errors.dispatch_date %}is-invalid{% endif %}"
+        value="{{ form_data.dispatch_date|default:'' }}"
+        required>
+      {% if errors.dispatch_date %}
+        <div class="invalid-feedback d-block">{{ errors.dispatch_date }}</div>
+      {% endif %}
+    </div>
+
+    <!-- Fecha estimada de retorno -->
+    <div class="mb-3">
+      <label for="estimated_return_date" class="form-label"><strong>Fecha estimada de retorno</strong></label>
+      <input
+        type="date"
+        id="estimated_return_date"
+        name="estimated_return_date"
+        class="form-control {% if errors.estimated_return_date %}is-invalid{% endif %}"
+        value="{{ form_data.estimated_return_date|default:'' }}"
+        required>
+      {% if errors.estimated_return_date %}
+        <div class="invalid-feedback d-block">{{ errors.estimated_return_date }}</div>
+      {% endif %}
+    </div>
+
+    <!-- Comentarios -->
+    <div class="mb-3">
+      <label for="comments" class="form-label"><strong>Comentarios (opcional)</strong></label>
+      <textarea
+        id="comments"
+        name="comments"
+        class="form-control {% if errors.comments %}is-invalid{% endif %}"
+        rows="3">{{ form_data.comments }}</textarea>
+      {% if errors.comments %}
+        <div class="invalid-feedback d-block">{{ errors.comments }}</div>
+      {% endif %}
+    </div>
+
+    <!-- Botón de envío -->
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-outline-success col-md-4">
+        Enviar
+      </button>
+    </div>
+  </form>
+</section>
+
+{% include 'utils/modal.html' %}
+{% include 'utils/toast-container.html' %}
+
+{% endblock %}
+
+{% block footer %}
+  <footer></footer>
+{% endblock %}

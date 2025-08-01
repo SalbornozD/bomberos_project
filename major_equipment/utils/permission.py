@@ -1,47 +1,28 @@
-from django.contrib.auth.models import User
-from django.db.models import QuerySet
+from major_equipment.models import *
 from firebrigade.models import Entity
-from firebrigade.utils import get_user_entity
-from major_equipment.models import Unit
+from django.contrib.auth.models import User
+from django.db.models.query import QuerySet
+from firebrigade.utils import get_user_entities_with_permission
 
-def get_units(user: User) -> QuerySet[Unit]:
+def get_units_for_user(user: User) -> QuerySet:
     """
-    Devuelve las unidades visibles para el usuario, dependiendo de sus permisos:
-    - superuser o view_majorequipment -> Todas
-    - view_company_majorequipment     -> De su entidad
-    - en otro caso                    -> Ninguna
+    Devuelve las unidades visibles para el usuario:
+    - superuser o 'major_equipment.view_unit' -> todas
+    - permiso 'view_company_majorequipment' en entidad(s) por cargo -> solo esas
+    - en otro caso -> ninguna
     """
-
     units = Unit.objects.all()
     if user.is_superuser or user.has_perm('major_equipment.view_unit'):
         return units
-    
-    if user.has_perm('major_equipment.view_company_majorequipment'):
-        return units.filter(entity=get_user_entity(user))
-    
+    entities = get_user_entities_with_permission(user, 'view_company_majorequipment')
+    if entities.exists():
+        return units.filter(entity__in=entities)
     return Unit.objects.none()
 
-
-def can_view_unit(user: User, unit: Unit) -> bool:
+def user_can_view_unit(user: User, unit: Unit) -> bool:
     """
-    Verifica si el usuario puede ver la unidad. Devolviendo True o False.
+    Devuelve True si el usuario puede ver la unidad.
     """
     if user.is_superuser or user.has_perm('major_equipment.view_unit'):
         return True
-    
-    if user.has_perm('major_equipment.view_company_majorequipment'):
-        return unit.entity == get_user_entity(user)
-    
-    return False
-
-def can_edit_unit(user: User, unit: Unit) -> bool:
-    """
-    Verifica si el usuario puede editar la unidad. Devolviendo True o False.
-    """
-    if user.is_superuser or user.has_perm('major_equipment.change_majorequipment'):
-        return True
-    
-    if user.has_perm('major_equipment.change_company_majorequipment'):
-        return unit.entity == get_user_entity(user)
-    
-    return False
+    return get_user_entities_with_permission(user, 'view_company_majorequipment').filter(pk=unit.entity_id).exists()

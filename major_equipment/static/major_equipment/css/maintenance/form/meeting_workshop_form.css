@@ -1,3 +1,7 @@
+/* =========================
+   Página: Material Mayor
+   ========================= */
+
 /* ----- Encabezado ----- */
 .header-container {
     background-color: #BB2633;
@@ -26,12 +30,11 @@
   font-size: x-large;
 }
 
-.quote{
-    background-color: #BB2633;
-    padding: 10px;
-    border-radius: 10px;
+
+section.title{
+    margin: 10px 10px 5px;
 }
 
-.quote-favorite{
-    border: goldenrod solid 3px;
+section.body{
+    margin: 0 10px 5px
 }

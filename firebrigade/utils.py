@@ -1,61 +1,48 @@
-from firebrigade.models import *
+from firebrigade.models import Membership, Entity, Position
+from django.contrib.auth.models import User
 from django.db.models.query import QuerySet
 
-def get_entities_for_user(user: User) -> QuerySet[Entity]:
+def get_entities_for_user(user: User) -> QuerySet:
     """
     Retorna las entidades a las que el usuario tiene acceso.
-    Si el usuario es superusuario, retorna todas las entidades.
-    Si el usuario tiene el permiso `view_own_entity`, retorna solo la entidad
-    asociada a su Membership.
-    Si no tiene permisos, retorna un QuerySet vacío.
-
-    :param user: instancia de User
-    :return: QuerySet de Entity
+    - Si el usuario es superusuario o tiene permiso global, retorna todas las entidades.
+    - Si el usuario tiene el permiso 'view_own_entity' a través de alguna membresía, retorna solo esas entidades.
+    - Si no tiene permisos, retorna un QuerySet vacío.
     """
     entities = Entity.objects.all()
-    if user.is_superuser or user.has_perm('firebrigade.view_entity'): return entities
-    elif user.has_perm('firebrigade.view_own_entity'): return entities.filter(pk=get_user_entity_id(user))
-    else: return Entity.objects.none()
+    if user.is_superuser or user.has_perm('firebrigade.view_entity'):
+        return entities
 
-def get_user_membership(user):
-    """
-    Retorna el objeto Membership del usuario si existe.
-    Si no tiene, retorna None.
-    """
-    return Membership.objects.filter(user=user).first()
+    # Entidades en las que el usuario tiene el permiso por algún cargo
+    own_entities = get_user_entities_with_permission(user, 'view_own_entity')
+    if own_entities.exists():
+        return own_entities
 
+    return Entity.objects.none()
 
-def get_user_entity(user):
+def get_user_memberships(user: User) -> QuerySet:
     """
-    Retorna la entidad (compañía/comandancia/etc) del usuario.
-    Si no tiene Membership asociado, retorna None.
+    Retorna todas las membresías activas del usuario.
     """
-    membership = get_user_membership(user)
-    return membership.entity if membership else None
+    return Membership.objects.filter(user=user)
 
+def get_user_entities(user: User) -> QuerySet:
+    """
+    Retorna todas las entidades a las que el usuario pertenece por membresía.
+    """
+    return Entity.objects.filter(membership__user=user).distinct()
 
-def get_user_position(user):
+def get_user_positions(user: User) -> QuerySet:
     """
-    Retorna el cargo (Position) del usuario.
-    Si no tiene Membership asociado, retorna None.
+    Retorna todos los cargos que ocupa el usuario en cualquier entidad.
     """
-    membership = get_user_membership(user)
-    return membership.position if membership else None
+    return Position.objects.filter(membership__user=user).distinct()
 
-
-def get_user_entity_id(user):
+def get_user_entities_with_permission(user: User, codename: str) -> QuerySet:
     """
-    Retorna el ID de la entidad del usuario (optimizado para filtros).
-    Si no tiene Membership asociado, retorna None.
+    Devuelve las entidades en las que el usuario tiene, a través de algún cargo, el permiso indicado.
     """
-    membership = get_user_membership(user)
-    return membership.entity_id if membership else None
-
-
-def get_user_position_id(user):
-    """
-    Retorna el ID del cargo del usuario.
-    Si no tiene Membership asociado, retorna None.
-    """
-    membership = get_user_membership(user)
-    return membership.position_id if membership else None
+    return Entity.objects.filter(
+        membership__user=user,
+        membership__position__permissions__codename=codename
+    ).distinct()
