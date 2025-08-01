@@ -34,7 +34,7 @@ class Entity(models.Model):
     """
     name: str = models.CharField(max_length=100, verbose_name='Nombre')
     type: str = models.CharField(max_length=20, choices=EntityType.choices, verbose_name="Tipo de entidad")
-    logo = models.ImageField(upload_to='media/entity_logos/', null=True, blank=True, verbose_name='Logo institucional')
+    logo = models.ImageField(upload_to='entity_logos/', null=True, blank=True, verbose_name='Logo institucional')
 
     class Meta:
         verbose_name = 'Entidad'
