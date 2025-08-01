@@ -26,6 +26,13 @@ class FuelType(models.IntegerChoices):
     DIESEL = 2, "Diésel"
     ELECTRIC = 3, "Eléctrico"
 
+class State(models.IntegerChoices):
+    """
+    ENUM de estados.
+    """
+    IN_OPERATION = 1, "Operativo"
+    IN_MAINTENANCE = 2, "En mantención"
+
 # Clase para representar una unidad de material mayor (vehículo) del Cuerpo de Bomberos e imagenes asociadas.
 
 class Unit(models.Model):
@@ -61,6 +68,7 @@ class Unit(models.Model):
     vehicle_permit = models.ForeignKey(FileVencible, on_delete=models.PROTECT, verbose_name="Permiso de circulación", blank=True, null=True, related_name="unit_vehicle_permit")
 
     # Estado del objeto
+    state = models.IntegerField(choices=State.choices, default=State.IN_OPERATION, verbose_name="Estado")
     editable = models.BooleanField(default=True, verbose_name="Editable")
     deleted = models.BooleanField(default=False, verbose_name="Eliminado")
 
@@ -90,4 +98,3 @@ class UnitImage(models.Model):
 
     def __str__(self):
         return f"Imagen de {self.unit}"
-

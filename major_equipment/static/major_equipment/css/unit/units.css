@@ -14,12 +14,3 @@
     margin: 20px 3vw 0;
 }
 
-/* ----- Contenedor de tarjetas ----- */
-#units-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 2vh 3vw 8vh;
-    justify-content: start;
-    justify-items: center;
-}

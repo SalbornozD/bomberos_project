@@ -1,26 +1,35 @@
 {% load humanize static %}
 
-<div class="unit-card">
-    <div class="unit-card-image">
-        <img src="{{ element.image.image.url }}" alt="Imagen de la unidad {{ element.unit.unit_number }}">
-    </div>
-    <div class="unit-card-body">
-        <div class="unit-card-body-title">
-            <a href="{% url 'major_equipment:unit_detail' element.unit.id %}">
-                <h5>{{element.unit.description}}</h5>
+<div class="unit-card d-flex flex-row rounded shadow-sm">
+    <div class="w-75 h-100 border border-light-subtle d-flex flex-column">
+        <div class="w-100 position-relative" style="height: 75%;">
+            <div class="badges d-flex flex-row gap-1 w-100 justify-content-evenly">
+                <span class="badge {{element.vehicle_permit_class}}">Permiso</span>
+                <span class="badge {{element.soap_class}}">SOAP</span>
+                <span class="badge {{element.technical_inspection_class}}">Revisión</span>
+            </div>
+            <img src="{{ element.image.image.url }}" alt="Imagen de la unidad {{ element.unit.unit_number }}"
+            class="w-100 h-100">
+        </div>
+        <div class="w-100 d-flex flex-column flex-grow-1">
+            <a href="{% url 'major_equipment:unit' element.unit.id %}"
+               class="w-100 h-100 text-light text-decoration-none p-2">
+                <div class="d-flex flex-row justify-content-between align-items-end">
+                    <h6 class="fs-5 mb-0">{{element.unit.description}}</h6>
+                    <p class="mb-0">{{element.unit.get_state_display}}</p>
+                </div>
+                <p class="w-100 text-truncate fs-6">{{element.unit.entity}}</p>
             </a>
-            <p>{{element.unit.entity}}</p>
         </div>
-        <div class="unit-card-body-info">
-            <span class="{{element.vehicle_permit_class}}">Permiso</span>
-            <span class="{{element.soap_class}}">SOAP</span>
-            <span class="badge text-bg-light">Estado</span>
-            <span class="{{element.technical_inspection_class}}">Revisión</span>
-        </div>
-
     </div>
-    <div class="unit-card-btns">
-        <a href="{% url 'major_equipment:create_report' element.unit.id %}"><i class="bi bi-journal"></i></a>
-        <a href="{% url 'major_equipment:create_fuel' element.unit.id %}"><i class="bi bi-fuel-pump-fill"></i></a>
+    <div class="w-25 h-100 d-flex flex-column">
+        <a href="{% url 'major_equipment:create_report' element.unit.id %}"
+           class="w-100 flex-fill d-flex justify-content-center align-items-center border border-light-subtle">
+            <i class="bi bi-journal fs-1 text-light"></i>
+        </a>
+        <a href="{% url 'major_equipment:create_fuel' element.unit.id %}"
+           class="w-100 flex-fill d-flex justify-content-center align-items-center border border-light-subtle">
+            <i class="bi bi-fuel-pump-fill fs-1 text-light"></i>
+        </a>
     </div>
 </div>

@@ -87,7 +87,7 @@ class Membership(models.Model):
         has_permission(codename: str) -> bool: Verifica si el cargo tiene cierto permiso.
         __str__() -> str: Representación legible de la asignación.
     """
-    user: User = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Usuario')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuario')
     entity: Entity = models.ForeignKey(Entity, on_delete=models.CASCADE, verbose_name='Entidad')
     position: Position = models.ForeignKey(Position, on_delete=models.CASCADE, verbose_name='Cargo')
 

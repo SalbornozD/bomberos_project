@@ -1,13 +1,12 @@
 from django.urls import path
 from .views import *
-# from .views_ajax import maintenance_report_JSON, maintenance_request_JSON, maintenance_request_administracion, maintenance_request_comandancia, finish_maintenance_request_JSON
 
 app_name = "major_equipment"
 
 urlpatterns = [
     # Retornan Template
-    path("", view_get_units, name="unit_list"),
-    path("<int:unit_id>/", view_get_unit, name="unit_detail"),
+    path("units/", view_get_units, name="units"),
+    path("units/<int:unit_id>/", view_get_unit, name="unit"),
 
     # REPORTES
     path("<int:unit_id>/reports/create/", view_create_report, name="create_report"),
@@ -24,15 +23,9 @@ urlpatterns = [
     # Mantenciones
     path("<int:unit_id>/maintenance/create/", view_create_maintenance_request, name="create_maintenance_request"),
     path("<int:unit_id>/maintenance/<int:log_id>/quote/create/", view_add_quotation, name="add_quotation"),
+    path("<int:unit_id>/maintenance/<int:log_id>/command-evaluation/", view_command_evaluation, name="command_evaluation"),
+    path("<int:unit_id>/maintenance/<int:log_id>/admin-evaluation/", view_admin_evaluation, name="admin_evaluation"),
     path("<int:unit_id>/maintenance/", view_unit_maintenance, name="unit_maintenance"),
-    path("<int:unit_id>/maintenance/<int:maintenance_log_id>/", view_get_maintenance_log, name="get_maintenance_log")
+    path("<int:unit_id>/maintenance/<int:maintenance_log_id>/", view_get_maintenance_log, name="get_maintenance_log"),
+    path("<int:unit_id>/maintenance/<int:log_id>/meeting-workshop/create/", view_create_meeting_workshop, name="create_meeting_workshop"),
 ]
-    
-#     # Reportes de mantención
-#     path("maintenance-report/JSON/", maintenance_report_JSON, name="maintenance_report_json"),
-    
-#     # Solicitudes de mantención
-#     path("maintenance-request/JSON/", maintenance_request_JSON, name="maintenance_request_json"),
-#     path("maintenance-request/administracion/", maintenance_request_administracion, name="maintenance_request_administracion"),
-#     path("maintenance-request/comandancia/", maintenance_request_comandancia, name="maintenance_request_comandancia"),
-#     path("finish-maintenance-request/JSON/", finish_maintenance_request_JSON, name="finish_maintenance_request_json"),

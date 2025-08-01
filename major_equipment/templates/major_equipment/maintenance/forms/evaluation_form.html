@@ -1,0 +1,104 @@
+{% extends "utils/base.html" %}
+{% load static permissions humanize %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'major_equipment/css/maintenance/form/evaluation_form.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'utils/navbar.html' %}
+<section class="header-container">
+    <a href="{% url 'major_equipment:units' %}">
+        <h2>Material Mayor</h2>
+    </a>
+    <div class="buttons-container">
+        <a href="{% url 'major_equipment:unit' unit.id %}">
+            <i class="bi bi-truck-front"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
+            <i class="bi bi-journal"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
+            <i class="bi bi-fuel-pump-fill"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
+            <i class="bi bi-wrench-adjustable-circle-fill"></i>
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="m-2 d-flex flex-column">
+    <div class="d-flex flex-row justify-content-between">
+        <p><strong>U{{unit.unit_number}} - {{unit.description}}</strong></p>
+        <p>{{ maintenance_log.creation_date|date:"d/m/Y H:i" }}</p>
+    </div>
+    <div class="mb-3">
+        <h1>Evaluación de Solicitud #{{ maintenance_log.id }}</h1>
+    </div>
+    <div>
+        <p><strong>Autor: </strong>{{ maintenance_log.author.get_full_name }}</p>
+        <p class="d-flex flex-column">
+            <strong>Financiada por: </strong>
+            <span>{{maintenance_log.responsible_for_payment}}</span>
+        </p>
+    </div>
+    <div>
+        <p><strong>Descripción:</strong></p>
+        <p>{{maintenance_log.description}}</p>
+    </div>
+</section>
+<section class="m-2 d-flex flex-column">
+    <form action="" method="post" class="d-flex flex-column">
+        {% csrf_token %}
+        <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="decision" id="btnradio1" value="reject" autocomplete="off">
+            <label class="btn btn-outline-danger" for="btnradio1">Rechazar</label>
+
+            <input type="radio" class="btn-check" name="decision" id="btnradio2" value="accept" autocomplete="off">
+            <label class="btn btn-outline-success" for="btnradio2">Aceptar</label>
+        </div>
+
+        <div id="success-only" class="no-display">
+            <div class="mb-3">
+                <label for="quotation-select" class="form-label">Cotización</label>
+                <select id="quotation-select" class="form-select mb-3" name="quotation">
+                    <option>Seleccione una cotización.</option>
+                    {% for quote in quotations %}
+                    <option value="{{quote.id}}"
+                    {% if quote.is_favorite %} selected {% endif %}
+                    >Cotización #{{quote.id}} - ${{quote.cost|intcomma}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="success-observations" class="form-label">Observaciones</label>
+                <textarea class="form-control" id="success-observations" name="success_observations" rows="3"></textarea>                
+            </div>
+        </div>
+        <div id="reject-only" class="no-display">
+            <div class="mb-3">
+                <label for="reject-reason" class="form-label">Razón de rechazo</label>
+                <textarea class="form-control" id="reject-reason" name="reject_reason" rows="3"></textarea>
+            </div>
+        </div>
+        <!-- Botón para enviar el formulario -->
+         <div class="d-flex flex-row justify-content-end">
+            <button type="submit" id="guardar-btn" class="btn btn-outline-dark w-50 mt-2 no-display">Guardar</button>
+         </div> 
+        
+    </form>
+</section>
+
+{% include 'utils/modal.html' %}
+{% include 'utils/toast-container.html' %}
+{% endblock %}
+
+{% block footer %}
+<footer></footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'major_equipment/js/maintenance/evaluation_form.js' %}"></script>
+{% endblock %}

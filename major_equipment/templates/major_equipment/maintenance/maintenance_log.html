@@ -9,12 +9,12 @@
 {% block navbar %}
 {% include 'utils/navbar.html' %}
 <section class="header-container">
-    <a href="{% url 'major_equipment:unit_list' %}">
+    <a href="{% url 'major_equipment:units' %}">
         <h2>Material Mayor</h2>
     </a>
     
     <div class="buttons-container">
-        <a href="{% url 'major_equipment:unit_detail' unit.id %}">
+        <a href="{% url 'major_equipment:unit' unit.id %}">
             <i class="bi bi-truck-front"></i>
         </a>
         <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
@@ -32,44 +32,189 @@
 
 {% block content %}
 <section class="mx-2 mt-2">
-    <div class="d-flex flex-row justify-content-between">   
-        <h1>Solicitud #{{ maintenance_log.id }}</h1>
-        <p>{{ maintenance_log.creation_date|date:"d/m/Y H:m" }}</p>
+    <div class="d-flex flex-row justify-content-between mb-2">
+        <div class="d-flex flex-column">
+            <h1>Solicitud #{{ maintenance_log.id }}</h1>
+            <p><strong>U{{unit.unit_number}} - {{unit.description}}</strong></p>
+        </div>
+        <div class="d-flex flex-column align-items-end">
+            <p>{{ maintenance_log.creation_date|date:"d/m/Y H:i" }}</p>
+            <p>{{ maintenance_log.author.get_full_name }}</p>
+        </div>
     </div>
-    
-    <p><strong>Unidad: {{unit}}</strong></p>
-    <p><strong>Autor:</strong> {{ maintenance_log.author.get_full_name }}</p>
-    <p><strong>Descripción:</strong></p>
-    <p>{{maintenance_log.description}}</p>
+    <div class="mb-4">
+        <p><strong>Descripción:</strong></p>
+        <p>{{maintenance_log.description}}</p>
+    </div>
+    <div>
+        <h3 class="mb-3">Cotizaciones</h3>
+        <div>
+            {% if quotations.count == 0 %}
+                <p class="text-secondary text-center">No hay cotizaciones</p>
+            {% endif %}
+            {% for quote in quotations %}
+                <div class="d-flex flex-row justify-content-between align-items-center mb-2 quote
+                {% if quote.is_favorite %} quote-favorite {% endif %}">
+                    <div>
+                        <h6 class="text-light">{{quote.workshop_name}}1</h6>
+                        <p class="text-light"><strong>Costo:</strong> {{quote.cost}}</p>
+                    </div>
+                    <div>
+                        <a href="" class="text-decoration-none btn btn-outline-light"><i class="bi bi-eye-fill fs-3"></i></a>
+                        <a href="{{quote.file.file.url}}" class="text-decoration-none btn btn-outline-light"><i class="bi bi-filetype-pdf fs-3"></i></a>
+                    </div>    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
     <hr>
     {% if maintenance_log.state == 'Pendiente por comandancia'%}
         <div class="d-flex flex-row justify-content-evenly mb-2">
-            <div class="d-flex flex-column align-items-center">
+            <div class="w-50 d-flex flex-column align-items-center">
                 <i class="bi bi-circle fs-1"></i>
-                <a href="#" class="text-black text-decoration-none"><strong>Pendiente</strong></a>
+                <a href="{% url 'major_equipment:command_evaluation' unit.id maintenance_log.id %}" class="text-black text-decoration-none"><strong>Pendiente</strong></a>
                 <p>Comandancia</p>
             </div>
-            <div class="d-flex flex-column align-items-center">
+            <div class="w-50 d-flex flex-column align-items-center">
                 <i class="bi bi-circle fs-1"></i>
-                <strong>Pendiente</strong>
                 <p>Dirección</p>
             </div>
         </div>
     {% elif maintenance_log.state == 'Rechazada por comandancia' %}
-        <div class="d-flex flex-row justify-content-evenly mb-2">
-            <div class="d-flex flex-column align-items-center">
-                <i class="bi bi-circle fs-1"></i>
-                <strong>Pendiente</strong>
+        <div class="d-flex flex-column align-items-center justify-content-evenly mb-2">
+            <div class="d-flex flex-column align-items-center mb-3">
+                <i class="bi bi-x-circle fs-1 text-danger"></i>
+                <strong class="text-danger">Rechazada</strong>
                 <p>Comandancia</p>
+                <p>{{maintenance_log.command_reviewed_date|date:"d/m/Y H:i"}}</p>
             </div>
-            <div class="d-flex flex-column align-items-center">
+            <div class="w-100">
+                <p>
+                    <strong>Motivo:</strong>
+                    <span>{{maintenance_log.command_observations}}</span>
+                </p>
+                <p>
+                    <strong>Responsable: </strong>
+                    <span>{{maintenance_log.reviewed_by_command.get_full_name}}</span>
+                </p>
+            </div>
+        </div>
+    {% elif maintenance_log.state == 'Pendiente por administración' %}
+        <div class="d-flex flex-row justify-content-evenly mb-3">
+            <div class="w-50 d-flex flex-column align-items-center">
+                <i class="bi bi-check-circle fs-1 text-success"></i>
+                <strong class="text-success">Aprobado</strong>
+                <p>Comandancia</p>
+                <p>{{maintenance_log.command_reviewed_date|date:"d/m/Y H:i"}}</p>
+            </div>
+            <div class="w-50 d-flex flex-column align-items-center">
                 <i class="bi bi-circle fs-1"></i>
-                <strong>Pendiente</strong>
+                <a href="{% url 'major_equipment:admin_evaluation' unit.id maintenance_log.id %}" class="text-black text-decoration-none"><strong>Pendiente</strong></a>
                 <p>Dirección</p>
             </div>
         </div>
+        <div class="mb-3">
+            <div class="w-100">
+                <p class="d-flex flex-column">
+                    <strong>Observaciones:</strong>
+                    <span>{{maintenance_log.command_observations}}</span>
+                </p>
+                <p>
+                    <strong>Responsable: </strong>
+                    <span>{{maintenance_log.reviewed_by_command.get_full_name}}</span>
+                </p>
+            </div>
+        </div>
+    {% elif maintenance_log.state == 'Rechazada por administración' %}
+        <div class="d-flex flex-row justify-content-evenly mb-3">
+            <div class="w-50 d-flex flex-column align-items-center">
+                <i class="bi bi-check-circle fs-1 text-success"></i>
+                <strong class="text-success">Aprobado</strong>
+                <p>Comandancia</p>
+                <p>{{maintenance_log.command_reviewed_date|date:"d/m/Y H:i"}}</p>
+            </div>
+            <div class="w-50 d-flex flex-column align-items-center">
+                <i class="bi bi-x-circle fs-1 text-danger"></i>
+                <strong class="text-danger">Rechazada</strong>
+                <p>Dirección</p>
+                <p>{{maintenance_log.admin_reviewed_date|date:"d/m/Y H:i"}}</p>
+
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="w-100">
+                <p class="d-flex flex-column">
+                    <strong>Observaciones comandancia:</strong>
+                    <span>{{maintenance_log.command_observations}}</span>
+                </p>
+                <p>
+                    <strong>Responsable: </strong>
+                    <span>{{maintenance_log.reviewed_by_command.get_full_name}}</span>
+                </p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="w-100">
+                <p class="d-flex flex-column">
+                    <strong>Observaciones directorio:</strong>
+                    <span>{{maintenance_log.admin_observations}}</span>
+                </p>
+                <p>
+                    <strong>Responsable: </strong>
+                    <span>{{maintenance_log.reviewed_by_admin.get_full_name}}</span>
+                </p>
+            </div>
+        </div>
+    {% elif maintenance_log.state == 'Aprobada por administración' %}
+        <div class="d-flex flex-row justify-content-evenly mb-3">
+            <div class="w-50 d-flex flex-column align-items-center">
+                <i class="bi bi-check-circle fs-1 text-success"></i>
+                <strong class="text-success">Aprobado</strong>
+                <p>Comandancia</p>
+                <p>{{maintenance_log.command_reviewed_date|date:"d/m/Y H:i"}}</p>
+            </div>
+            <div class="w-50 d-flex flex-column align-items-center">
+                <i class="bi bi-check-circle fs-1 text-success"></i>
+                <strong class="text-success">Aprobado</strong>
+                <p>Dirección</p>
+                <p>{{maintenance_log.admin_reviewed_date|date:"d/m/Y H:i"}}</p>
+
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="w-100">
+                <p class="d-flex flex-column">
+                    <strong>Observaciones comandancia:</strong>
+                    <span>{{maintenance_log.command_observations}}</span>
+                </p>
+                <p>
+                    <strong>Responsable: </strong>
+                    <span>{{maintenance_log.reviewed_by_command.get_full_name}}</span>
+                </p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="w-100">
+                <p class="d-flex flex-column">
+                    <strong>Observaciones directorio:</strong>
+                    <span>{{maintenance_log.admin_observations}}</span>
+                </p>
+                <p>
+                    <strong>Responsable: </strong>
+                    <span>{{maintenance_log.reviewed_by_admin.get_full_name}}</span>
+                </p>
+            </div>
+        </div>
     {% endif %}
+    
 </section>
+{% if can_create_meeting_workshop %}
+<section class="mx-2 mb-3">
+    <a href="{% url 'major_equipment:create_meeting_workshop' unit.id maintenance_log.id %}" class="btn btn-outline-dark">Agendar hora con taller</a>
+    <a href="{% url 'major_equipment:create_meeting_workshop' unit.id maintenance_log.id %}" class="btn btn-outline-dark">Registrar salida a taller</a>
+    <a href="{% url 'major_equipment:create_meeting_workshop' unit.id maintenance_log.id %}" class="btn btn-outline-dark">Registrar retorno a taller</a>
+</section>
+{% endif %}
 
 <section class="mx-3 mb-2 d-flex flex-row justify-content-evenly">
     <a href="{% url 'major_equipment:add_quotation' unit.id maintenance_log.id %}"
@@ -86,6 +231,3 @@
 </footer>
 {% endblock %}
 
-{% block extra_js %}
-<script src="{% static 'major_equipment/js/unit.js' %}"></script>
-{% endblock %}

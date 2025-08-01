@@ -8,12 +8,12 @@
 {% block navbar %}
 {% include 'utils/navbar.html' %}
 <section class="header-container">
-  <a href="{% url 'major_equipment:unit_list' %}">
+  <a href="{% url 'major_equipment:units' %}">
     <h2>Material Mayor</h2>
   </a>
 
   <div class="buttons-container">
-    <a href="{% url 'major_equipment:unit_detail' unit.id %}">
+    <a href="{% url 'major_equipment:unit' unit.id %}">
       <i class="bi bi-truck-front"></i>
     </a>
     <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
