@@ -53,6 +53,8 @@ dev_notes.txt
 # ───────────────
 .vscode/
 .idea/
+
 django.log
+
 *.pp
 *.te
