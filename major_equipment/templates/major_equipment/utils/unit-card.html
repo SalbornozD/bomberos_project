@@ -8,7 +8,7 @@
                 <span class="badge {{element.soap_class}}">SOAP</span>
                 <span class="badge {{element.technical_inspection_class}}">Revisión</span>
             </div>
-            <img src="{{ element.image.image.url }}" alt="Imagen de la unidad {{ element.unit.unit_number }}"
+            <img src="{% url 'major_equipment:protected_unit_image' element.image.id %}" alt="Imagen de la unidad {{ element.unit.unit_number }}"
             class="w-100 h-100">
         </div>
         <div class="w-100 d-flex flex-column flex-grow-1">

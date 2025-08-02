@@ -4,9 +4,11 @@ from .views import *
 app_name = "major_equipment"
 
 urlpatterns = [
-    # Retornan Template
+    # UNIDADES
     path("units/", view_get_units, name="units"),
     path("units/<int:unit_id>/", view_get_unit, name="unit"),
+     #Imagenes
+    path('unit-image/<int:image_id>/', protected_unit_image, name='protected_unit_image'),
 
     # REPORTES
     path("<int:unit_id>/reports/create/", view_create_report, name="create_report"),

@@ -58,7 +58,7 @@
                 <div class="carousel-inner h-100">
                     {% for image in images %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <img src="{{ image.image.url }}" class="d-block w-100 object-fit-cover" alt="{{ image.alt }}">
+                        <img src="{% url 'major_equipment:protected_unit_image' image.id %}" class="d-block w-100 object-fit-cover" alt="{{ image.alt }}">
                     </div>
                     {% endfor %}
                 </div>

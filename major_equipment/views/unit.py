@@ -1,4 +1,4 @@
-from django.http                                import HttpResponse
+from django.http                                import HttpResponse, FileResponse, Http404
 from django.http                                import HttpRequest, HttpResponse, HttpResponseForbidden
 from django.db.models                           import Q
 from django.shortcuts                           import render, get_object_or_404
@@ -10,6 +10,7 @@ from major_equipment.models.unit                import *
 # Utilidades
 from ..utils.permission                          import *
 
+import mimetypes
 # Configuración de logging
 import logging
 logger = logging.getLogger('myapp')
@@ -106,3 +107,16 @@ def view_get_unit(request: HttpRequest, unit_id: int) -> HttpResponse:
         "title": "Material Mayor | Bomberos Quintero",
     }
     return render(request, "major_equipment/unit/unit.html", context)
+
+@login_required
+def protected_unit_image(request, image_id):
+    """
+    Sirve la imagen de una unidad solo a usuarios autenticados.
+    """
+    img = get_object_or_404(UnitImage, id=image_id)
+    try:
+        file_path = img.image.path
+        content_type, _ = mimetypes.guess_type(file_path)
+        return FileResponse(img.image.open('rb'), content_type=content_type or 'application/octet-stream')
+    except Exception:
+        raise Http404("Imagen no encontrada.")
