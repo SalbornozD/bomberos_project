@@ -24,7 +24,7 @@
                 <p class="fs-7">Unidad</p>
             </div>
         </a>
-        <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="text-decoration-none
+        <a href="{% url 'major_equipment:unit_reports' %}?unit={{unit.id}}" class="text-decoration-none
         text-light w-25 d-flex justify-content-center align-items-center border border-light">
             <div class="d-flex flex-column justify-content-center align-items-center p-1">
                 <i class="bi bi-journal fs-1 "></i>
@@ -58,7 +58,7 @@
                 <div class="carousel-inner h-100">
                     {% for image in images %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <img src="{% url 'major_equipment:protected_unit_image' image.id %}" class="d-block w-100 object-fit-cover" alt="{{ image.alt }}">
+                        <img src="{% url 'major_equipment:unit_image' image.id %}" class="d-block w-100 object-fit-cover" alt="{{ image.alt }}">
                     </div>
                     {% endfor %}
                 </div>
@@ -79,7 +79,7 @@
         </div>
 
         <div
-            class="d-flex flex-column gap-3 w-md-40 p-md-3 justify-content-md-between justify-content-lg-evenly border border-light">
+            class="d-flex flex-column gap-3 w-md-40 p-md-3 justify-content-md-between justify-content-lg-evenly ">
             <div class="w-90 mx-auto rounded bg-tertiary d-flex flex-row p-2 gap-2 w-sm-50 w-md-100">
                 <div><i class="bi bi-truck-front fs-1"></i></div>
                 <div>

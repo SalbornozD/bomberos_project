@@ -7,13 +7,14 @@ urlpatterns = [
     # UNIDADES
     path("units/", view_get_units, name="units"),
     path("units/<int:unit_id>/", view_get_unit, name="unit"),
-     #Imagenes
-    path('unit-image/<int:image_id>/', protected_unit_image, name='protected_unit_image'),
+    
+    # Imagenes de las unidades
+    path('unit-image/<int:image_id>/', protected_unit_image, name='unit_image'),
 
     # REPORTES
-    path("<int:unit_id>/reports/create/", view_create_report, name="create_report"),
-    path("<int:unit_id>/reports/", view_unit_reports, name="unit_reports"),
-    path("<int:unit_id>/reports/<int:report_id>/", view_get_report, name="get_report"),
+    path("reports/create/", view_create_report, name="create_report"),
+    path("reports/", view_unit_reports, name="unit_reports"),
+    path("reports/<int:report_id>/", view_get_report, name="get_report"),
 
     path("<int:unit_id>/reports/<int:report_id>/PDF/", view_generate_report_pdf, name="get_report_pdf"),
 

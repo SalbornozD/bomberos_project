@@ -23,7 +23,7 @@
             <i class="bi bi-truck-front"></i>
             <p>Unidad</p>
         </a>
-        <a href="{% url 'major_equipment:unit_reports' unit.id %}">
+        <a href="{% url 'major_equipment:unit_reports'%}?unit={{unit.id}}">
             <i class="bi bi-journal"></i>
             <p>Reportes</p>
         </a>

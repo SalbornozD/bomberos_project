@@ -3,7 +3,9 @@ from django.http                                import HttpResponse
 from django.conf                                import settings
 from django.http                                import HttpResponse
 from django.urls                                import reverse
+from django.core.mail                           import send_mail
 from django.utils                               import timezone
+from django.contrib                             import messages
 from django.shortcuts                           import render, get_object_or_404, redirect
 from django.template.loader                     import render_to_string
 from django.contrib.auth.models                 import Group
@@ -18,9 +20,9 @@ from ..utils.permission                          import *
 from ..utils.calendar                            import *
 
 # Librerias
-from django.contrib                             import messages
-from django.core.mail                           import send_mail
+
 from weasyprint                                 import HTML
+from urllib.parse                               import urlencode
 
 # Configuración de logging
 import logging
@@ -32,60 +34,73 @@ MESES_ES = {
         9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
     }
 
-# UNIDADES
 
-# REPORTES
+@login_required  # Crear Reporte
+def view_create_report(request):
+    # 1) Unidad requerida vía query param ?unit=
+    unit_id = request.GET.get('unit')
+    if not unit_id:
+        messages.warning(request, "Debes especificar una unidad para crear un reporte.")
+        logger.warning(f"El usuario {request.user} intentó crear un reporte sin especificar una unidad.")
+        return redirect('major_equipment:units')
 
-@login_required # Crear Reporte
-def view_create_report(request, unit_id):
-    # 1. Obtener la unidad
     unit = get_object_or_404(Unit, pk=unit_id)
 
-    # 2. Cargar plantilla de ítems con su categoría (reduce consultas)
+    # 2) Cargar plantilla de ítems con su categoría
     template_items = (
         ReportTemplateItem.objects
         .select_related('category')
-        .all()
+        .filter(units=unit)
     )
 
-    # 3. Agrupar por categoría
+    # 3) Agrupar por categoría y ordenar por question_type
     items_by_category = {}
     for item in template_items:
-        label = item.category.label
-        items_by_category.setdefault(label, []).append(item)
-
-    # 4. Ordenar cada lista por question_type
+        items_by_category.setdefault(item.category.label, []).append(item)
     for lst in items_by_category.values():
         lst.sort(key=lambda x: x.question_type)
 
+    # 4) POST: validar y crear
     if request.method == "POST":
-        # 5. Validación: no duplicar reporte del mismo día
+        # No duplicar reporte del mismo día
         today = timezone.localdate()
         if Report.objects.filter(unit=unit, date=today).exists():
-            messages.error(request, "Ya existe un reporte para hoy.")
-            return redirect('major_equipment:unit_reports', unit_id=unit_id)
-
-        flag_mail = False
+            messages.error(request, "Ya existe un reporte para esta unidad en el día de hoy.")
+            logger.warning(
+                f"El usuario {request.user} intentó crear un reporte duplicado "
+                f"para la unidad {unit.id} en la fecha {today}."
+            )
+            base = reverse('major_equipment:unit_reports')
+            return redirect(f"{base}?{urlencode({'unit': unit.id})}")
 
         try:
             with transaction.atomic():
-                # 6. Crear instancia de Report y validarla
+                # Validar Report (mostrar errores arriba si los hay)
                 report = Report(
                     unit=unit,
                     author=request.user,
-                    date=timezone.now(),
+                    date=today,
                     coment=request.POST.get('general_comment', '').strip()
                 )
-                report.full_clean()
+                try:
+                    report.full_clean()
+                except ValidationError as e:
+                    # Errores propios del modelo Report
+                    if hasattr(e, "message_dict"):
+                        for errs in e.message_dict.values():
+                            for err in errs:
+                                messages.error(request, err)
+                    else:
+                        for err in e.messages:
+                            messages.error(request, err)
+                    raise  # abortar transacción
+
                 report.save()
 
-                if report.coment:
-                    flag_mail = True
-
-                # 7. Crear cada ReportEntry
+                # Crear cada ReportEntry y, si falla, indicar la pregunta (item.label)
                 for item in template_items:
-                    answer = request.POST.get(f"q_{item.id}", "").strip()
-                    comment = request.POST.get(f"q_{item.id}_comment", "").strip()
+                    answer = (request.POST.get(f"q_{item.id}", "") or "").strip()
+                    comment = (request.POST.get(f"q_{item.id}_comment", "") or "").strip()
 
                     entry = ReportEntry(
                         report=report,
@@ -93,63 +108,43 @@ def view_create_report(request, unit_id):
                         answer=answer,
                         comment=comment
                     )
-                    entry.full_clean()
+
+                    try:
+                        entry.full_clean()
+                    except ValidationError as e:
+                        if hasattr(e, "message_dict"):
+                            for errs in e.message_dict.values():
+                                for err in errs:
+                                    messages.error(request, f"{item.label}: {err}")
+                        else:
+                            for err in e.messages:
+                                messages.error(request, f"{item.label}: {err}")
+                        raise  # abortar transacción
+
                     entry.save()
 
-                    if comment:
-                        flag_mail = True
-
-                # 8. Si hay comentarios, notificar por correo
-                if flag_mail:
-                    try:
-                        group = Group.objects.get(name='Notification_observation_report')
-                        users = group.user_set.filter(is_active=True).exclude(email='')
-                        recipient_list = [u.email for u in users]
-
-                        if recipient_list:
-                            subject = (
-                                f"Reporte {report.id} requiere atención "
-                                f"(Unidad {unit.unit_number})"
-                            )
-                            body = (
-                                f"Estimados,\n\n"
-                                f"El {report.date.strftime('%d/%m/%Y %H:%M')}, "
-                                f"{report.author} creó un reporte para la unidad "
-                                f"{unit.unit_number} ({unit.description}) que requiere atención.\n\n"
-                                "Saludos,\n"
-                                "Equipo TI Bomberos Quintero"
-                            )
-                            send_mail(
-                                subject=subject,
-                                message=body,
-                                from_email=settings.DEFAULT_FROM_EMAIL,
-                                recipient_list=recipient_list,
-                                fail_silently=False,
-                            )
-                    except Group.DoesNotExist:
-                        logger.error("Grupo 'Notification_observation_report' no encontrado.")
-                    except Exception as e:
-                        logger.error(f"Error al enviar correo de notificación: {e}")
-
-                messages.success(request, "Reporte creado exitosamente.")
-                return redirect('major_equipment:unit_reports', unit_id=unit_id)
-
-        except ValidationError as e:
-            for field, errs in e.message_dict.items():
-                for err in errs:
-                    messages.error(request, f"{field}: {err}")
-
+        except ValidationError:
+            # Ya mostramos los errores arriba; caemos al render del form
+            pass
         except Exception as e:
             messages.error(request, f"Ocurrió un error inesperado: {e}")
+        else:
+            messages.success(request, "Reporte creado correctamente.")
+            base = reverse('major_equipment:unit_reports')
+            return redirect(f"{base}?{urlencode({'unit': unit.id})}")
 
-    # 9. Renderizar el formulario (GET o POST con errores)
+    # 5) Render (GET o POST con errores)
     return render(request, "major_equipment/reports/report_form.html", {
         'unit': unit,
-        'report_template_items': items_by_category
+        'report_template_items': items_by_category,
+        'title': "Bomberos Quintero | Crear reporte"
     })
 
 @login_required # Listar reportes de una unidad. 
-def view_unit_reports(request, unit_id):
+def view_unit_reports(request):
+    unit_id = request.GET.get('unit')
+
+
     data = {}
     unit = get_object_or_404(Unit, pk=unit_id)
     data["unit"] = unit
@@ -183,25 +178,24 @@ def view_unit_reports(request, unit_id):
     else:
         next_month, next_year = month + 1, year
     
-    base = reverse('major_equipment:unit_reports', args=[unit_id])
-    data['prev_url'] = f"{base}?year={prev_year}&month={prev_month}"
-    data['next_url'] = f"{base}?year={next_year}&month={next_month}"
+    base = f"{reverse('major_equipment:unit_reports')}"
+    data['prev_url'] = f"{base}?unit={unit_id}&year={prev_year}&month={prev_month}"
+    data['next_url'] = f"{base}?unit={unit_id}&year={next_year}&month={next_month}"
 
     return render(request, "major_equipment/reports/unit_reports.html", data)
 
 @login_required # Ver reporte
-def view_get_report(request, unit_id, report_id):
+def view_get_report(request, report_id):
     data = {}
-    data["unit"] = get_object_or_404(Unit, pk=unit_id)
-    data["report"] = get_object_or_404(Report, pk=report_id, unit=data["unit"])
+    data["report"] = get_object_or_404(Report, pk=report_id)
     return render(request, "major_equipment/reports/report.html", data)
 
 @login_required # Generar PDF de reporte
-def view_generate_report_pdf(request, unit_id, report_id):
+def view_generate_report_pdf(request, report_id):
     data = {}
-    data['report'] = get_object_or_404(Report, pk=report_id, unit__pk=unit_id)
-    data["unit"] = get_object_or_404(Unit, pk=unit_id)
-    
+    data['report'] = get_object_or_404(Report, pk=report_id)
+    data['unit'] = data["report"].unit
+
     # 1. Carga el HTML
     html_string = render_to_string(
         'major_equipment/reports/reportPDF.html',  # ruta relativa a tu carpeta templates/

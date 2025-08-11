@@ -1,5 +1,5 @@
 {% extends "utils/base.html" %}
-{% load humanize static permissions %}
+{% load humanize static permissions tz %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'major_equipment/css/reports/report_form.css' %}">
@@ -8,95 +8,123 @@
 {% block navbar %}
 {% include 'utils/navbar.html' %}
 <section class="header-container">
-  <a href="{% url 'major_equipment:units' %}">
-    <h2>Material Mayor</h2>
-  </a>
+    <a href="{% url 'major_equipment:units' %}">
+        <h2>Material Mayor</h2>
+    </a>
 
-  <div class="buttons-container">
-    <a href="{% url 'major_equipment:unit' unit.id %}">
-      <i class="bi bi-truck-front"></i>
-    </a>
-    <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
-      <i class="bi bi-journal"></i>
-    </a>
-    <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
-      <i class="bi bi-fuel-pump-fill"></i>
-    </a>
-    <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
-      <i class="bi bi-wrench-adjustable-circle-fill"></i>
-    </a>
-  </div>
+    <div class="buttons-container">
+        <a href="{% url 'major_equipment:unit' unit.id %}">
+            <i class="bi bi-truck-front"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_reports'%}?unit={{unit.id}}" class="active">
+            <i class="bi bi-journal"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
+            <i class="bi bi-fuel-pump-fill"></i>
+        </a>
+        <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
+            <i class="bi bi-wrench-adjustable-circle-fill"></i>
+        </a>
+    </div>
 </section>
 {% endblock %}
 
 {% block content %}
-<section class="title">
-  <h1>Nuevo reporte</h1>
-  <p>Unidad {{ unit.unit_number }} | {{ unit.entity }}</p>
+
+<section class="max-w-1000 align-self-center w-100 px-3 pt-3">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
 </section>
 
-<section class="body">
-  <form method="post" action="">
-    {% csrf_token %}
 
-    {% for category, items in report_template_items.items %}
-      <div class="category-block mb-4">
-        <h3 class="mb-2">{{ category }}</h3>
 
-        <div class="row">
-          {% for item in items %}
-            <div class="col-md-6 item-container mb-3">
-              <label class="form-label"><strong>{{ item.label }}</strong></label>
 
-              {# Sí/No #}
-              {% if item.question_type == 1 %}
-                <div class="btn-group" role="group">
-                  <input type="radio" class="btn-check" name="q_{{ item.id }}" id="q_{{ item.id }}_bueno" value="Bueno" autocomplete="off">
-                  <label class="btn btn-outline-danger" for="q_{{ item.id }}_bueno">Bueno</label>
+<section class="max-w-1000 align-self-center w-100">
+    <div class="bg-light mx-3 mb-3 p-2 rounded shadow d-flex flex-column gap-3">
+        <h1 class="d-flex flex-row justify-content-start gap-4">
+            <span>Reporte diario</span>
+            <span class="me-1">U{{unit.unit_number}}</span>
+        </h1>
+        <div class="d-flex flex-column flex-sm-row justify-content-between mx-2">
+            <p>Unidad {{unit.description}}</p>
+            <p>{% now "l, d \d\e F \d\e Y" %}</p>
+        </div>
+    </div>
+    
+</section>
 
-                  <input type="radio" class="btn-check" name="q_{{ item.id }}" id="q_{{ item.id }}_malo" value="Malo" autocomplete="off">
-                  <label class="btn btn-outline-danger" for="q_{{ item.id }}_malo">Malo</label>
+<section class="max-w-1000 align-self-center w-100">
+    <form method="post" action="">
+        {% csrf_token %}
 
-                  <input type="radio" class="btn-check" name="q_{{ item.id }}" id="q_{{ item.id }}_na" value="N/A" autocomplete="off" checked>
-                  <label class="btn btn-outline-danger" for="q_{{ item.id }}_na">N/A</label>
+        {% for category, items in report_template_items.items %}
+        <div>
+            <div class="bg-light mx-3 mb-3 p-2 px-3 rounded shadow">
+                <h3>{{ category }}</h3>
+            </div>
+            
+            {% for item in items %}
+            <div class="bg-light mx-3 mb-3 p-2 rounded shadow d-flex flex-column gap-3">
+                <label class="form-label"><span class="text-danger">(*)</span> <strong>{{ item.label }}</strong>  </label>
+
+                {# Sí/No #}
+                {% if item.question_type == 1 %}
+                <div class="btn-group max-w-600 w-100 align-self-center" role="group">
+                    <input type="radio" class="btn-check" name="q_{{ item.id }}" id="q_{{ item.id }}_bueno"
+                        value="Bueno" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="q_{{ item.id }}_bueno">Bueno</label>
+
+                    <input type="radio" class="btn-check" name="q_{{ item.id }}" id="q_{{ item.id }}_malo"
+                        value="Malo" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="q_{{ item.id }}_malo">Malo</label>
+
                 </div>
 
-              {# Opción múltiple #}
-              {% elif item.question_type == 2 %}
-                <select class="form-select" name="q_{{ item.id }}" id="q_{{ item.id }}_select" aria-label="Selección múltiple">
-                  <option value="" selected>Seleccione...</option>
-                  {% for option in item.options.all %}
+                {# Opción múltiple #}
+                {% elif item.question_type == 2 %}
+                <select class="form-select" name="q_{{ item.id }}" id="q_{{ item.id }}_select"
+                    aria-label="Selección múltiple">
+                    <option value="" selected>Seleccione...</option>
+                    {% for option in item.options.all %}
                     <option value="{{ option.value }}">{{ option.value }}</option>
-                  {% endfor %}
+                    {% endfor %}
                 </select>
 
-              {# Descriptivo #}
-              {% elif item.question_type == 3 %}
-                <input type="text" class="form-control" name="q_{{ item.id }}" id="q_{{ item.id }}_text" placeholder="Escriba su respuesta">
-              {% endif %}
+                {# Descriptivo #}
+                {% elif item.question_type == 3 %}
+                <input type="text" class="form-control" name="q_{{ item.id }}" id="q_{{ item.id }}_text"
+                    placeholder="Escriba su respuesta">
+                {% endif %}
 
-              {# Comentario adicional por ítem #}
-              <div class="input-group">
-                <input type="text" class="form-control" name="q_{{ item.id }}_comment" id="obs-{{ item.id }}"
-                  placeholder="Observaciones" aria-labelledby="obs-label-{{ item.id }}" >
-              </div>
+                {# Comentario adicional por ítem #}
+                <div class="input-group mb-2">
+                    <textarea class="form-control" name="q_{{ item.id }}_comment" id="obs-{{ item.id }}" 
+                    aria-labelledby="obs-label-{{ item.id }}" placeholder="Comentario"></textarea>
+                    
+                </div>
             </div>
-          {% endfor %}
+            {% endfor %}
+
         </div>
-      </div>
-    {% endfor %}
+        {% endfor %}
 
-    {# Observaciones generales #}
-    <div class="mb-3">
-      <label for="general_comment" class="form-label">Observaciones generales</label>
-      <textarea class="form-control" id="general_comment" name="general_comment" rows="3" 
-      placeholder="Comentarios generales..."></textarea>
-    </div>
+        {# Observaciones generales #}
+        <div class="bg-light mx-3 mb-5 p-2 rounded shadow d-flex flex-column gap-3">
+            <label for="general_comment" class="form-label">Observaciones generales</label>
+            <textarea class="form-control" id="general_comment" name="general_comment" rows="3"
+                placeholder="Comentarios generales..."></textarea>
+        </div>
 
-    <div class="d-flex justify-content-end">
-      <button type="submit" class="btn btn-outline-success">Enviar</button>
-    </div>
-  </form>
+        <div id="buttons-container" class="position-fixed bottom-0 end-0">
+            <button type="submit" class="btn btn-success fs-5">Enviar</button>
+        </div>
+    </form>
 </section>
 
 {% include 'utils/modal.html' %}

@@ -17,7 +17,7 @@
         <a href="{% url 'major_equipment:unit' unit.id %}">
             <i class="bi bi-truck-front"></i>
         </a>
-        <a href="{% url 'major_equipment:unit_reports' unit.id %}" class="active">
+        <a href="{% url 'major_equipment:unit_reports'%}?unit={{unit.id}}" class="active">
             <i class="bi bi-journal"></i>
         </a>
         <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
@@ -64,7 +64,7 @@
 
     <!-- Botón enviar -->
     <div class="d-flex justify-content-end">
-      <button type="submit" class="btn btn-success px-4">Crear solicitud</button>
+      <button type="submit" class="btn btn-success px-4" disabled>Crear solicitud</button>
     </div>
   </form>
 </section>

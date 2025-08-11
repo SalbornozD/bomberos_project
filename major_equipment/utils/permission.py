@@ -26,3 +26,9 @@ def user_can_view_unit(user: User, unit: Unit) -> bool:
     if user.is_superuser or user.has_perm('major_equipment.view_unit'):
         return True
     return get_user_entities_with_permission(user, 'view_company_majorequipment').filter(pk=unit.entity_id).exists()
+
+def user_can_view_unit_image(user: User, image: UnitImage) -> bool:
+    """
+    Devuelve True o False si el usuario puede ver la imagen.
+    """
+    return user_can_view_unit(user, image.unit)

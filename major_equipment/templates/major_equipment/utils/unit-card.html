@@ -8,7 +8,7 @@
                 <span class="badge {{element.soap_class}}">SOAP</span>
                 <span class="badge {{element.technical_inspection_class}}">Revisión</span>
             </div>
-            <img src="{% url 'major_equipment:protected_unit_image' element.image.id %}" alt="Imagen de la unidad {{ element.unit.unit_number }}"
+            <img src="{% url 'major_equipment:unit_image' element.image.id %}" alt="Imagen de la unidad {{ element.unit.unit_number }}"
             class="w-100 h-100">
         </div>
         <div class="w-100 d-flex flex-column flex-grow-1">
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="w-25 h-100 d-flex flex-column">
-        <a href="{% url 'major_equipment:create_report' element.unit.id %}"
+        <a href="{% url 'major_equipment:create_report' %}?unit={{element.unit.id}}"
            class="w-100 flex-fill d-flex justify-content-center align-items-center border border-light-subtle">
             <i class="bi bi-journal fs-1 text-light"></i>
         </a>

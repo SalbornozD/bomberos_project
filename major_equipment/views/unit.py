@@ -3,12 +3,13 @@ from django.http                                import HttpRequest, HttpResponse
 from django.db.models                           import Q
 from django.shortcuts                           import render, get_object_or_404
 from django.contrib.auth.decorators             import login_required
+from django.core.exceptions                     import PermissionDenied
 
 # MODELOS
 from major_equipment.models.unit                import *
 
 # Utilidades
-from ..utils.permission                          import *
+from ..utils.permission                         import *
 
 import mimetypes
 # Configuración de logging
@@ -114,9 +115,34 @@ def protected_unit_image(request, image_id):
     Sirve la imagen de una unidad solo a usuarios autenticados.
     """
     img = get_object_or_404(UnitImage, id=image_id)
+
+    # Permisos de negocio
+    if not user_can_view_unit_image(request.user, img):
+        logger.warning(
+            "Intento de acceso no autorizado | user=%s ip=%s image_id=%s",
+            request.user.pk,
+            request.META.get("REMOTE_ADDR"),
+            image_id,
+        )
+        raise PermissionDenied("No tienes autorización para acceder a esta imagen.")
+
+    # Adivinar MIME por el nombre (funciona aunque no haya .path en storage remotos)
+    filename = getattr(img.image, "name", None)
+    content_type, _ = mimetypes.guess_type(filename or "")
+
     try:
-        file_path = img.image.path
-        content_type, _ = mimetypes.guess_type(file_path)
-        return FileResponse(img.image.open('rb'), content_type=content_type or 'application/octet-stream')
-    except Exception:
+        # Abrir desde el storage configurado (local o remoto)
+        file_handle = img.image.open("rb")
+    except FileNotFoundError:
+        # Registro para auditoría
+        logger.error("Archivo de imagen no encontrado en storage | image_id=%s", image_id)
         raise Http404("Imagen no encontrada.")
+    except OSError:
+        logger.exception("Error de E/S al abrir la imagen | image_id=%s", image_id)
+        raise Http404("Imagen no encontrada.")
+
+    # Entrega del archivo
+    response = FileResponse(file_handle, content_type=content_type or "application/octet-stream")
+    # inline sugiere al browser mostrarla si puede
+    response["Content-Disposition"] = f'inline; filename="{filename or "image"}"'
+    return response

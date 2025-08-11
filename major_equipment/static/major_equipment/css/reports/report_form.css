@@ -2,6 +2,18 @@
    Página: Material Mayor
    ========================= */
 
+body{
+    background-color: #e5e7eb;
+}
+
+.max-w-1000{
+    max-width: 1000px;
+}
+
+.max-w-600{
+    max-width: 600px;
+}
+
 /* ----- Encabezado ----- */
 .header-container {
     background-color: #BB2633;
@@ -30,22 +42,14 @@
   font-size: x-large;
 }
 
-section.title{
-    margin: 10px 10px 5px;
-}
+/* Botonera */
 
-section.body{
-    margin: 0 10px 5px;
-}
-
-.item-container{
-    margin: 10px 0 20px;
+#buttons-container{
+    background-color: #243346;
+    width: 100vw;
+    padding: 20px;
     display: flex;
-    flex-flow: column nowrap;
-    align-items: start;
-    gap: 10px;
-}
-
-.item-container .btn-group{
-    align-self: stretch;
+    flex-flow: row;
+    justify-content: end;
+    padding-right: 40px;
 }

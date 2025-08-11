@@ -9,7 +9,7 @@ class Command(BaseCommand):
     help = 'Envía un correo diario a cada usuario del grupo "notificar_vencimiento" con los documentos por vencer o vencidos.'
 
     def handle(self, *args, **options):
-        today = timezone.now().date()
+        today = timezone.localdate()
         notice_days = [30, 20] + list(range(14, -1, -1))
 
         # Buscar documentos próximos a vencer
@@ -26,21 +26,37 @@ class Command(BaseCommand):
 
         # Construir el mensaje de correo
         message_lines = []
+
+        message_lines.append("Estimado(a):")
+        message_lines.append("")
+        message_lines.append(
+            "Le informamos que, de acuerdo con los registros del sistema, existen documentos que "
+            "se encuentran próximos a vencer o ya han vencido. A continuación, se detalla el estado actualizado:"
+        )
+        message_lines.append("")
+
         if upcoming_files.exists():
             message_lines.append("Documentos próximos a vencer:")
+            message_lines.append("")
             for file in upcoming_files:
-                message_lines.append(f"- {file.short_name} (vence el {file.expiration_date})")
+                message_lines.append(f"- {file.short_name} (vence el {file.expiration_date.strftime('%d de %B de %Y')})")
             message_lines.append("")
 
         if expired_files.exists():
-            message_lines.append("Documentos vencidos:")
+            message_lines.append("Documentos ya vencidos:")
+            message_lines.append("")
             for file in expired_files:
-                message_lines.append(f"- {file.short_name} (venció el {file.expiration_date})")
+                message_lines.append(f"- {file.short_name} (venció el {file.expiration_date.strftime('%d de %B de %Y')})")
             message_lines.append("")
 
-        message_lines.append("Este es un correo automatico.")
-        message_lines.append("Puedes acceder a los documentos en el sistema.")
-        message_lines.append("~ Equipo de informatica :D")
+        message_lines.append("Le recomendamos revisar y gestionar esta situación a la brevedad para asegurar el cumplimiento de los requisitos correspondientes.")
+        message_lines.append("")
+        message_lines.append("Puede acceder a los documentos directamente en el sistema.")
+        message_lines.append("")
+        message_lines.append("Este es un mensaje automático. Por favor, no responda a este correo.")
+        message_lines.append("Atentamente,")
+        message_lines.append("Equipo de Informática")
+
 
 
         subject = "Notificación de documentos por vencer o vencidos"
