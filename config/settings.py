@@ -1,7 +1,9 @@
 from pathlib import Path
 from decouple import config, Csv
 
+# ========================
 # Rutas base
+# ========================
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ========================
@@ -28,13 +30,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',                # <-- requerido por allauth
+
+    # Autenticación social (Google)
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     # Tus apps
     'docs',
+    'accounts',
     'main',
     'major_equipment',
     'firebrigade',
 ]
+
+SITE_ID = 1  # Ajusta el registro en Admin -> Sites (localhost:8000 en dev, dominio real en prod)
 
 # ========================
 # Middleware
@@ -45,10 +57,12 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  
+    'allauth.account.middleware.AccountMiddleware',              
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'config.urls'
 
@@ -58,12 +72,12 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / "templates"],  # sobrescribe allauth con tu /templates/account/login.html si quieres
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request',  # <-- requerido por allauth
                 'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -144,12 +158,16 @@ if not DEBUG:
     X_FRAME_OPTIONS = 'DENY'
 
     CSRF_TRUSTED_ORIGINS = [
-    "https://bomberosquintero.cl",
-    "https://www.bomberosquintero.cl",
+        "https://bomberosquintero.cl",
+        "https://www.bomberosquintero.cl",
     ]
 
     FILE_UPLOAD_PERMISSIONS = 0o664
     FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o775
+else:
+    # En dev puedes permitir orígenes locales vía .env si prefieres:
+    # CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='', cast=Csv())
+    pass
 
 # ========================
 # Logging
@@ -194,7 +212,6 @@ LOGGING = {
 # Internacionalización y formatos
 # ========================
 USE_I18N = True
-# Django 4+ ignora USE_L10N; los formatos los controla FORMAT_MODULE_PATH y los separadores:
 USE_THOUSAND_SEPARATOR = True
 THOUSAND_SEPARATOR = '.'
 DECIMAL_SEPARATOR = ','
@@ -203,11 +220,36 @@ TIME_ZONE = 'America/Santiago'
 USE_TZ = True
 
 # ========================
-# Autenticación
+# Autenticación (se mantiene tu backend + Google)
 # ========================
 AUTHENTICATION_BACKENDS = [
-    'firebrigade.backends.RolePermissionBackend',
-    'django.contrib.auth.backends.ModelBackend',
+    'firebrigade.backends.RolePermissionBackend',              # tu backend
+    'django.contrib.auth.backends.ModelBackend',               # clásico
+    'allauth.account.auth_backends.AuthenticationBackend',     # Google
 ]
+
+# Config de allauth
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}  # permite login local con usuario o email
+ACCOUNT_SIGNUP_ENABLED = False  # sin registro público
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+# Google (OIDC)
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['openid', 'email', 'profile'],
+        'AUTH_PARAMS': {'prompt': 'select_account', 'hd': 'bomberosquintero.cl'},
+        'APP': {
+            'client_id': config('GOOGLE_CLIENT_ID', default=''),
+            'secret': config('GOOGLE_CLIENT_SECRET', default=''),
+            'key': '',
+        },
+    }
+}
+
+# Adapter para limitar acceso al dominio corporativo
+SOCIALACCOUNT_ADAPTER = 'accounts.adapters.DomainRestrictedAdapter'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
