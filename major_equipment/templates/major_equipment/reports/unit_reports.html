@@ -6,35 +6,61 @@
 <link rel="stylesheet" href="{% static 'major_equipment/css/reports/unit_reports.css' %}">
 {% endblock %}
 
+<!-- Barra de navegación -->
 {% block navbar %}
 {% include 'utils/navbar.html' %}
-<section class="header-container">
-    <a href="{% url 'major_equipment:units' %}">
-        <h2>Material Mayor</h2>
-    </a>
+<section class="bg-main d-flex flex-column flex-sm-row justify-content-between align-items-sm-center">
+    <div class="p-3">
+        <a href="{% url 'major_equipment:units' %}" class="text-light text-decoration-none">
+            <h2>Material Mayor</h2>
+        </a>
+    </div>
+
+    <div id="unit-navbar" class="d-flex flex-row border-top border-light">
+        <a href="{% url 'major_equipment:unit' unit.id %}" class="text-decoration-none text-light w-25 d-flex
+        justify-content-center align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-center p-1">
+                <i class="bi bi-truck-front fs-1"></i>
+                <p class="fs-7">Unidad</p>
+            </div>
+        </a>
+        <a href="{% url 'major_equipment:unit_reports' %}?unit={{unit.id}}" class="text-decoration-none
+        text-light w-25 d-flex justify-content-center align-items-center active">
+            <div class="d-flex flex-column justify-content-center align-items-center p-1">
+                <i class="bi bi-journal fs-1 "></i>
+                <p class="fs-7">Reportes</p>
+            </div>
+        </a>
+        <a href="{% url 'major_equipment:unit_fuel' unit.id %}" class="text-decoration-none 
+        text-light w-25 d-flex justify-content-center align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-center p-1">
+                <i class="bi bi-fuel-pump-fill fs-1"></i>
+                <p class="fs-7">Combustible</p>
+            </div>
+        </a>
+        <a href="{% url 'major_equipment:unit_maintenance' unit.id %}" class="text-decoration-none
+        text-light w-25 d-flex justify-content-center align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-center p-1">
+                <i class="bi bi-wrench-adjustable-circle-fill fs-1"></i>
+                <p class="fs-7">Mantención</p>
+            </div>
+        </a>
+    </div>
 </section>
 {% endblock %}
 
 {% block content %}
-<div id="unit-page">
-    <div class="buttons-container">
-        <a href="{% url 'major_equipment:unit' unit.id %}">
-            <i class="bi bi-truck-front"></i>
-            <p>Unidad</p>
-        </a>
-        <a href="#" class="active">
-            <i class="bi bi-journal"></i>
-            <p>Reportes</p>
-        </a>
-        <a href="{% url 'major_equipment:unit_fuel' unit.id %}">
-            <i class="bi bi-fuel-pump-fill"></i>
-            <p>Combustible</p>
-        </a>
-        <a href="{% url 'major_equipment:unit_maintenance' unit.id %}">
-            <i class="bi bi-wrench-adjustable-circle-fill"></i>
-            <p>Mantención</p>
-        </a>
+<section>
+    <div>
+        <p>20%</p>
+        <h6></h6>
     </div>
+</section>
+
+
+
+
+<div id="unit-page">
     <div class="d-flex flex-row align-items-center justify-content-end px-2 pt-3">
         <a href="{% url 'major_equipment:create_report'%}?unit={{unit.id}}" class="btn btn-light">Nuevo Reporte</a>
     </div>
@@ -55,7 +81,7 @@
 
             {% for cell in cells %}
                 {% if cell.report %}
-                    <a href="{% url 'major_equipment:get_report' unit.id cell.report.id %}" class="day-link">
+                    <a href="#" class="day-link">
                         <button class="day-btn {{ cell.css_class }}">
                             {{ cell.day }}
                         </button>

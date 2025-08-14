@@ -1,13 +1,117 @@
-/* ----- Encabezado ----- */
-.header-container {
+.bg-main {
     background-color: #BB2633;
-    padding: 10px 20px;
 }
 
-.header-container a{
+.bg-secondary{
+    background-color: #243346 !important;
+}
+
+.bg-tertiary{
+    background-color: #F5DFE1 !important;
+}
+
+.fs-7{
+    font-size: clamp(0.7rem, 3vw, 1rem);
+    font-weight: bolder;
+}
+
+.w-90{
+    width: 90%;
+}
+
+a.active {
+    background-color: #F5DFE1;
     color: white;
+}
+
+a.active i {
+    color: #BB2633;
+}
+
+a.active p {
+    color: #BB2633;
     text-decoration: none;
 }
+
+#accordion-container{
+    height: 230px;  
+}
+
+.accordion{
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.accordion .accordion-item {
+    background-color: transparent;
+    border: none;
+}
+
+.accordion-button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+.accordion-button:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.accordion-body {
+    background-color: transparent;
+    border-top: none;
+}
+
+.accordion-button::after {
+    display: none !important;
+}
+
+
+
+@media (min-width: 576px) {
+    #unit-navbar{
+        width: 60%;
+        max-width: 450px;
+    }
+    .fs-7{
+        font-size: clamp(0.8rem, 2vw, 1rem);
+    }
+    }
+
+@media (min-width: 768px) {
+    .w-md-60{
+        width: 60% !important;
+    }
+    .w-md-40{
+        width: 40% !important;
+    }
+    #unit-images-container{
+        max-height: 400px;
+    }
+
+}
+
+@media (min-width: 992px) {
+    #unit-images-container{
+        max-height: 500px;
+    }
+    .h-lg-20{
+        height: 20% !important;
+    }
+    .h-lg-80{
+        height: 80% !important;
+    }
+}
+
+
 
 #unit-page{
     background-color: #BB2633;
@@ -17,49 +121,6 @@
     overflow: hidden;
 }
 
-.buttons-container{
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.buttons-container a {
-    background-color: #BB2633;
-    flex: 1;
-    border: #C0C0C0 solid 1px;
-    width: 25%;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: stretch;
-    text-decoration: none;
-}
-
-.buttons-container a.active{
-    background-color: #F5DFE1;
-    color: white;
-}
-
-.buttons-container a i{
-    color: white;
-    font-size: 2.5rem;
-    text-align: center;
-}
-
-.buttons-container a.active i{
-    color: #BB2633;
-}
-
-.buttons-container a p{
-    color: white;
-    font-size: clamp(0.7rem, 3vw, 1.2rem);
-    text-align: center;
-    font-weight: bolder;
-}
-
-.buttons-container a.active p{
-    color: #BB2633;
-    text-decoration: none;
-}
 
 .calendar-section{
   margin: 10px 0;
