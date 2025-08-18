@@ -54,7 +54,7 @@ dev_notes.txt
 .vscode/
 .idea/
 
-django.log
+*.log
 
 *.pp
 *.te
